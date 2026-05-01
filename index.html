@@ -1,847 +1,1012 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hariel Silva Fabrício — Portfólio</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --bg: #050a10;
-    --surface: #0b1420;
-    --surface2: #0f1d2e;
+    --bg: #080b10;
+    --surface: #0d1117;
+    --card: #111722;
+    --border: #1e2a3a;
     --accent: #00c8ff;
-    --accent2: #0077ff;
-    --accent3: #00ff9d;
-    --text: #e8f4ff;
-    --muted: #6b8aaa;
-    --border: rgba(0, 200, 255, 0.15);
+    --accent2: #7b61ff;
+    --accent3: #ff6b35;
+    --text: #e8edf5;
+    --muted: #6b7a8d;
+    --glow: rgba(0,200,255,0.15);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
+    font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
+    line-height: 1.6;
   }
 
+  /* GRAIN OVERLAY */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 0;
+    z-index: 9999;
+    opacity: 0.4;
   }
 
+  /* NAV */
   nav {
     position: fixed;
-    top: 0; width: 100%;
-    padding: 18px 40px;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(5,10,16,0.85);
+    background: rgba(8,11,16,0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    z-index: 100;
   }
 
   .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
     color: var(--accent);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
+    text-decoration: none;
   }
-  .nav-logo span { color: var(--muted); }
 
-  nav ul { display: flex; gap: 32px; list-style: none; }
-  nav ul a {
-    font-size: 0.82rem;
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.2s;
-    font-family: 'Space Mono', monospace;
   }
-  nav ul a:hover { color: var(--accent); }
+
+  .nav-links a:hover { color: var(--accent); }
 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    padding: 100px 60px 60px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
     position: relative;
-    overflow: hidden;
   }
 
-  .hero-orb {
-    position: absolute;
-    width: 700px; height: 700px;
-    right: -150px; top: 50%;
-    transform: translateY(-50%);
-    background: radial-gradient(circle, rgba(0,200,255,0.13) 0%, rgba(0,119,255,0.06) 40%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse 4s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  .hero-orb2 {
-    position: absolute;
-    width: 450px; height: 450px;
-    right: 80px; top: 50%;
-    transform: translateY(-50%);
-    background: radial-gradient(circle, rgba(0,255,157,0.07) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse 6s ease-in-out infinite reverse;
-    pointer-events: none;
-  }
-
-  @keyframes pulse {
-    0%,100% { transform: translateY(-50%) scale(1); opacity: 1; }
-    50% { transform: translateY(-50%) scale(1.08); opacity: 0.7; }
-  }
-
-  .hero-content { position: relative; z-index: 1; max-width: 680px; }
-
-  .hero-tag {
+  .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     background: rgba(0,200,255,0.08);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 6px 16px;
-    font-family: 'Space Mono', monospace;
+    border: 1px solid rgba(0,200,255,0.2);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
     font-size: 0.75rem;
     color: var(--accent);
     letter-spacing: 0.1em;
-    margin-bottom: 28px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    width: fit-content;
     animation: fadeUp 0.8s ease both;
   }
 
-  .hero-tag::before {
+  .hero-badge::before {
     content: '';
     width: 6px; height: 6px;
-    background: var(--accent3);
+    background: var(--accent);
     border-radius: 50%;
-    animation: blink 1.5s ease-in-out infinite;
+    animation: pulse 2s infinite;
   }
 
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
 
   h1 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     animation: fadeUp 0.8s 0.1s ease both;
   }
 
-  h1 .name-line { display: block; }
-  h1 .accent-word { color: var(--accent); }
+  h1 .line { display: block; }
+  h1 .highlight {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
   .hero-sub {
-    font-size: 1.05rem;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
     color: var(--muted);
-    line-height: 1.75;
-    margin: 24px 0 40px;
     max-width: 520px;
+    line-height: 1.7;
     animation: fadeUp 0.8s 0.2s ease both;
   }
-  .hero-sub strong { color: var(--text); }
 
-  .hero-btns {
-    display: flex; gap: 16px; flex-wrap: wrap;
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     animation: fadeUp 0.8s 0.3s ease both;
   }
 
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color: #fff;
-    padding: 14px 32px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
     font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 24px rgba(0,200,255,0.3);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(0,200,255,0.5); }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--accent);
-    padding: 14px 32px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    border: 1px solid var(--border);
-    transition: background 0.2s, border-color 0.2s;
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
   }
-  .btn-secondary:hover { background: rgba(0,200,255,0.06); border-color: var(--accent); }
+
+  .btn-primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,200,255,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
 
   .hero-stats {
-    display: flex; gap: 40px; margin-top: 60px;
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
     animation: fadeUp 0.8s 0.4s ease both;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
   }
-  .stat { border-left: 2px solid var(--border); padding-left: 16px; }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
-  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* BG DECORATIONS */
+  .hero-bg {
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse at 70% 40%, rgba(0,200,255,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse at 90% 80%, rgba(123,97,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   /* SECTIONS */
   section {
-    padding: 100px 60px;
-    position: relative;
-    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
   }
 
   .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::before {
-    content: '';
-    width: 28px; height: 1px;
-    background: var(--accent);
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
   }
 
   h2 {
     font-family: 'Syne', sans-serif;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 60px;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
   }
 
-  /* SOBRE */
-  #sobre { background: var(--surface); }
-
-  .sobre-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    max-width: 1100px;
-  }
-
-  .sobre-text p {
-    color: var(--muted);
-    line-height: 1.8;
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  .sobre-text p strong { color: var(--text); }
-
-  .sobre-highlights { display: flex; flex-direction: column; gap: 16px; }
-
-  .highlight-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 24px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .highlight-card:hover { border-color: rgba(0,200,255,0.4); transform: translateX(4px); }
-
-  .hc-icon {
-    width: 40px; height: 40px;
-    background: rgba(0,200,255,0.1);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
-  }
-  .hc-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
-  .hc-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-
-  /* SKILLS */
-  #habilidades { background: var(--bg); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1100px;
-  }
-
-  .skill-category {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    transition: border-color 0.25s, box-shadow 0.25s;
-  }
-  .skill-category:hover {
-    border-color: rgba(0,200,255,0.4);
-    box-shadow: 0 0 30px rgba(0,200,255,0.07);
-  }
-
-  .skill-cat-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-
-  .skill-cat-icon {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, rgba(0,200,255,0.15), rgba(0,119,255,0.15));
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-  }
-
-  .skill-cat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
-
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .skill-tag {
-    background: rgba(0,200,255,0.06);
-    border: 1px solid rgba(0,200,255,0.12);
-    color: var(--text);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-  }
-
-  /* CERTS */
-  #certificacoes { background: var(--surface); }
-
+  /* CERTIFICATES */
   .certs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
-    max-width: 1100px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
 
   .cert-card {
-    background: var(--bg);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
+    border-radius: 16px;
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.25s, transform 0.25s;
   }
+
   .cert-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2));
-    border-radius: 3px 0 0 3px;
+    width: 100%; height: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
   }
-  .cert-card:hover { border-color: rgba(0,200,255,0.4); transform: translateY(-4px); }
+
+  .cert-card:hover {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,255,0.1);
+  }
+
+  .cert-card:hover::before { opacity: 1; }
+
+  .cert-card.aws::before { background: linear-gradient(90deg, #ff9900, #ffb340); }
+  .cert-card.huawei::before { background: linear-gradient(90deg, #cf0a2c, #ff3355); }
+  .cert-card.ifce::before { background: linear-gradient(90deg, #7b61ff, #a78bfa); }
+  .cert-card.ifce2::before { background: linear-gradient(90deg, #7b61ff, #a78bfa); }
+  .cert-card.espanhol::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
+  .cert-card.quimica::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+
+  .cert-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .cert-icon.aws { background: rgba(255,153,0,0.12); }
+  .cert-icon.huawei { background: rgba(207,10,44,0.12); }
+  .cert-icon.ifce { background: rgba(123,97,255,0.12); }
+  .cert-icon.espanhol { background: rgba(22,163,74,0.12); }
+  .cert-icon.quimica { background: rgba(14,165,233,0.12); }
 
   .cert-issuer {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
   }
 
-  .cert-name {
+  .cert-title {
     font-family: 'Syne', sans-serif;
-    font-weight: 700;
     font-size: 1rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--text);
   }
 
-  .cert-meta { font-size: 0.78rem; color: var(--muted); }
+  .cert-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
 
-  .cert-badge {
+  .cert-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .cert-open-hint {
     position: absolute;
-    top: 20px; right: 20px;
-    font-size: 1.4rem;
-  }
-
-  .cert-hours {
-    margin-top: 12px;
-    display: inline-block;
-    background: rgba(0,255,157,0.07);
-    border: 1px solid rgba(0,255,157,0.15);
-    color: var(--accent3);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-family: 'Space Mono', monospace;
-  }
-
-  /* TIMELINE */
-  #experiencia { background: var(--bg); }
-
-  .timeline { max-width: 720px; position: relative; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 18px; top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-  }
-
-  .timeline-item {
-    padding-left: 56px;
-    position: relative;
-    margin-bottom: 48px;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 12px; top: 6px;
-    width: 13px; height: 13px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-  }
-
-  .tl-period {
-    font-family: 'Space Mono', monospace;
+    bottom: 1.25rem; right: 1.25rem;
     font-size: 0.72rem;
     color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 6px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
-  .tl-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
-  .tl-org { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
-  .tl-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-  /* IDIOMAS */
-  #idiomas { background: var(--surface); }
+  .cert-card:hover .cert-open-hint { opacity: 1; }
 
-  .langs-grid { display: flex; gap: 24px; flex-wrap: wrap; max-width: 1100px; }
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    max-width: 750px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+
+  .modal-header {
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .modal-header h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .modal-close {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--border);
+    border: none;
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .modal-close:hover { background: rgba(255,255,255,0.1); }
+
+  .modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .modal-body img {
+    width: 100%;
+    max-width: 620px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .modal-body .pdf-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .modal-body .btn { margin-top: 0.5rem; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .skill-card:hover { border-color: rgba(0,200,255,0.2); }
+
+  .skill-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  /* LANGUAGES */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.25rem;
+    max-width: 600px;
+  }
 
   .lang-card {
-    background: var(--bg);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 36px;
+    border-radius: 14px;
+    padding: 1.5rem;
     text-align: center;
-    min-width: 180px;
-    transition: border-color 0.2s, transform 0.2s;
   }
-  .lang-card:hover { border-color: rgba(0,200,255,0.4); transform: translateY(-3px); }
 
-  .lang-flag { font-size: 2.2rem; margin-bottom: 12px; }
-  .lang-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-  .lang-level { font-size: 0.78rem; color: var(--accent); font-family: 'Space Mono', monospace; letter-spacing: 0.08em; }
+  .lang-flag { font-size: 2rem; margin-bottom: 0.5rem; }
+  .lang-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+  .lang-level { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
 
-  .lang-bar-wrap {
-    width: 100%; height: 3px;
-    background: rgba(0,200,255,0.1);
-    border-radius: 2px;
-    margin-top: 12px;
+  /* CONTACT */
+  .contact-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
     overflow: hidden;
   }
-  .lang-bar {
-    height: 100%;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(0,200,255,0.05) 0%, transparent 60%);
+    pointer-events: none;
   }
 
-  /* CONTATO */
-  #contato { background: var(--bg); text-align: center; }
-  #contato h2 { margin-bottom: 16px; }
-
-  .contact-sub {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 480px;
-    margin: 0 auto 40px;
-    line-height: 1.7;
-  }
+  .contact-section h2 { margin-bottom: 0.75rem; }
+  .contact-section p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
 
   .contact-links {
     display: flex;
+    gap: 1rem;
     justify-content: center;
-    gap: 16px;
     flex-wrap: wrap;
   }
 
   .contact-link {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: var(--surface);
+    gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 10px;
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 14px 26px;
-    border-radius: 8px;
     text-decoration: none;
-    font-size: 0.88rem;
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    background: var(--surface);
   }
+
   .contact-link:hover {
     border-color: var(--accent);
-    background: rgba(0,200,255,0.06);
-    transform: translateY(-2px);
+    color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,200,255,0.15);
   }
 
+  /* FOOTER */
   footer {
-    background: var(--surface);
+    text-align: center;
+    padding: 2rem;
     border-top: 1px solid var(--border);
-    padding: 28px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    color: var(--muted);
+    font-size: 0.8rem;
   }
-  footer p { font-size: 0.78rem; color: var(--muted); font-family: 'Space Mono', monospace; }
-  footer span { color: var(--accent); }
 
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    nav ul { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    section { padding: 80px 24px; }
-    .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
-    .hero-stats { gap: 24px; flex-wrap: wrap; }
-    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .lang-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .hero-stats { gap: 1.5rem; }
+    .contact-section { padding: 2rem 1.25rem; }
+    h1 { font-size: 2.8rem; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">HSF<span>.dev</span></div>
-  <ul>
+  <a href="#" class="nav-logo">HSF.dev</a>
+  <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#habilidades">Skills</a></li>
-    <li><a href="#certificacoes">Certs</a></li>
-    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#certs">Certificados</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-orb"></div>
-  <div class="hero-orb2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Disponível para oportunidades</div>
-    <h1>
-      <span class="name-line">Hariel Silva</span>
-      <span class="name-line accent-word">Fabrício</span>
-    </h1>
-    <p class="hero-sub">
-      Estudante de <strong>Informática</strong> com foco em <strong>Infraestrutura de Redes</strong> e <strong>Cloud Computing</strong>. Certificado AWS e Huawei Cloud, apaixonado por soluções escaláveis em nuvem.
-    </p>
-    <div class="hero-btns">
-      <a href="#certificacoes" class="btn-primary">Ver Certificações</a>
-      <a href="#contato" class="btn-secondary">Entre em contato</a>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">Disponível para oportunidades</div>
+  <h1>
+    <span class="line">Hariel</span>
+    <span class="line highlight">Silva Fabrício</span>
+  </h1>
+  <p class="hero-sub">
+    Estudante de <strong>Informática</strong> com foco em <strong>Cloud Computing</strong> e Infraestrutura de Redes. Certificado AWS e Huawei, apaixonado por tecnologia e soluções escaláveis.
+  </p>
+  <div class="hero-actions">
+    <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
+    <a href="#contato" class="btn btn-outline">Entre em contato</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">6</span>
+      <span class="stat-label">Certificados</span>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">Certificados</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">460h</div>
-        <div class="stat-label">Formação técnica</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Idiomas</div>
-      </div>
+    <div class="stat-item">
+      <span class="stat-num">680h</span>
+      <span class="stat-label">Formação técnica</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Idiomas</span>
     </div>
   </div>
-</section>
+</div>
 
+<div class="section-divider"></div>
+
+<!-- SOBRE -->
 <section id="sobre">
-  <div class="section-label">Perfil</div>
+  <p class="section-label">Perfil</p>
   <h2>Sobre mim</h2>
-  <div class="sobre-grid">
-    <div class="sobre-text">
-      <p>Sou <strong>Hariel Silva Fabrício</strong>, estudante do curso técnico de <strong>Informática</strong> na E.E.E.P. Edson Queiroz (Ceará), com foco em infraestrutura de redes e computação em nuvem.</p>
-      <p>Obtive certificações nas principais plataformas globais de cloud — <strong>AWS Academy</strong> e <strong>Huawei ICT Academy</strong> — e me aprofundo continuamente em programação, inteligência artificial e desenvolvimento de games.</p>
-      <p>Atuei como <strong>monitor de Química</strong>, desenvolvendo habilidades de comunicação, liderança e trabalho colaborativo. Sou movido pelo aprendizado contínuo e pela aplicação prática do conhecimento técnico.</p>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloud Computing</div>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Certificado AWS Academy Cloud Foundations e HCIA-Cloud Service (Huawei). Fundamentos sólidos em IaaS, PaaS e SaaS.</p>
     </div>
-    <div class="sobre-highlights">
-      <div class="highlight-card">
-        <div class="hc-icon">☁️</div>
-        <div>
-          <div class="hc-title">Cloud Computing</div>
-          <div class="hc-desc">Certificado AWS Academy Cloud Foundations e HCIA-Cloud Service (Huawei). Fundamentos sólidos em serviços, arquitetura e infraestrutura de nuvem.</div>
-        </div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-icon">🌐</div>
-        <div>
-          <div class="hc-title">Infraestrutura de Redes</div>
-          <div class="hc-desc">Formação técnica em informática com ênfase em redes, protocolos TCP/IP, configuração e gerenciamento de infraestrutura.</div>
-        </div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-icon">🤖</div>
-        <div>
-          <div class="hc-title">IA & Programação</div>
-          <div class="hc-desc">Curso da UFC (200h) com foco em jogos digitais, App Inventor, estruturas de dados, machine learning e ferramentas de IA generativa.</div>
-        </div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-icon">🎓</div>
-        <div>
-          <div class="hc-title">Monitor Acadêmico</div>
-          <div class="hc-desc">Monitor de Química na EEEEP Edson Queiroz (60h em 2024), apoiando colegas e desenvolvendo habilidades pedagógicas e de liderança.</div>
-        </div>
-      </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Infraestrutura de Redes</div>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Formação técnica em Informática com ênfase em redes, protocolos TCP/IP e gerenciamento de infraestrutura.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">IA & Programação</div>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Formação em jogos digitais, machine learning e IA generativa. Python, App Inventor, estruturas de dados.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎓</div>
+      <div class="skill-name">Monitor Acadêmico</div>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Monitor de Química na E.E.E.P. Edson Queiroz (60h em 2024), desenvolvendo liderança e comunicação.</p>
     </div>
   </div>
 </section>
 
-<section id="habilidades">
-  <div class="section-label">Competências</div>
-  <h2>Habilidades Técnicas</h2>
-  <div class="skills-grid">
-    <div class="skill-category">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon">☁️</div>
-        <div class="skill-cat-name">Cloud Platforms</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">AWS Cloud</span>
-        <span class="skill-tag">Huawei Cloud</span>
-        <span class="skill-tag">Cloud Foundations</span>
-        <span class="skill-tag">IaaS / SaaS</span>
-        <span class="skill-tag">Armazenamento Cloud</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon">🌐</div>
-        <div class="skill-cat-name">Redes & Infraestrutura</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">TCP/IP</span>
-        <span class="skill-tag">Configuração de Redes</span>
-        <span class="skill-tag">Infraestrutura TI</span>
-        <span class="skill-tag">Segurança de Redes</span>
-        <span class="skill-tag">Virtualização</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon">💻</div>
-        <div class="skill-cat-name">Programação</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Lógica de Programação</span>
-        <span class="skill-tag">App Inventor</span>
-        <span class="skill-tag">Estruturas de Dados</span>
-        <span class="skill-tag">Desenvolvimento de Games</span>
-        <span class="skill-tag">Python (básico)</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon">🤖</div>
-        <div class="skill-cat-name">Inteligência Artificial</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">IA Generativa</span>
-        <span class="skill-tag">Machine Learning básico</span>
-        <span class="skill-tag">IA em Jogos</span>
-        <span class="skill-tag">Teachable Machine</span>
-        <span class="skill-tag">Coleta de Dados</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon">🛠️</div>
-        <div class="skill-cat-name">Soft Skills</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Resolução de Problemas</span>
-        <span class="skill-tag">Liderança</span>
-        <span class="skill-tag">Comunicação</span>
-        <span class="skill-tag">Trabalho em Equipe</span>
-        <span class="skill-tag">Aprendizado Contínuo</span>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="section-divider"></div>
 
-<section id="certificacoes">
-  <div class="section-label">Conquistas</div>
-  <h2>Certificações</h2>
+<!-- CERTIFICADOS -->
+<section id="certs">
+  <p class="section-label">Conquistas</p>
+  <h2>Certificados <span style="color:var(--muted);font-size:0.6em;font-weight:400">— clique para visualizar</span></h2>
+
   <div class="certs-grid">
 
-    <div class="cert-card">
-      <div class="cert-badge">🟠</div>
+    <!-- AWS -->
+    <div class="cert-card aws" onclick="openModal('aws')">
+      <div class="cert-icon aws">🟠</div>
       <div class="cert-issuer">Amazon Web Services</div>
-      <div class="cert-name">AWS Academy Graduate — Cloud Foundations Training Badge</div>
-      <div class="cert-meta">📅 Abril de 2026</div>
-      <div class="cert-hours">20 horas</div>
+      <div class="cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</div>
+      <div class="cert-meta">
+        <span>📅 Abril de 2026</span>
+        <span>⏱ 20 horas</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
     </div>
 
-    <div class="cert-card">
-      <div class="cert-badge">🔴</div>
+    <!-- Huawei -->
+    <div class="cert-card huawei" onclick="openModal('huawei')">
+      <div class="cert-icon huawei">🔴</div>
       <div class="cert-issuer">Huawei ICT Academy</div>
-      <div class="cert-name">HCIA-Cloud Service V3.5 — Certificado de Conclusão</div>
-      <div class="cert-meta">📅 Outubro de 2025</div>
-      <div class="cert-hours">Cód: EBG20251029000002</div>
+      <div class="cert-title">HCIA-Cloud Service V3.5 — Certificado de Conclusão (Portuguese)</div>
+      <div class="cert-meta">
+        <span>📅 Out 2025</span>
+        <span>⏱ 60 horas</span>
+        <span>🔑 EBG20251029000002</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
     </div>
 
-    <div class="cert-card">
-      <div class="cert-badge">🔵</div>
-      <div class="cert-issuer">Universidade Federal do Ceará</div>
-      <div class="cert-name">Fábrica de Programadores: Games e IA (EAD)</div>
-      <div class="cert-meta">📅 Ago – Dez 2025</div>
-      <div class="cert-hours">200 horas</div>
+    <!-- IFCE Cloud Específica -->
+    <div class="cert-card ifce" onclick="openModal('ifce-cloud')">
+      <div class="cert-icon ifce">🔵</div>
+      <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
+      <div class="cert-title">Computação em Nuvem — Formação Específica</div>
+      <div class="cert-meta">
+        <span>📅 Jan 2026</span>
+        <span>⏱ 240 horas</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
     </div>
 
-    <div class="cert-card">
-      <div class="cert-badge">🇪🇸</div>
+    <!-- IFCE Interpessoal -->
+    <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')">
+      <div class="cert-icon ifce">🔵</div>
+      <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
+      <div class="cert-title">Computação em Nuvem — Habilidades Interpessoais</div>
+      <div class="cert-meta">
+        <span>📅 Out 2025</span>
+        <span>⏱ 120 horas</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
+    </div>
+
+    <!-- Espanhol -->
+    <div class="cert-card espanhol" onclick="openModal('espanhol')">
+      <div class="cert-icon espanhol">🇪🇸</div>
       <div class="cert-issuer">Centro Cearense de Idiomas — SEDUC</div>
-      <div class="cert-name">Curso de Língua Espanhola — Conclusão com Aproveitamento</div>
-      <div class="cert-meta">📅 Fev 2024 – Jun 2025</div>
-      <div class="cert-hours">180 horas</div>
+      <div class="cert-title">Curso de Língua Espanhola — Conclusão com Aproveitamento</div>
+      <div class="cert-meta">
+        <span>📅 Fev 2024 – Jun 2025</span>
+        <span>⏱ 180 horas</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
     </div>
 
-    <div class="cert-card">
-      <div class="cert-badge">⚗️</div>
+    <!-- Química -->
+    <div class="cert-card quimica" onclick="openModal('quimica')">
+      <div class="cert-icon quimica">⚗️</div>
       <div class="cert-issuer">E.E.E.P. Edson Queiroz</div>
-      <div class="cert-name">Monitoria de Química — Curso Técnico de Informática</div>
-      <div class="cert-meta">📅 Abr – Dez 2024</div>
-      <div class="cert-hours">60 horas</div>
+      <div class="cert-title">Monitoria de Química — Curso Técnico de Informática</div>
+      <div class="cert-meta">
+        <span>📅 Abr – Dez 2024</span>
+        <span>⏱ 60 horas</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
     </div>
 
   </div>
 </section>
 
-<section id="experiencia">
-  <div class="section-label">Trajetória</div>
-  <h2>Experiência & Formação</h2>
-  <div class="timeline">
+<div class="section-divider"></div>
 
-    <div class="timeline-item">
-      <div class="tl-period">2026</div>
-      <div class="tl-title">AWS Academy — Cloud Foundations</div>
-      <div class="tl-org">Amazon Web Services Academy</div>
-      <div class="tl-desc">Concluiu o programa com 20 horas de treinamento em fundamentos de cloud computing — serviços AWS, segurança, infraestrutura e modelos de implantação. Badge digital emitida via Credly.</div>
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Competências</p>
+  <h2>Habilidades Técnicas</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloud Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">AWS Cloud</span><span class="tag">Huawei Cloud</span>
+        <span class="tag">IaaS</span><span class="tag">PaaS</span><span class="tag">SaaS</span>
+      </div>
     </div>
-
-    <div class="timeline-item">
-      <div class="tl-period">Ago – Dez 2025</div>
-      <div class="tl-title">Fábrica de Programadores: Games & IA</div>
-      <div class="tl-org">Universidade Federal do Ceará (UFC) — EAD</div>
-      <div class="tl-desc">200h de formação em algoritmos, jogos digitais, IA generativa, App Inventor, estruturas de dados, machine learning e elaboração de pitch. Patrocínio ALECE e Prefeitura de Fortaleza.</div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Redes & Infraestrutura</div>
+      <div class="skill-tags">
+        <span class="tag">TCP/IP</span><span class="tag">Configuração de Redes</span>
+        <span class="tag">Virtualização</span><span class="tag">Segurança</span>
+      </div>
     </div>
-
-    <div class="timeline-item">
-      <div class="tl-period">Outubro 2025</div>
-      <div class="tl-title">HCIA-Cloud Service V3.5</div>
-      <div class="tl-org">Huawei ICT Academy</div>
-      <div class="tl-desc">Certificação em serviços de nuvem Huawei, cobrindo arquitetura cloud, virtualização, armazenamento distribuído e serviços gerenciados na plataforma Huawei Cloud.</div>
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">Programação</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Lógica de Programação</span>
+        <span class="tag">Estruturas de Dados</span><span class="tag">App Inventor</span>
+      </div>
     </div>
-
-    <div class="timeline-item">
-      <div class="tl-period">Fev 2024 – Jun 2025</div>
-      <div class="tl-title">Curso de Língua Espanhola</div>
-      <div class="tl-org">Centro Cearense de Idiomas — Cascavel (SEDUC-CE)</div>
-      <div class="tl-desc">180 horas de formação em espanhol concluída com aproveitamento, fortalecendo habilidades comunicativas para o mercado internacional de tecnologia.</div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Inteligência Artificial</div>
+      <div class="skill-tags">
+        <span class="tag">IA Generativa</span><span class="tag">Machine Learning</span>
+        <span class="tag">IA em Jogos</span><span class="tag">Teachable Machine</span>
+      </div>
     </div>
-
-    <div class="timeline-item">
-      <div class="tl-period">Abr – Dez 2024</div>
-      <div class="tl-title">Monitor de Química</div>
-      <div class="tl-org">E.E.E.P. Edson Queiroz — Informática (1° Ano)</div>
-      <div class="tl-desc">60h de monitoria acadêmica, auxiliando colegas com conteúdos de Química, reforçando habilidades de comunicação, liderança e responsabilidade.</div>
+    <div class="skill-card">
+      <div class="skill-icon">🛠️</div>
+      <div class="skill-name">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="tag">Liderança</span><span class="tag">Comunicação</span>
+        <span class="tag">Trabalho em Equipe</span><span class="tag">Resolução de Problemas</span>
+      </div>
     </div>
-
+    <div class="skill-card">
+      <div class="skill-icon">🌍</div>
+      <div class="skill-name">Idiomas</div>
+      <div class="lang-grid" style="grid-template-columns:1fr 1fr 1fr;gap:0.5rem;max-width:100%;margin-top:0.25rem">
+        <div style="text-align:center">
+          <div style="font-size:1.5rem">🇧🇷</div>
+          <div style="font-size:0.75rem;font-weight:700;margin-top:0.2rem">Português</div>
+          <div style="font-size:0.7rem;color:var(--muted)">Nativo</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:1.5rem">🇪🇸</div>
+          <div style="font-size:0.75rem;font-weight:700;margin-top:0.2rem">Espanhol</div>
+          <div style="font-size:0.7rem;color:var(--muted)">Avançado</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:1.5rem">🇺🇸</div>
+          <div style="font-size:0.75rem;font-weight:700;margin-top:0.2rem">Inglês</div>
+          <div style="font-size:0.7rem;color:var(--muted)">Técnico</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="idiomas">
-  <div class="section-label">Idiomas</div>
-  <h2>Línguas</h2>
-  <div class="langs-grid">
-    <div class="lang-card">
-      <div class="lang-flag">🇧🇷</div>
-      <div class="lang-name">Português</div>
-      <div class="lang-level">Nativo</div>
-      <div class="lang-bar-wrap"><div class="lang-bar" style="width:100%"></div></div>
-    </div>
-    <div class="lang-card">
-      <div class="lang-flag">🇪🇸</div>
-      <div class="lang-name">Espanhol</div>
-      <div class="lang-level">Avançado — 180h</div>
-      <div class="lang-bar-wrap"><div class="lang-bar" style="width:80%"></div></div>
-    </div>
-    <div class="lang-card">
-      <div class="lang-flag">🇺🇸</div>
-      <div class="lang-name">Inglês</div>
-      <div class="lang-level">Técnico / Intermediário</div>
-      <div class="lang-bar-wrap"><div class="lang-bar" style="width:55%"></div></div>
-    </div>
-  </div>
-</section>
+<div class="section-divider"></div>
 
+<!-- CONTATO -->
 <section id="contato">
-  <div class="section-label" style="justify-content:center">Contato</div>
-  <h2>Vamos conversar?</h2>
-  <p class="contact-sub">Aberto a estágios e oportunidades em infraestrutura de redes, cloud computing e TI em geral. Fortaleza – CE.</p>
-  <div class="contact-links">
-    <a href="https://www.linkedin.com/in/h%D0%B0riel-silva-fabr%C3%ADcio-1b1004353/" target="_blank" class="contact-link">
-      💼 LinkedIn
-    </a>
-    <a href="https://www.credly.com/go/xuijwLe0" target="_blank" class="contact-link">
-      🏅 Badge AWS Credly
-    </a>
-    <a href="mailto:Leandrois2014@gmail.com" class="contact-link">
-      ✉️ E-mail
-    </a>
+  <div class="contact-section fade-in">
+    <p class="section-label">Contato</p>
+    <h2>Vamos conversar?</h2>
+    <p>Aberto a estágios e oportunidades em infraestrutura de redes, cloud computing e TI em geral. Fortaleza – CE.</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/h%D0%B0riel-silva-fabr%C3%ADcio-1b1004353/" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:Leandrois2014@gmail.com" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Leandrois2014@gmail.com
+      </a>
+      <a href="tel:+5585991690153" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (85) 99169-0153
+      </a>
+      <a href="https://www.credly.com/go/xuijwLe0" target="_blank" class="contact-link">
+        🏅 Badge AWS Credly
+      </a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 <span>Hariel Silva Fabrício</span></p>
-  <p>Fortaleza – Ceará 🇧🇷</p>
+  <p>© 2026 Hariel Silva Fabrício — Fortaleza, Ceará 🇧🇷</p>
 </footer>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Certificado</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+    </div>
+  </div>
+</div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+const certs = {
+  aws: {
+    title: 'AWS Academy Graduate — Cloud Foundations Training Badge',
+    type: 'pdf',
+    pdfUrl: 'https://hriel123.github.io/Portifolio/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20260413-31-i1gn51.pdf',
+    credly: 'https://www.credly.com/go/xuijwLe0',
+    note: 'Emitido em Abril de 2026 · 20 horas · Amazon Web Services Academy'
+  },
+  huawei: {
+    title: 'HCIA-Cloud Service V3.5 — Huawei ICT Academy',
+    type: 'image',
+    imageEl: null, // will use inline img from the photo shown
+    note: 'Emitido em Outubro de 2025 · 60 horas · Código: EBG20251029000002'
+  },
+  'ifce-cloud': {
+    title: 'Computação em Nuvem — Formação Específica em Cloud',
+    type: 'pdf',
+    pdfUrl: 'https://hriel123.github.io/Portifolio/8bdc0835-2f22-4447-aac2-e29327ff1fff.pdf',
+    note: 'Emitido em Janeiro de 2026 · 240 horas · IFCE — Capacita Brasil / Residência TIC 20'
+  },
+  'ifce-interpessoal': {
+    title: 'Computação em Nuvem — Trilha Habilidades Interpessoais',
+    type: 'pdf',
+    pdfUrl: 'https://hriel123.github.io/Portifolio/eab5d41a-59e6-4957-859d-114de908807f.pdf',
+    note: 'Emitido em Outubro de 2025 · 120 horas · IFCE — Capacita Brasil / Residência TIC 20'
+  },
+  espanhol: {
+    title: 'Curso de Língua Espanhola — CCI Cascavel (SEDUC-CE)',
+    type: 'pdf',
+    pdfUrl: 'https://hriel123.github.io/Portifolio/certificado-espanhol.pdf',
+    note: 'Concluído em Julho de 2025 · 180 horas · Centro Cearense de Idiomas'
+  },
+  quimica: {
+    title: 'Monitoria de Química — E.E.E.P. Edson Queiroz',
+    type: 'pdf',
+    pdfUrl: 'https://hriel123.github.io/Portifolio/certificado_quimica.pdf',
+    note: 'Abr – Dez 2024 · 60 horas · E.E.E.P. Edson Queiroz'
+  }
+};
 
-  document.querySelectorAll('.cert-card, .skill-category, .highlight-card, .lang-card, .timeline-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
+// Huawei image from the uploaded photo (inline base64 fallback using the visible cert image)
+// We'll render a preview note + link for the ones that need the PDF from the hosted site
+
+function openModal(key) {
+  const cert = certs[key];
+  if (!cert) return;
+
+  document.getElementById('modal-title').textContent = cert.title;
+  const body = document.getElementById('modal-body');
+  body.innerHTML = '';
+
+  const note = document.createElement('p');
+  note.className = 'pdf-note';
+  note.style.cssText = 'color:var(--muted);font-size:0.85rem;text-align:center;padding:0.5rem 0';
+  note.textContent = cert.note;
+  body.appendChild(note);
+
+  if (key === 'huawei') {
+    // Use the visible image already rendered in the page (the screenshot shown)
+    const info = document.createElement('div');
+    info.style.cssText = 'text-align:center;padding:2rem;color:var(--muted);font-size:0.9rem;line-height:1.8';
+    info.innerHTML = `
+      <div style="font-size:3rem;margin-bottom:1rem">🔴</div>
+      <strong style="color:var(--text);font-family:Syne,sans-serif;font-size:1.1rem">HCIA-Cloud Service V3.5</strong><br>
+      Huawei ICT Academy — Certificado de Conclusão<br>
+      <span style="color:var(--accent);font-size:0.8rem;margin-top:0.5rem;display:block">Código: EBG20251029000002 · Emitido: 2025-10-29</span>
+    `;
+    body.appendChild(info);
+  } else if (cert.pdfUrl) {
+    // Try to embed the PDF in an iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = cert.pdfUrl + '#toolbar=0&navpanes=0';
+    iframe.style.cssText = 'width:100%;height:500px;border:none;border-radius:12px;background:#fff';
+    iframe.title = cert.title;
+    body.appendChild(iframe);
+  }
+
+  // Download / open link
+  if (cert.pdfUrl || cert.credly) {
+    const linkHref = cert.pdfUrl || cert.credly;
+    const linkText = cert.credly && key === 'aws' ? '🏅 Ver Badge no Credly' : '⬇ Abrir / Baixar certificado';
+    const a = document.createElement('a');
+    a.href = linkHref;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'btn btn-outline';
+    a.textContent = linkText;
+    a.style.cssText = 'margin-top:0.5rem;font-size:0.85rem';
+    body.appendChild(a);
+
+    if (key === 'aws') {
+      const a2 = document.createElement('a');
+      a2.href = cert.pdfUrl;
+      a2.target = '_blank';
+      a2.rel = 'noopener';
+      a2.className = 'btn btn-outline';
+      a2.textContent = '⬇ Abrir / Baixar certificado';
+      a2.style.cssText = 'margin-top:0.5rem;font-size:0.85rem';
+      body.appendChild(a2);
+    }
+  }
+
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Intersection observer for fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
