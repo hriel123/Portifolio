@@ -299,6 +299,7 @@
   .cert-card.ifce2::before { background: linear-gradient(90deg, #7b61ff, #a78bfa); }
   .cert-card.espanhol::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
   .cert-card.quimica::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+  .cert-card.google::before { background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); }
 
   .cert-icon {
     width: 48px; height: 48px;
@@ -315,6 +316,7 @@
   .cert-icon.ifce { background: rgba(123,97,255,0.12); }
   .cert-icon.espanhol { background: rgba(22,163,74,0.12); }
   .cert-icon.quimica { background: rgba(14,165,233,0.12); }
+  .cert-icon.google { background: rgba(66,133,244,0.12); }
 
   .cert-issuer {
     font-size: 0.72rem;
@@ -458,6 +460,131 @@
   }
 
   .modal-body .btn { margin-top: 0.5rem; }
+
+  /* Google cert inline display */
+  .google-cert-display {
+    width: 100%;
+    max-width: 660px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .google-cert-display .cert-header-bar {
+    background: #1a73e8;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .google-cert-display .cert-header-bar .coursera-badge {
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; color: #fff; font-weight: 700; text-align: center; line-height: 1.2;
+    border: 2px solid rgba(255,255,255,0.4);
+    flex-shrink: 0;
+  }
+
+  .google-cert-display .cert-header-bar h4 {
+    font-family: 'Syne', sans-serif;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .google-cert-display .cert-header-bar p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.8rem;
+  }
+
+  .google-cert-display .cert-body {
+    padding: 1.5rem;
+    background: #fff;
+    color: #1a1a1a;
+  }
+
+  .google-cert-display .cert-body .recipient {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a73e8;
+    margin-bottom: 0.25rem;
+  }
+
+  .google-cert-display .cert-body .date {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .google-cert-display .cert-body .program {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: 0.75rem;
+  }
+
+  .google-cert-display .cert-body .description {
+    font-size: 0.82rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .google-cert-display .cert-body .courses-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .google-cert-display .cert-body .courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .google-cert-display .cert-body .course-chip {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    background: #e8f0fe;
+    color: #1a73e8;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .google-cert-display .cert-body .verify-row {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  .google-cert-display .cert-body .verify-row a {
+    color: #1a73e8;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .google-cert-display .cert-body .google-logo {
+    display: flex;
+    gap: 2px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    margin-bottom: 0.5rem;
+  }
 
   /* SKILLS */
   .skills-grid {
@@ -639,11 +766,11 @@
   </div>
   <div class="hero-stats">
     <div class="stat-item">
-      <span class="stat-num">6</span>
+      <span class="stat-num">7</span>
       <span class="stat-label">Certificados</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">880h</span>
+      <span class="stat-num">1000h+</span>
       <span class="stat-label">Formação técnica</span>
     </div>
     <div class="stat-item">
@@ -669,6 +796,11 @@
       <div class="skill-icon">🌐</div>
       <div class="skill-name">Infraestrutura de Redes</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Formação técnica em Informática com ênfase em redes, protocolos TCP/IP e gerenciamento de infraestrutura.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Análise de Dados</div>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Certificado Google Data Analytics (Coursera). Habilidades em SQL, Tableau, Python e análise de dados para tomada de decisão.</p>
     </div>
     <div class="skill-card">
       <div class="skill-icon">🤖</div>
@@ -713,6 +845,19 @@
         <span>📅 Out 2025</span>
         <span>⏱ 60 horas</span>
         <span>🔑 EBG20251029000002</span>
+      </div>
+      <div class="cert-open-hint">Visualizar ↗</div>
+    </div>
+
+    <!-- Google Data Analytics -->
+    <div class="cert-card google" onclick="openModal('google-data')">
+      <div class="cert-icon google">📊</div>
+      <div class="cert-issuer">Google / Coursera</div>
+      <div class="cert-title">Google Data Analytics Professional Certificate</div>
+      <div class="cert-meta">
+        <span>📅 Maio de 2026</span>
+        <span>⏱ 180 horas</span>
+        <span>📚 9 cursos</span>
       </div>
       <div class="cert-open-hint">Visualizar ↗</div>
     </div>
@@ -789,6 +934,15 @@
       <div class="skill-tags">
         <span class="tag">TCP/IP</span><span class="tag">Configuração de Redes</span>
         <span class="tag">Virtualização</span><span class="tag">Segurança</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Análise de Dados</div>
+      <div class="skill-tags">
+        <span class="tag">SQL</span><span class="tag">Tableau</span>
+        <span class="tag">Python</span><span class="tag">Spreadsheets</span>
+        <span class="tag">Google Data Analytics</span>
       </div>
     </div>
     <div class="skill-card">
@@ -898,6 +1052,12 @@ const certs = {
     pdfUrl: 'https://hriel123.github.io/Portifolio/downloadfile(3).PDF',
     note: 'Emitido em Outubro de 2025 · 60 horas · Código: EBG20251029000002'
   },
+  'google-data': {
+    title: 'Google Data Analytics Professional Certificate',
+    type: 'google-inline',
+    verifyUrl: 'https://coursera.org/verify/professional-cert/AL63YHY87JIH',
+    note: 'Emitido em Maio de 2026 · 180 horas · 9 cursos · Google / Coursera'
+  },
   'ifce-cloud': {
     title: 'Computação em Nuvem — Formação Específica',
     type: 'pdf',
@@ -924,8 +1084,51 @@ const certs = {
   }
 };
 
-// Huawei image from the uploaded photo (inline base64 fallback using the visible cert image)
-// We'll render a preview note + link for the ones that need the PDF from the hosted site
+function buildGoogleCertDisplay(verifyUrl) {
+  const courses = [
+    'Foundations: Data, Data, Everywhere',
+    'Ask Questions to Make Data-Driven Decisions',
+    'Prepare Data for Exploration',
+    'Process Data from Dirty to Clean',
+    'Analyze Data to Answer Questions',
+    'Share Data Through the Art of Visualization',
+    'Introduction to Data Analysis Using Python',
+    'Google Data Analytics Capstone: Complete a Case Study',
+    'Accelerate Your Job Search with AI'
+  ];
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'google-cert-display';
+
+  wrapper.innerHTML = `
+    <div class="cert-header-bar">
+      <div class="coursera-badge">COURSERA<br>PROFESSIONAL<br>CERT</div>
+      <div>
+        <h4>Certificado Profissional</h4>
+        <p>Verificado pela Coursera · 9 cursos concluídos</p>
+      </div>
+    </div>
+    <div class="cert-body">
+      <div class="google-logo">
+        <span style="color:#4285f4">G</span><span style="color:#ea4335">o</span><span style="color:#fbbc05">o</span><span style="color:#4285f4">g</span><span style="color:#34a853">l</span><span style="color:#ea4335">e</span>
+      </div>
+      <div class="date">May 9, 2026</div>
+      <div class="recipient">Hariel Fabricio</div>
+      <div class="program">Google Data Analytics</div>
+      <p class="description">
+        Quem obtém o Google Data Analytics Professional Certificate concluiu nove cursos desenvolvidos pelo Google, com avaliações práticas, preparando para funções iniciais em Análise de Dados. Competências em planilhas, SQL, Tableau e Python, sabendo preparar, processar, analisar e compartilhar dados.
+      </p>
+      <div class="courses-label">Cursos incluídos</div>
+      <div class="courses-list">
+        ${courses.map(c => `<span class="course-chip">${c}</span>`).join('')}
+      </div>
+      <div class="verify-row">
+        🔗 Verificar em: <a href="${verifyUrl}" target="_blank" rel="noopener">${verifyUrl}</a>
+      </div>
+    </div>
+  `;
+  return wrapper;
+}
 
 function openModal(key) {
   const cert = certs[key];
@@ -941,37 +1144,32 @@ function openModal(key) {
   note.textContent = cert.note;
   body.appendChild(note);
 
-  // Para PDFs
-  if (cert.type === 'pdf' && cert.pdfUrl) {
+  if (cert.type === 'google-inline') {
+    const display = buildGoogleCertDisplay(cert.verifyUrl);
+    body.appendChild(display);
+
+    const a = document.createElement('a');
+    a.href = cert.verifyUrl;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'btn btn-outline';
+    a.textContent = '✅ Verificar certificado na Coursera';
+    a.style.cssText = 'margin-top:0.5rem;font-size:0.85rem';
+    body.appendChild(a);
+  }
+  else if (cert.type === 'pdf' && cert.pdfUrl) {
     const iframe = document.createElement('iframe');
     iframe.src = cert.pdfUrl + '#toolbar=0&navpanes=0';
     iframe.style.cssText = 'width:100%;height:500px;border:none;border-radius:12px;background:#fff';
     iframe.title = cert.title;
     body.appendChild(iframe);
-  }
-  
-  // Para imagens (se tiver)
-  else if (cert.type === 'image' && cert.imageUrl) {
-    const img = document.createElement('img');
-    img.src = cert.imageUrl;
-    img.alt = cert.title;
-    img.style.cssText = 'width:100%;max-width:550px;border-radius:16px;margin:1rem 0';
-    body.appendChild(img);
-  }
 
-  // Botão de download/link externo
-  if (cert.pdfUrl || cert.credly || cert.imageUrl) {
-    let linkHref = cert.pdfUrl || cert.credly || cert.imageUrl;
-    let linkText = '📄 Abrir / Baixar';
-    
+    let linkHref = cert.pdfUrl;
+    let linkText = '📄 Abrir PDF em nova aba';
     if (cert.credly && key === 'aws') {
+      linkHref = cert.credly;
       linkText = '🏅 Ver Badge no Credly';
-    } else if (cert.pdfUrl) {
-      linkText = '📄 Abrir PDF em nova aba';
-    } else if (cert.imageUrl) {
-      linkText = '🖼️ Abrir imagem em nova aba';
     }
-    
     const a = document.createElement('a');
     a.href = linkHref;
     a.target = '_blank';
@@ -981,10 +1179,26 @@ function openModal(key) {
     a.style.cssText = 'margin-top:0.5rem;font-size:0.85rem';
     body.appendChild(a);
   }
+  else if (cert.type === 'image' && cert.imageUrl) {
+    const img = document.createElement('img');
+    img.src = cert.imageUrl;
+    img.alt = cert.title;
+    img.style.cssText = 'width:100%;max-width:550px;border-radius:16px;margin:1rem 0';
+    body.appendChild(img);
+    const a = document.createElement('a');
+    a.href = cert.imageUrl;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'btn btn-outline';
+    a.textContent = '🖼️ Abrir imagem em nova aba';
+    a.style.cssText = 'margin-top:0.5rem;font-size:0.85rem';
+    body.appendChild(a);
+  }
 
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   document.getElementById('modal').classList.remove('active');
   document.body.style.overflow = '';
@@ -996,7 +1210,6 @@ function handleOverlayClick(e) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// Intersection observer for fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
