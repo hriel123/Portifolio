@@ -176,6 +176,41 @@
     box-shadow: 0 0 60px rgba(0,200,255,0.15);
   }
 
+  /* PARTICLE PORTRAIT */
+  .portrait {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+  }
+
+  .portrait canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+  }
+
+  .portrait-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .portrait-count {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+  }
+
+  .portrait-hint {
+    text-align: right;
+    line-height: 1.4;
+  }
+
   /* DEV CARD */
   .dev-card {
     width: 300px;
@@ -1325,9 +1360,49 @@
     .exp-columns { grid-template-columns: 1fr; gap: 2rem; }
     .exp-item { min-height: 0; }
   }
+
+  /* ===== PREFERÊNCIA POR MENOS MOVIMENTO ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ===== FOCO VISÍVEL (NAVEGAÇÃO POR TECLADO) ===== */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 2000;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
 </style>
 </head>
 <body>
+
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
 <div class="hero-bg"></div>
 
@@ -1354,7 +1429,7 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="conteudo">
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge">Disponível para oportunidades</div>
@@ -1364,6 +1439,13 @@
           <span class="line highlight">Silva Fabrício</span>
         </h1>
         <div class="hero-photo">
+          <div class="portrait">
+            <div class="portrait-meta">
+              <span><span class="portrait-count" id="particleCount">0</span> partículas em tempo real</span>
+              <span class="portrait-hint">Toque no retrato.</span>
+            </div>
+            <canvas id="portraitCanvas" width="640" height="640" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
+          </div>
           <div class="dev-card">
             <div class="dev-card-header">
               <div class="dev-card-dots">
@@ -1624,7 +1706,7 @@
     <div class="certs-group">
 
     <!-- AWS -->
-    <div class="cert-card aws" onclick="openModal('aws')">
+    <div class="cert-card aws" onclick="openModal('aws')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('aws')}">
       <div class="cert-top-row"><span class="cert-num">01</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon aws"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
       <div class="cert-issuer">Amazon Web Services</div>
@@ -1637,7 +1719,7 @@
     </div>
 
     <!-- Huawei -->
-    <div class="cert-card huawei" onclick="openModal('huawei')">
+    <div class="cert-card huawei" onclick="openModal('huawei')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('huawei')}">
       <div class="cert-top-row"><span class="cert-num">02</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon huawei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
       <div class="cert-issuer">Huawei ICT Academy</div>
@@ -1651,7 +1733,7 @@
     </div>
 
     <!-- Google Data Analytics -->
-    <div class="cert-card google" onclick="openModal('google-data')">
+    <div class="cert-card google" onclick="openModal('google-data')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-data')}">
       <div class="cert-top-row"><span class="cert-num">03</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon google"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
       <div class="cert-issuer">Google / Coursera</div>
@@ -1665,7 +1747,7 @@
     </div>
 
     <!-- IFCE Cloud Específica -->
-    <div class="cert-card ifce" onclick="openModal('ifce-cloud')">
+    <div class="cert-card ifce" onclick="openModal('ifce-cloud')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-cloud')}">
       <div class="cert-top-row"><span class="cert-num">04</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
@@ -1678,7 +1760,7 @@
     </div>
 
     <!-- IFCE Interpessoal -->
-    <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')">
+    <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-interpessoal')}">
       <div class="cert-top-row"><span class="cert-num">05</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
@@ -1696,7 +1778,7 @@
     <p class="certs-subhead">Formação complementar</p>
     <div class="certs-group">
 
-    <div class="cert-card espanhol" onclick="openModal('espanhol')">
+    <div class="cert-card espanhol" onclick="openModal('espanhol')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('espanhol')}">
       <div class="cert-top-row"><span class="cert-num">06</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon espanhol" style="font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem">ES</div>
       <div class="cert-issuer">Centro Cearense de Idiomas — SEDUC</div>
@@ -1709,7 +1791,7 @@
     </div>
 
     <!-- Química -->
-    <div class="cert-card quimica" onclick="openModal('quimica')">
+    <div class="cert-card quimica" onclick="openModal('quimica')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('quimica')}">
       <div class="cert-top-row"><span class="cert-num">07</span><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon quimica"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L3.5 18a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L15 8.5V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/><line x1="7" y1="14" x2="17" y2="14"/></svg></div>
       <div class="cert-issuer">E.E.E.P. Edson Queiroz</div>
@@ -1865,10 +1947,10 @@
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-header">
       <h3 id="modal-title">Certificado</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" id="modal-close-btn" onclick="closeModal()" aria-label="Fechar">✕</button>
     </div>
     <div class="modal-body" id="modal-body">
     </div>
@@ -2033,26 +2115,161 @@ function openModal(key) {
     body.appendChild(a);
   }
 
+  lastFocusedEl = document.activeElement;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
+  document.getElementById('modal-close-btn').focus();
 }
+
+let lastFocusedEl = null;
 
 function closeModal() {
   document.getElementById('modal').classList.remove('active');
   document.body.style.overflow = '';
+  if (lastFocusedEl) lastFocusedEl.focus();
 }
 
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('modal')) closeModal();
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown', e => {
+  const modalEl = document.getElementById('modal');
+  if (!modalEl.classList.contains('active')) return;
+
+  if (e.key === 'Escape') { closeModal(); return; }
+
+  if (e.key === 'Tab') {
+    const focusable = modalEl.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ===================== RETRATO EM PARTÍCULAS ===================== */
+(function initParticlePortrait() {
+  const canvas = document.getElementById('portraitCanvas');
+  const countEl = document.getElementById('particleCount');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SIZE = canvas.width; // 640, canvas is always square
+  const STEP = 5;
+  const MIN_BRIGHTNESS = 16;
+
+  const img = new Image();
+  img.src = 'particle-source.jpg';
+  img.onload = () => {
+    const off = document.createElement('canvas');
+    off.width = SIZE;
+    off.height = SIZE;
+    const octx = off.getContext('2d');
+    octx.drawImage(img, 0, 0, SIZE, SIZE);
+    const data = octx.getImageData(0, 0, SIZE, SIZE).data;
+
+    const particles = [];
+    for (let y = 0; y < SIZE; y += STEP) {
+      for (let x = 0; x < SIZE; x += STEP) {
+        const i = (y * SIZE + x) * 4;
+        const lum = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+        if (lum < MIN_BRIGHTNESS) continue;
+
+        const brightness = Math.min(1, lum / 255);
+        const t = y / SIZE; // 0 (topo) -> 1 (base), para o gradiente ciano->roxo
+        const r = Math.round(0 + (123 - 0) * t);
+        const g = Math.round(200 + (97 - 200) * t);
+        const b = Math.round(255 + (255 - 255) * t);
+
+        particles.push({
+          baseX: x,
+          baseY: y,
+          x: reduceMotion ? x : Math.random() * SIZE,
+          y: reduceMotion ? y : Math.random() * SIZE,
+          vx: 0,
+          vy: 0,
+          radius: 0.6 + brightness * 1.6,
+          alpha: 0.35 + brightness * 0.65,
+          color: `${r},${g},${b}`,
+        });
+      }
+    }
+
+    if (countEl) countEl.textContent = particles.length.toLocaleString('pt-BR');
+
+    const pointer = { x: -9999, y: -9999, active: false };
+
+    function updatePointer(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((clientX - rect.left) / rect.width) * SIZE;
+      pointer.y = ((clientY - rect.top) / rect.height) * SIZE;
+    }
+
+    canvas.addEventListener('mousemove', (e) => { pointer.active = true; updatePointer(e.clientX, e.clientY); });
+    canvas.addEventListener('mouseleave', () => { pointer.active = false; });
+    canvas.addEventListener('touchmove', (e) => {
+      pointer.active = true;
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    canvas.addEventListener('touchend', () => { pointer.active = false; });
+
+    const REPEL_RADIUS = 70;
+    const REPEL_STRENGTH = 900;
+    const SPRING = 0.06;
+    const FRICTION = 0.82;
+
+    function render() {
+      ctx.clearRect(0, 0, SIZE, SIZE);
+      for (const p of particles) {
+        if (pointer.active) {
+          const dx = p.x - pointer.x;
+          const dy = p.y - pointer.y;
+          const dist2 = dx * dx + dy * dy;
+          if (dist2 < REPEL_RADIUS * REPEL_RADIUS) {
+            const dist = Math.sqrt(dist2) || 1;
+            const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH / dist;
+            p.vx += dx * force * 0.0016;
+            p.vy += dy * force * 0.0016;
+          }
+        }
+        p.vx += (p.baseX - p.x) * SPRING;
+        p.vy += (p.baseY - p.y) * SPRING;
+        p.vx *= FRICTION;
+        p.vy *= FRICTION;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    if (reduceMotion) {
+      render();
+    } else {
+      (function loop() {
+        render();
+        requestAnimationFrame(loop);
+      })();
+    }
+  };
+})();
 </script>
 </body>
 </html>
