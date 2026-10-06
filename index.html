@@ -1361,6 +1361,54 @@
     .exp-item { min-height: 0; }
   }
 
+  /* ===== PRELOADER ===== */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    transition: opacity 0.5s ease;
+  }
+
+  #preloader.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .preloader-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .preloader-bar-track {
+    width: 220px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .preloader-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.15s ease;
+  }
+
+  .preloader-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
   /* ===== PREFERÊNCIA POR MENOS MOVIMENTO ===== */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -1401,6 +1449,12 @@
 </style>
 </head>
 <body>
+
+<div id="preloader" role="status" aria-live="polite">
+  <span class="preloader-logo">HSF.dev</span>
+  <div class="preloader-bar-track"><div class="preloader-bar" id="preloaderBar"></div></div>
+  <span class="preloader-pct" id="preloaderPct">0%</span>
+</div>
 
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
@@ -2161,10 +2215,54 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 /* ===================== RETRATO EM PARTÍCULAS ===================== */
-(function initParticlePortrait() {
+/* ===================== PRELOADER (progresso real) ===================== */
+function setPreloaderProgress(p) {
+  const bar = document.getElementById('preloaderBar');
+  const pct = document.getElementById('preloaderPct');
+  const clamped = Math.min(100, Math.max(0, p));
+  if (bar) bar.style.width = clamped + '%';
+  if (pct) pct.textContent = Math.round(clamped) + '%';
+}
+
+function hidePreloader() {
+  const el = document.getElementById('preloader');
+  if (!el) return;
+  el.classList.add('is-hidden');
+  setTimeout(() => el.remove(), 550);
+}
+
+// Baixa a imagem do retrato acompanhando o progresso real em bytes
+// (Content-Length vs. bytes recebidos), em vez de simular uma barra falsa.
+async function loadPortraitSource(url) {
+  try {
+    const res = await fetch(url);
+    const total = +res.headers.get('Content-Length') || 0;
+    const reader = res.body.getReader();
+    const chunks = [];
+    let received = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.length;
+      if (total) setPreloaderProgress((received / total) * 80);
+    }
+    setPreloaderProgress(85);
+    if (document.fonts && document.fonts.ready) {
+      try { await document.fonts.ready; } catch (e) { /* segue mesmo assim */ }
+    }
+    setPreloaderProgress(100);
+    return URL.createObjectURL(new Blob(chunks));
+  } catch (e) {
+    setPreloaderProgress(100);
+    return url; // sem suporte a streaming: carrega a imagem direto
+  }
+}
+
+(async function initParticlePortrait() {
   const canvas = document.getElementById('portraitCanvas');
   const countEl = document.getElementById('particleCount');
-  if (!canvas) return;
+  if (!canvas) { hidePreloader(); return; }
 
   const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2172,9 +2270,12 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   const STEP = 5;
   const MIN_BRIGHTNESS = 16;
 
+  const imgUrl = await loadPortraitSource('particle-source.jpg');
   const img = new Image();
-  img.src = 'particle-source.jpg';
+  img.src = imgUrl;
+  img.onerror = hidePreloader;
   img.onload = () => {
+    hidePreloader();
     const off = document.createElement('canvas');
     off.width = SIZE;
     off.height = SIZE;
