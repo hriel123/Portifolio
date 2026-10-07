@@ -155,11 +155,13 @@
     display: flex;
     align-items: center;
     gap: 2rem;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
   }
 
   .hero-photo {
-    flex: 0 0 auto;
+    flex: 1 1 320px;
+    min-width: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1091,7 +1093,7 @@
   /* PROJECTS */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
   }
 
@@ -1343,9 +1345,12 @@
     background: var(--border);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1080px) {
     .nav-links { display: none; }
     .nav-extras { display: none; }
+  }
+
+  @media (max-width: 640px) {
     .lang-grid { grid-template-columns: 1fr; max-width: 100%; }
     .hero-stats { gap: 1.5rem; }
     .contact-section { padding: 2rem 1.25rem; }
@@ -1752,7 +1757,7 @@
 <!-- CERTIFICADOS -->
 <section id="certs">
   <p class="section-label">04 / Conquistas</p>
-  <h2>Certificados <span style="color:var(--muted);font-size:0.6em;font-weight:400">— clique para visualizar</span></h2>
+  <h2>Certificados <span style="color:var(--muted);font-size:0.6em;font-weight:400">—&nbsp;clique para visualizar</span></h2>
 
   <div class="certs-grid">
 
