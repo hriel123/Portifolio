@@ -151,32 +151,21 @@
     position: relative;
   }
 
-  /* Duas colunas independentes: nome -> bio à esquerda, retrato -> terminal
-     à direita (no mesmo eixo vertical). */
-  .hero-text {
-    display: grid;
-    grid-template-columns: minmax(min-content, 1fr) minmax(0, 400px);
-    column-gap: 2rem;
-    align-items: start;
+  .hero-name-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
-  .hero-badge, .hero-stats { grid-column: 1 / -1; }
-
-  .hero-col-text { min-width: 0; }
-
-  .hero-col-media {
+  .hero-photo {
+    flex: 0 1 auto;
     min-width: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  /* Topo visível do círculo alinhado ao topo das letras de "Hariel":
-     0.207 x font-size = topo do "H" na linha (Syne 800, line-height 1.05);
-     9.5% da largura da coluna = topo visível do círculo dentro do canvas. */
-  .hero-photo {
-    width: 100%;
-    margin-top: calc(0.207 * clamp(3rem, 8vw, 6rem) - 9.5%);
+    gap: 1.5rem;
     animation: fadeUp 0.8s 0.15s ease both;
   }
 
@@ -187,41 +176,6 @@
     object-fit: cover;
     border: 2px solid rgba(0,200,255,0.3);
     box-shadow: 0 0 60px rgba(0,200,255,0.15);
-  }
-
-  /* PARTICLE PORTRAIT */
-  .portrait {
-    position: relative;
-    width: 400px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .portrait canvas {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    cursor: pointer;
-  }
-
-  .portrait-meta {
-    margin-top: 0.25rem;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.25rem 1rem;
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
-
-  .portrait-count {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--accent);
-  }
-
-  .portrait-hint {
-    line-height: 1.4;
   }
 
   /* DEV CARD */
@@ -396,9 +350,10 @@
     font-family: 'Syne', sans-serif;
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 0.95;
     letter-spacing: -0.03em;
     animation: fadeUp 0.8s 0.1s ease both;
+    flex: 1 1 380px;
     min-width: 280px;
   }
 
@@ -410,14 +365,8 @@
     background-clip: text;
   }
 
-  .hero-bio {
-    min-width: 0;
-    margin-top: 1.5rem;
-  }
-
-  .hero-col-media .dev-card { margin-top: 1.5rem; }
-
   .hero-sub {
+    margin-top: 1.5rem;
     font-size: 1.1rem;
     color: var(--muted);
     max-width: 520px;
@@ -1373,16 +1322,9 @@
 
   @media (max-width: 860px) {
     .hero-inner { text-align: center; }
-    .hero-text { grid-template-columns: minmax(0, 1fr); justify-items: center; }
-    .hero-col-text, .hero-col-media { display: contents; }
-    .hero-text h1 { order: 1; }
-    .hero-photo { order: 2; margin-top: 2rem; }
-    .hero-bio { order: 3; }
-    .hero-col-media .dev-card { order: 4; }
-    .hero-stats { order: 5; }
-    .hero-bio { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
-    .hero-col-media .dev-card { margin-top: 2.5rem; }
-    .hero-sub { text-align: center; }
+    .hero-name-row { justify-content: center; }
+    h1 .line { margin-left: auto; margin-right: auto; }
+    .hero-sub { text-align: center; margin-left: auto; margin-right: auto; }
     .hero-chips { justify-content: center; }
     .hero-actions { justify-content: center; }
     .hero-stats { justify-content: center; }
@@ -1528,75 +1470,64 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge">Disponível para oportunidades</div>
-      <div class="hero-col-text">
+      <div class="hero-name-row">
         <h1>
           <span class="line">Hariel</span>
           <span class="line highlight">Silva Fabrício</span>
         </h1>
-        <div class="hero-bio">
-          <p class="hero-sub">
-            Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão de TI</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Infraestrutura de Redes</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
-          </p>
-          <div class="hero-chips">
-            <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Estágio na Delfos</span>
-            <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
-          </div>
-          <div class="hero-actions">
-            <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
-            <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
-          </div>
-          <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
-        </div>
-      </div>
-      <div class="hero-col-media">
         <div class="hero-photo">
-          <div class="portrait">
-            <canvas id="portraitCanvas" width="800" height="800" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
-            <div class="portrait-meta">
-              <span><span class="portrait-count" id="particleCount">0</span> partículas em tempo real</span>
-              <span class="portrait-hint">Toque no retrato.</span>
+          <div class="dev-card">
+            <div class="dev-card-header">
+              <div class="dev-card-dots">
+                <span class="dev-card-dot red"></span>
+                <span class="dev-card-dot yellow"></span>
+                <span class="dev-card-dot green"></span>
+              </div>
+              <div class="dev-card-title">hariel@delfos:~$</div>
+              <div class="dev-card-status">ONLINE</div>
             </div>
-          </div>
-        </div>
-        <div class="dev-card">
-          <div class="dev-card-header">
-            <div class="dev-card-dots">
-              <span class="dev-card-dot red"></span>
-              <span class="dev-card-dot yellow"></span>
-              <span class="dev-card-dot green"></span>
-            </div>
-            <div class="dev-card-title">hariel@delfos:~$</div>
-            <div class="dev-card-status">ONLINE</div>
-          </div>
-          <div class="dev-card-body">
-            <div class="dev-card-identity">
-              <div class="dev-card-avatar">HF</div>
-              <div>
-                <div class="dev-card-name">Hariel Fabrício</div>
-                <div class="dev-card-role">Técnico em Informática</div>
-                <div class="dev-card-meta">Delfos · E.E.E.P Edson Queiroz</div>
+            <div class="dev-card-body">
+              <div class="dev-card-identity">
+                <div class="dev-card-avatar">HF</div>
+                <div>
+                  <div class="dev-card-name">Hariel Fabrício</div>
+                  <div class="dev-card-role">Técnico em Informática</div>
+                  <div class="dev-card-meta">Delfos · E.E.E.P Edson Queiroz</div>
+                </div>
+              </div>
+              <div class="dev-card-code">
+                <div class="dev-card-code-header">
+                  <span>// perfil.json</span>
+                  <span class="ok">200 OK</span>
+                </div>
+                <div><span class="punct">const</span> perfil = {</div>
+                <div>&nbsp;&nbsp;<span class="key">cloud</span>: [<span class="str">'AWS Academy'</span>, <span class="str">'Huawei Cloud'</span>],</div>
+                <div>&nbsp;&nbsp;<span class="key">redes</span>: [<span class="str">'TCP/IP'</span>, <span class="str">'Virtualização'</span>],</div>
+                <div>&nbsp;&nbsp;<span class="key">dados</span>: [<span class="str">'SQL'</span>, <span class="str">'Python'</span>, <span class="str">'Tableau'</span>],</div>
+                <div>&nbsp;&nbsp;<span class="key">dev</span>: [<span class="str">'React'</span>, <span class="str">'Node.js'</span>],</div>
+                <div>&nbsp;&nbsp;<span class="key">formacao</span>: [<span class="str">'Técnico em Informática'</span>]</div>
+                <div>}</div>
               </div>
             </div>
-            <div class="dev-card-code">
-              <div class="dev-card-code-header">
-                <span>// perfil.json</span>
-                <span class="ok">200 OK</span>
-              </div>
-              <div><span class="punct">const</span> perfil = {</div>
-              <div>&nbsp;&nbsp;<span class="key">cloud</span>: [<span class="str">'AWS Academy'</span>, <span class="str">'Huawei Cloud'</span>],</div>
-              <div>&nbsp;&nbsp;<span class="key">redes</span>: [<span class="str">'TCP/IP'</span>, <span class="str">'Virtualização'</span>],</div>
-              <div>&nbsp;&nbsp;<span class="key">dados</span>: [<span class="str">'SQL'</span>, <span class="str">'Python'</span>, <span class="str">'Tableau'</span>],</div>
-              <div>&nbsp;&nbsp;<span class="key">dev</span>: [<span class="str">'React'</span>, <span class="str">'Node.js'</span>],</div>
-              <div>&nbsp;&nbsp;<span class="key">formacao</span>: [<span class="str">'Técnico em Informática'</span>]</div>
-              <div>}</div>
+            <div class="dev-card-tags">
+              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud & Redes</div>
+              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Dados & Python</div>
             </div>
-          </div>
-          <div class="dev-card-tags">
-            <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud & Redes</div>
-            <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Dados & Python</div>
           </div>
         </div>
       </div>
+      <p class="hero-sub">
+        Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão de TI</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Infraestrutura de Redes</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
+      </p>
+      <div class="hero-chips">
+        <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Estágio na Delfos</span>
+        <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
+        <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
+      </div>
+      <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
       <div class="hero-stats">
         <div class="stat-item">
           <span class="stat-num">7</span>
@@ -2259,7 +2190,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-/* ===================== RETRATO EM PARTÍCULAS ===================== */
 /* ===================== PRELOADER (progresso real) ===================== */
 function setPreloaderProgress(p) {
   const bar = document.getElementById('preloaderBar');
@@ -2276,361 +2206,24 @@ function hidePreloader() {
   setTimeout(() => el.remove(), 550);
 }
 
-// Baixa a imagem do retrato acompanhando o progresso real em bytes
-// (Content-Length vs. bytes recebidos), em vez de simular uma barra falsa.
-async function loadPortraitSource(url) {
-  try {
-    const res = await fetch(url);
-    const total = +res.headers.get('Content-Length') || 0;
-    const reader = res.body.getReader();
-    const chunks = [];
-    let received = 0;
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-      received += value.length;
-      if (total) setPreloaderProgress((received / total) * 80);
-    }
-    setPreloaderProgress(85);
-    if (document.fonts && document.fonts.ready) {
-      try { await document.fonts.ready; } catch (e) { /* segue mesmo assim */ }
-    }
-    setPreloaderProgress(100);
-    return URL.createObjectURL(new Blob(chunks));
-  } catch (e) {
-    setPreloaderProgress(100);
-    return url; // sem suporte a streaming: carrega a imagem direto
-  }
-}
-
-// Renderiza as partículas na GPU (um único drawArrays por quadro).
-function createGLRenderer(canvas, size) {
-  const gl = canvas.getContext('webgl', { antialias: false, powerPreference: 'low-power' });
-  if (!gl) return null;
-
-  let attrBuf, posBuf, lastAttrs, lastCount = 0;
-
-  function init() {
-    const compile = (type, src) => {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, src);
-      gl.compileShader(shader);
-      return shader;
-    };
-    const prog = gl.createProgram();
-    gl.attachShader(prog, compile(gl.VERTEX_SHADER, `
-      attribute vec2 aPos;
-      attribute vec3 aAttr; // raio, t (gradiente), alpha
-      uniform float uScale;
-      varying float vRadius;
-      varying vec4 vColor;
-      void main() {
-        gl_Position = vec4(aPos.x * uScale - 1.0, 1.0 - aPos.y * uScale, 0.0, 1.0);
-        gl_PointSize = aAttr.x * 2.0 + 1.0;
-        vRadius = aAttr.x;
-        vColor = vec4(mix(vec3(0.0, 200.0, 255.0), vec3(123.0, 97.0, 255.0), aAttr.y) / 255.0, aAttr.z);
-      }`));
-    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, `
-      precision mediump float;
-      varying float vRadius;
-      varying vec4 vColor;
-      void main() {
-        float d = length(gl_PointCoord - 0.5) * (vRadius * 2.0 + 1.0);
-        float a = vColor.a * clamp(vRadius + 0.5 - d, 0.0, 1.0);
-        gl_FragColor = vec4(vColor.rgb * a, a);
-      }`));
-    gl.linkProgram(prog);
-    gl.useProgram(prog);
-    gl.uniform1f(gl.getUniformLocation(prog, 'uScale'), 2 / size);
-    gl.viewport(0, 0, size, size);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-    gl.clearColor(0, 0, 0, 0);
-
-    const aPos = gl.getAttribLocation(prog, 'aPos');
-    const aAttr = gl.getAttribLocation(prog, 'aAttr');
-    attrBuf = gl.createBuffer();
-    posBuf = gl.createBuffer();
-    gl.enableVertexAttribArray(aAttr);
-    gl.bindBuffer(gl.ARRAY_BUFFER, attrBuf);
-    gl.vertexAttribPointer(aAttr, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(aPos);
-    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
-    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  }
-
-  const renderer = {
-    onRestore: null,
-    setParticles(attrs, count) {
-      lastAttrs = attrs;
-      lastCount = count;
-      gl.bindBuffer(gl.ARRAY_BUFFER, attrBuf);
-      gl.bufferData(gl.ARRAY_BUFFER, attrs, gl.STATIC_DRAW);
-      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
-      gl.bufferData(gl.ARRAY_BUFFER, count * 8, gl.DYNAMIC_DRAW);
-    },
-    draw(pos, count) {
-      gl.bufferSubData(gl.ARRAY_BUFFER, 0, pos);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.POINTS, 0, count);
-    },
+// Sem imagens pesadas no topo, o que a página baixa antes de aparecer
+// são as fontes: o progresso é a fração das fontes em uso já carregadas.
+(function trackFontLoading() {
+  if (!document.fonts) { hidePreloader(); return; }
+  const update = () => {
+    let used = 0, loaded = 0;
+    document.fonts.forEach((face) => {
+      if (face.status === 'unloaded') return;
+      used++;
+      if (face.status === 'loaded') loaded++;
+    });
+    if (used) setPreloaderProgress((loaded / used) * 100);
   };
-
-  // O navegador pode descartar o contexto da GPU (aba em segundo plano no celular,
-  // reset de driver): esconde o canvas nesse intervalo e recria tudo na volta.
-  canvas.addEventListener('webglcontextlost', (e) => {
-    e.preventDefault();
-    canvas.style.visibility = 'hidden';
-  });
-  canvas.addEventListener('webglcontextrestored', () => {
-    init();
-    if (lastAttrs) renderer.setParticles(lastAttrs, lastCount);
-    if (renderer.onRestore) renderer.onRestore();
-    canvas.style.visibility = '';
-  });
-
-  init();
-  return renderer;
-}
-
-// Sem WebGL: canvas 2D, com as partículas agrupadas por cor/opacidade uma única
-// vez, para desenhar cada grupo com um só fill() por quadro.
-function create2DRenderer(canvas, size) {
-  const ctx = canvas.getContext('2d');
-  let radius, order, groupEnds, groupStyles;
-
-  return {
-    setParticles(attrs, count) {
-      const groups = new Map();
-      radius = new Float32Array(count);
-      for (let i = 0; i < count; i++) {
-        radius[i] = attrs[i * 3];
-        const t = Math.round(attrs[i * 3 + 1] / 0.04) * 0.04;
-        const alpha = (Math.round(attrs[i * 3 + 2] / 0.05) * 0.05).toFixed(2);
-        const style = `rgba(${Math.round(123 * t)},${Math.round(200 - 103 * t)},255,${alpha})`;
-        if (!groups.has(style)) groups.set(style, []);
-        groups.get(style).push(i);
-      }
-      order = new Uint32Array(count);
-      groupEnds = [];
-      groupStyles = [];
-      let k = 0;
-      for (const [style, members] of groups) {
-        for (const i of members) order[k++] = i;
-        groupEnds.push(k);
-        groupStyles.push(style);
-      }
-    },
-    draw(pos) {
-      ctx.clearRect(0, 0, size, size);
-      let k = 0;
-      for (let g = 0; g < groupStyles.length; g++) {
-        ctx.fillStyle = groupStyles[g];
-        ctx.beginPath();
-        for (const end = groupEnds[g]; k < end; k++) {
-          const i = order[k];
-          const x = pos[i * 2], y = pos[i * 2 + 1], r = radius[i];
-          ctx.rect(x - r, y - r, r * 2, r * 2); // ~3x mais barato que arc() e igual a olho nesse tamanho
-        }
-        ctx.fill();
-      }
-    },
-  };
-}
-
-(async function initParticlePortrait() {
-  const canvas = document.getElementById('portraitCanvas');
-  const countEl = document.getElementById('particleCount');
-  if (!canvas) { hidePreloader(); return; }
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const SIZE = canvas.width; // 800, canvas is always square
-  const MIN_BRIGHTNESS = 16;
-  // Teto de partículas: menor em telas pequenas e aparelhos com poucos núcleos;
-  // cai mais ainda em tempo real se o aparelho não sustentar a animação.
-  const lowEnd = window.matchMedia('(max-width: 640px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
-  const MIN_BUDGET = 4000;
-  let budget = lowEnd ? 8000 : 12000;
-
-  const renderer = createGLRenderer(canvas, SIZE) || create2DRenderer(canvas, SIZE);
-
-  const imgUrl = await loadPortraitSource('particle-source.jpg');
-  const img = new Image();
-  img.src = imgUrl;
-  img.onerror = hidePreloader;
-  img.onload = () => {
+  document.fonts.addEventListener('loadingdone', update);
+  document.fonts.ready.then(() => {
+    setPreloaderProgress(100);
     hidePreloader();
-    const off = document.createElement('canvas');
-    off.width = SIZE;
-    off.height = SIZE;
-    const octx = off.getContext('2d');
-    octx.drawImage(img, 0, 0, SIZE, SIZE);
-    const data = octx.getImageData(0, 0, SIZE, SIZE).data;
-    const lumAt = (x, y) => {
-      const i = (y * SIZE + x) * 4;
-      return 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-    };
-
-    // Área "acesa" da imagem, para escolher o espaçamento da grade que cabe no teto.
-    let lit = 0, samples = 0;
-    for (let y = 0; y < SIZE; y += 4) {
-      for (let x = 0; x < SIZE; x += 4) {
-        samples++;
-        if (lumAt(x, y) >= MIN_BRIGHTNESS) lit++;
-      }
-    }
-    const litArea = (lit / samples) * SIZE * SIZE;
-
-    // Estado em typed arrays alocados só ao (re)construir: nada é criado por quadro.
-    let count = 0, pos, vel, base;
-
-    function build(scatter) {
-      let step = Math.max(3, Math.sqrt(litArea / budget));
-      let pts;
-      do {
-        pts = [];
-        for (let gy = step / 2; gy < SIZE; gy += step) {
-          for (let gx = step / 2; gx < SIZE; gx += step) {
-            // Deslocamento aleatório leve quebra o padrão de grade (efeito retícula).
-            const x = Math.min(SIZE - 1, Math.max(0, gx + (Math.random() - 0.5) * step * 0.7));
-            const y = Math.min(SIZE - 1, Math.max(0, gy + (Math.random() - 0.5) * step * 0.7));
-            const lum = lumAt(x | 0, y | 0);
-            if (lum >= MIN_BRIGHTNESS) pts.push(x, y, Math.min(1, lum / 255));
-          }
-        }
-        step *= 1.04;
-      } while (pts.length / 3 > budget);
-
-      count = pts.length / 3;
-      pos = new Float32Array(count * 2);
-      vel = new Float32Array(count * 2);
-      base = new Float32Array(count * 2);
-      const attrs = new Float32Array(count * 3);
-      const sizeScale = step / 1.04 / 4; // grade mais espaçada -> partículas maiores
-      for (let i = 0; i < count; i++) {
-        const x = pts[i * 3], y = pts[i * 3 + 1], brightness = pts[i * 3 + 2];
-        base[i * 2] = x;
-        base[i * 2 + 1] = y;
-        pos[i * 2] = scatter ? Math.random() * SIZE : x;
-        pos[i * 2 + 1] = scatter ? Math.random() * SIZE : y;
-        attrs[i * 3] = (0.5 + brightness * 1.3) * sizeScale;
-        attrs[i * 3 + 1] = y / SIZE; // 0 (topo) -> 1 (base), gradiente ciano -> roxo
-        attrs[i * 3 + 2] = 0.35 + brightness * 0.65;
-      }
-      renderer.setParticles(attrs, count);
-      if (countEl) countEl.textContent = count.toLocaleString('pt-BR');
-    }
-
-    build(!reduceMotion);
-    renderer.onRestore = () => renderer.draw(pos, count);
-
-    if (reduceMotion) {
-      renderer.draw(pos, count);
-      return;
-    }
-
-    // Os eventos só guardam a posição do ponteiro; conversão e física rodam no máximo uma vez por quadro.
-    const pointer = { clientX: 0, clientY: 0, active: false };
-    function setPointer(clientX, clientY) {
-      pointer.active = true;
-      pointer.clientX = clientX;
-      pointer.clientY = clientY;
-      wake();
-    }
-
-    canvas.addEventListener('mousemove', (e) => setPointer(e.clientX, e.clientY));
-    canvas.addEventListener('mouseleave', () => { pointer.active = false; });
-    canvas.addEventListener('touchmove', (e) => setPointer(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
-    canvas.addEventListener('touchend', () => { pointer.active = false; });
-
-    const REPEL_RADIUS = 88;
-    const REPEL_R2 = REPEL_RADIUS * REPEL_RADIUS;
-    const REPEL_STRENGTH = 0.0066;
-    const SPRING = 0.06;
-    const FRICTION = 0.82;
-    const REST_SPEED = 0.04;
-    const FRAME_MS = 1000 / 60;
-
-    function step() {
-      let px = -1e6, py = -1e6;
-      if (pointer.active) {
-        const rect = canvas.getBoundingClientRect();
-        px = ((pointer.clientX - rect.left) / rect.width) * SIZE;
-        py = ((pointer.clientY - rect.top) / rect.height) * SIZE;
-      }
-
-      let maxSpeed = 0;
-      for (let j = 0, n = count * 2; j < n; j += 2) {
-        const x = pos[j], y = pos[j + 1];
-        let vx = vel[j], vy = vel[j + 1];
-        const dx = x - px, dy = y - py;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < REPEL_R2) {
-          // Repulsão forte perto do ponteiro e nula na borda do raio, sem Math.sqrt.
-          const f = ((REPEL_R2 - d2) / (d2 + 400)) * REPEL_STRENGTH;
-          vx += dx * f;
-          vy += dy * f;
-        }
-        vx = (vx + (base[j] - x) * SPRING) * FRICTION;
-        vy = (vy + (base[j + 1] - y) * SPRING) * FRICTION;
-        vel[j] = vx;
-        vel[j + 1] = vy;
-        pos[j] = x + vx;
-        pos[j + 1] = y + vy;
-        const speed = Math.abs(vx) + Math.abs(vy);
-        if (speed > maxSpeed) maxSpeed = speed;
-      }
-      return maxSpeed;
-    }
-
-    let running = false, lastStep = 0, lastFrame = 0, sampled = 0, slow = 0;
-
-    function loop(now) {
-      // Física limitada a ~60 passos/s, também em telas de 120/144 Hz.
-      if (now - lastStep < FRAME_MS - 1) {
-        requestAnimationFrame(loop);
-        return;
-      }
-      const dt = now - lastFrame;
-      lastFrame = now;
-      lastStep = Math.max(lastStep + FRAME_MS, now - FRAME_MS);
-
-      const workStart = performance.now();
-      const maxSpeed = step();
-      renderer.draw(pos, count);
-      const work = performance.now() - workStart;
-
-      // Abaixo de ~25 fps na maior parte de 45 quadros, com o retrato custando
-      // mais de 8 ms por quadro: reconstrói com menos partículas. Se a lentidão
-      // vem do resto da página, cortar partículas não ajudaria, então não corta.
-      if (dt < 250) {
-        if (dt > 40 && work > 8) slow++;
-        if (++sampled === 45) {
-          if (slow > 30 && budget > MIN_BUDGET) {
-            budget = Math.max(MIN_BUDGET, Math.round(budget * 0.6));
-            build(false);
-          }
-          sampled = slow = 0;
-        }
-      }
-
-      if (!pointer.active && maxSpeed < REST_SPEED) {
-        running = false; // partículas em repouso: evita redesenhar/recalcular para sempre
-        return;
-      }
-      requestAnimationFrame(loop);
-    }
-
-    function wake() {
-      if (running) return;
-      running = true;
-      lastStep = lastFrame = 0;
-      requestAnimationFrame(loop);
-    }
-
-    wake();
-  };
+  });
 })();
 </script>
 </body>
