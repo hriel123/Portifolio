@@ -159,7 +159,7 @@
   }
 
   .hero-photo {
-    flex: 1 1 320px;
+    flex: 0 1 320px;
     min-width: 0;
     max-width: 100%;
     display: flex;
@@ -385,14 +385,14 @@
     font-family: 'Syne', sans-serif;
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
-    line-height: 0.95;
+    line-height: 1.05;
     letter-spacing: -0.03em;
     animation: fadeUp 0.8s 0.1s ease both;
     flex: 1 1 380px;
     min-width: 280px;
   }
 
-  h1 .line { display: block; }
+  h1 .line { display: block; width: fit-content; }
   h1 .highlight {
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     -webkit-background-clip: text;
@@ -400,8 +400,20 @@
     background-clip: text;
   }
 
-  .hero-sub {
+  .hero-bio-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
     margin-top: 1.5rem;
+  }
+
+  .hero-bio {
+    flex: 1 1 380px;
+    min-width: 0;
+  }
+
+  .hero-sub {
     font-size: 1.1rem;
     color: var(--muted);
     max-width: 520px;
@@ -1505,58 +1517,62 @@
             </div>
             <canvas id="portraitCanvas" width="640" height="640" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
           </div>
-          <div class="dev-card">
-            <div class="dev-card-header">
-              <div class="dev-card-dots">
-                <span class="dev-card-dot red"></span>
-                <span class="dev-card-dot yellow"></span>
-                <span class="dev-card-dot green"></span>
-              </div>
-              <div class="dev-card-title">hariel@delfos:~$</div>
-              <div class="dev-card-status">ONLINE</div>
+        </div>
+      </div>
+      <div class="hero-bio-row">
+        <div class="hero-bio">
+          <p class="hero-sub">
+            Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão de TI</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Infraestrutura de Redes</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
+          </p>
+          <div class="hero-chips">
+            <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Estágio na Delfos</span>
+            <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
+            <a href="#contato" class="btn btn-outline">Entre em contato</a>
+          </div>
+          <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
+        </div>
+        <div class="dev-card">
+          <div class="dev-card-header">
+            <div class="dev-card-dots">
+              <span class="dev-card-dot red"></span>
+              <span class="dev-card-dot yellow"></span>
+              <span class="dev-card-dot green"></span>
             </div>
-            <div class="dev-card-body">
-              <div class="dev-card-identity">
-                <div class="dev-card-avatar">HF</div>
-                <div>
-                  <div class="dev-card-name">Hariel Fabrício</div>
-                  <div class="dev-card-role">Técnico em Informática</div>
-                  <div class="dev-card-meta">Delfos · E.E.E.P Edson Queiroz</div>
-                </div>
-              </div>
-              <div class="dev-card-code">
-                <div class="dev-card-code-header">
-                  <span>// perfil.json</span>
-                  <span class="ok">200 OK</span>
-                </div>
-                <div><span class="punct">const</span> perfil = {</div>
-                <div>&nbsp;&nbsp;<span class="key">cloud</span>: [<span class="str">'AWS Academy'</span>, <span class="str">'Huawei Cloud'</span>],</div>
-                <div>&nbsp;&nbsp;<span class="key">redes</span>: [<span class="str">'TCP/IP'</span>, <span class="str">'Virtualização'</span>],</div>
-                <div>&nbsp;&nbsp;<span class="key">dados</span>: [<span class="str">'SQL'</span>, <span class="str">'Python'</span>, <span class="str">'Tableau'</span>],</div>
-                <div>&nbsp;&nbsp;<span class="key">dev</span>: [<span class="str">'React'</span>, <span class="str">'Node.js'</span>],</div>
-                <div>&nbsp;&nbsp;<span class="key">formacao</span>: [<span class="str">'Técnico em Informática'</span>]</div>
-                <div>}</div>
+            <div class="dev-card-title">hariel@delfos:~$</div>
+            <div class="dev-card-status">ONLINE</div>
+          </div>
+          <div class="dev-card-body">
+            <div class="dev-card-identity">
+              <div class="dev-card-avatar">HF</div>
+              <div>
+                <div class="dev-card-name">Hariel Fabrício</div>
+                <div class="dev-card-role">Técnico em Informática</div>
+                <div class="dev-card-meta">Delfos · E.E.E.P Edson Queiroz</div>
               </div>
             </div>
-            <div class="dev-card-tags">
-              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud & Redes</div>
-              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Dados & Python</div>
+            <div class="dev-card-code">
+              <div class="dev-card-code-header">
+                <span>// perfil.json</span>
+                <span class="ok">200 OK</span>
+              </div>
+              <div><span class="punct">const</span> perfil = {</div>
+              <div>&nbsp;&nbsp;<span class="key">cloud</span>: [<span class="str">'AWS Academy'</span>, <span class="str">'Huawei Cloud'</span>],</div>
+              <div>&nbsp;&nbsp;<span class="key">redes</span>: [<span class="str">'TCP/IP'</span>, <span class="str">'Virtualização'</span>],</div>
+              <div>&nbsp;&nbsp;<span class="key">dados</span>: [<span class="str">'SQL'</span>, <span class="str">'Python'</span>, <span class="str">'Tableau'</span>],</div>
+              <div>&nbsp;&nbsp;<span class="key">dev</span>: [<span class="str">'React'</span>, <span class="str">'Node.js'</span>],</div>
+              <div>&nbsp;&nbsp;<span class="key">formacao</span>: [<span class="str">'Técnico em Informática'</span>]</div>
+              <div>}</div>
             </div>
+          </div>
+          <div class="dev-card-tags">
+            <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud & Redes</div>
+            <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Dados & Python</div>
           </div>
         </div>
       </div>
-      <p class="hero-sub">
-        Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão de TI</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Infraestrutura de Redes</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
-      </p>
-      <div class="hero-chips">
-        <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Estágio na Delfos</span>
-        <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
-      </div>
-      <div class="hero-actions">
-        <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
-        <a href="#contato" class="btn btn-outline">Entre em contato</a>
-      </div>
-      <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
       <div class="hero-stats">
         <div class="stat-item">
           <span class="stat-num">7</span>
@@ -2296,10 +2312,15 @@ async function loadPortraitSource(url) {
         if (lum < MIN_BRIGHTNESS) continue;
 
         const brightness = Math.min(1, lum / 255);
-        const t = y / SIZE; // 0 (topo) -> 1 (base), para o gradiente ciano->roxo
+
+        // Cor e opacidade são agrupadas em "baldes" (buckets) para permitir
+        // desenhar centenas de partículas por chamada de fill() em vez de uma
+        // a uma — a diferença visual é imperceptível, mas o custo de desenho cai muito.
+        const t = Math.round((y / SIZE) / 0.04) * 0.04; // 0 (topo) -> 1 (base), para o gradiente ciano->roxo
         const r = Math.round(0 + (123 - 0) * t);
         const g = Math.round(200 + (97 - 200) * t);
         const b = Math.round(255 + (255 - 255) * t);
+        const alpha = (Math.round((0.35 + brightness * 0.65) / 0.05) * 0.05).toFixed(2);
 
         particles.push({
           baseX: x,
@@ -2309,8 +2330,7 @@ async function loadPortraitSource(url) {
           vx: 0,
           vy: 0,
           radius: 0.6 + brightness * 1.6,
-          alpha: 0.35 + brightness * 0.65,
-          color: `${r},${g},${b}`,
+          bucketKey: `${r},${g},${b},${alpha}`,
         });
       }
     }
@@ -2337,9 +2357,15 @@ async function loadPortraitSource(url) {
     const REPEL_STRENGTH = 900;
     const SPRING = 0.06;
     const FRICTION = 0.82;
+    const REST_SPEED = 0.04;
+
+    const buckets = new Map();
 
     function render() {
       ctx.clearRect(0, 0, SIZE, SIZE);
+      buckets.clear();
+      let maxSpeed = 0;
+
       for (const p of particles) {
         if (pointer.active) {
           const dx = p.x - pointer.x;
@@ -2359,20 +2385,52 @@ async function loadPortraitSource(url) {
         p.x += p.vx;
         p.y += p.vy;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
-        ctx.fill();
+        const speed = Math.abs(p.vx) + Math.abs(p.vy);
+        if (speed > maxSpeed) maxSpeed = speed;
+
+        let path = buckets.get(p.bucketKey);
+        if (!path) {
+          path = new Path2D();
+          buckets.set(p.bucketKey, path);
+        }
+        path.moveTo(p.x + p.radius, p.y);
+        path.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       }
+
+      for (const [key, path] of buckets) {
+        const parts = key.split(',');
+        const alpha = parts.pop();
+        ctx.fillStyle = `rgba(${parts.join(',')},${alpha})`;
+        ctx.fill(path);
+      }
+
+      return maxSpeed;
     }
 
     if (reduceMotion) {
       render();
     } else {
-      (function loop() {
-        render();
+      let running = false;
+
+      function loop() {
+        const maxSpeed = render();
+        if (!pointer.active && maxSpeed < REST_SPEED) {
+          running = false; // partículas em repouso: evita redesenhar/recalcular para sempre
+          return;
+        }
         requestAnimationFrame(loop);
-      })();
+      }
+
+      function wake() {
+        if (running) return;
+        running = true;
+        requestAnimationFrame(loop);
+      }
+
+      canvas.addEventListener('mousemove', wake);
+      canvas.addEventListener('touchmove', wake, { passive: true });
+
+      wake();
     }
   };
 })();
