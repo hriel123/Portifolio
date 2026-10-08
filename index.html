@@ -14,6 +14,16 @@
 <meta name="twitter:description" content="Estudante de Informática com foco em Cloud Computing e Infraestrutura de Redes." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23080b10'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='800' font-size='58' fill='%2300c8ff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('portfolio-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,6 +38,23 @@
     --text: #e8edf5;
     --muted: #7e8ca0;
     --glow: rgba(0,200,255,0.15);
+  }
+
+  [data-theme="light"] {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --border: #dde3ec;
+    --accent: #0077a3;
+    --accent2: #5b3fd6;
+    --accent3: #d9541f;
+    --text: #11161d;
+    --muted: #525c69;
+    --glow: rgba(0,119,163,0.08);
+  }
+
+  body, .hero-item, .card, .exp-item, .project-card, .cert-card, .skill-card, .contact-link, .dev-card {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
   }
 
   html { scroll-behavior: smooth; }
@@ -116,6 +143,11 @@
   }
 
   .nav-icon-btn:hover { color: var(--accent); border-color: rgba(0,200,255,0.3); }
+
+  .theme-toggle { background: none; cursor: pointer; font: inherit; }
+  .theme-toggle .icon-sun { display: none; }
+  [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+  [data-theme="light"] .theme-toggle .icon-sun { display: block; }
 
   .nav-cta {
     display: inline-flex;
@@ -1328,8 +1360,9 @@
   }
 
   @media (max-width: 1080px) {
+    nav { min-height: 3.65rem; } /* sem os links, mantém a altura do desktop para caber o botão de tema */
     .nav-links { display: none; }
-    .nav-extras { display: none; }
+    .nav-extras > :not(.theme-toggle) { display: none; }
   }
 
   @media (max-width: 860px) {
@@ -1443,6 +1476,39 @@
   .skip-link:focus {
     top: 1rem;
   }
+
+  /* ===== TEMA CLARO: cores fixas que foram pensadas para o fundo escuro ===== */
+  [data-theme="light"] nav { background: rgba(244,246,250,0.85); }
+
+  /* Texto branco sobre o azul do tema claro (preto ficaria abaixo de 4.5:1) */
+  [data-theme="light"] .nav-cta,
+  [data-theme="light"] .btn-primary,
+  [data-theme="light"] .skip-link { color: #fff; }
+  [data-theme="light"] .nav-cta:hover,
+  [data-theme="light"] .btn-primary:hover { background: var(--accent2); color: #fff; }
+
+  /* O terminal continua escuro nos dois temas */
+  [data-theme="light"] .dev-card {
+    --card: #111722;
+    --surface: #0d1117;
+    --border: #1e2a3a;
+    --text: #e8edf5;
+    --muted: #7e8ca0;
+    --accent: #00c8ff;
+    --accent2: #7b61ff;
+    color: var(--text);
+    box-shadow: 0 20px 50px rgba(16,24,40,0.18);
+  }
+
+  [data-theme="light"] .hero-chip { background: var(--surface); }
+  [data-theme="light"] .hero-badge { background: var(--surface); border-color: rgba(0,119,163,0.25); }
+  [data-theme="light"] .stat-num { filter: drop-shadow(0 0 14px rgba(0,119,163,0.15)); }
+  [data-theme="light"] .cert-card:hover,
+  [data-theme="light"] .project-card:hover { box-shadow: 0 20px 40px rgba(16,24,40,0.1), 0 0 0 1px rgba(0,119,163,0.15); }
+  [data-theme="light"] .cert-num,
+  [data-theme="light"] .tag { background: rgba(17,22,29,0.05); }
+  [data-theme="light"] .cert-status { color: #15803d; }
+  [data-theme="light"] .modal-close:hover { background: rgba(17,22,29,0.06); }
 </style>
 </head>
 <body>
@@ -1475,6 +1541,10 @@
     <a href="https://www.linkedin.com/in/h%D0%B0riel-silva-fabr%C3%ADcio-1b1004353/" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="LinkedIn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
+    <button type="button" class="nav-icon-btn theme-toggle" id="themeToggle" aria-label="Ativar tema claro">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
     <a href="#contato" class="nav-cta">Contato ↗</a>
   </div>
 </nav>
@@ -2217,6 +2287,23 @@ function hidePreloader() {
   el.classList.add('is-hidden');
   setTimeout(() => el.remove(), 550);
 }
+
+(function initThemeToggle() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const root = document.documentElement;
+  const sync = () => {
+    const light = root.getAttribute('data-theme') === 'light';
+    btn.setAttribute('aria-label', light ? 'Ativar tema escuro' : 'Ativar tema claro');
+  };
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('portfolio-theme', next); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
 
 // Sem imagens pesadas no topo, o que a página baixa antes de aparecer
 // são as fontes: o progresso é a fração das fontes em uso já carregadas.
