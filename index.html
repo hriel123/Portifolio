@@ -151,21 +151,32 @@
     position: relative;
   }
 
-  /* Nome | retrato e bio | terminal dividem as mesmas duas colunas,
-     então retrato e terminal ficam no mesmo eixo vertical. */
+  /* Duas colunas independentes: nome -> bio à esquerda, retrato -> terminal
+     à direita (no mesmo eixo vertical). */
   .hero-text {
     display: grid;
     grid-template-columns: minmax(min-content, 1fr) minmax(0, 400px);
     column-gap: 2rem;
-    align-items: center;
+    align-items: start;
   }
-
-  .hero-name-row, .hero-bio-row { display: contents; }
 
   .hero-badge, .hero-stats { grid-column: 1 / -1; }
 
+  .hero-col-text { min-width: 0; }
+
+  .hero-col-media {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Topo visível do círculo alinhado ao topo das letras de "Hariel":
+     0.207 x font-size = topo do "H" na linha (Syne 800, line-height 1.05);
+     9.5% da largura da coluna = topo visível do círculo dentro do canvas. */
   .hero-photo {
     width: 100%;
+    margin-top: calc(0.207 * clamp(3rem, 8vw, 6rem) - 9.5%);
     animation: fadeUp 0.8s 0.15s ease both;
   }
 
@@ -194,13 +205,8 @@
     cursor: pointer;
   }
 
-  /* Legenda fora do fluxo: a caixa do retrato é só o canvas, então o centro
-     do círculo alinha exatamente com o centro do nome. */
   .portrait-meta {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
+    margin-top: 0.25rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -406,15 +412,10 @@
 
   .hero-bio {
     min-width: 0;
-    align-self: start;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
 
-  .hero-bio-row .dev-card {
-    justify-self: center;
-    align-self: start;
-    margin-top: 3rem;
-  }
+  .hero-col-media .dev-card { margin-top: 1.5rem; }
 
   .hero-sub {
     font-size: 1.1rem;
@@ -445,7 +446,7 @@
   }
 
   .hero-actions {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -453,7 +454,7 @@
   }
 
   .hero-meta {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
     font-size: 0.75rem;
     color: var(--muted);
     letter-spacing: 0.04em;
@@ -491,6 +492,11 @@
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
+  }
+
+  .hero-actions .btn-outline:hover {
+    background: rgba(0,200,255,0.08);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(0,200,255,0.3);
   }
 
   .btn-outline:hover {
@@ -1368,10 +1374,14 @@
   @media (max-width: 860px) {
     .hero-inner { text-align: center; }
     .hero-text { grid-template-columns: minmax(0, 1fr); justify-items: center; }
-    .hero-photo { margin-top: 2rem; }
-    .portrait-meta { position: static; margin-top: 0.5rem; }
+    .hero-col-text, .hero-col-media { display: contents; }
+    .hero-text h1 { order: 1; }
+    .hero-photo { order: 2; margin-top: 2rem; }
+    .hero-bio { order: 3; }
+    .hero-col-media .dev-card { order: 4; }
+    .hero-stats { order: 5; }
     .hero-bio { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
-    .hero-bio-row .dev-card { margin-top: 2.5rem; }
+    .hero-col-media .dev-card { margin-top: 2.5rem; }
     .hero-sub { text-align: center; }
     .hero-chips { justify-content: center; }
     .hero-actions { justify-content: center; }
@@ -1518,22 +1528,11 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge">Disponível para oportunidades</div>
-      <div class="hero-name-row">
+      <div class="hero-col-text">
         <h1>
           <span class="line">Hariel</span>
           <span class="line highlight">Silva Fabrício</span>
         </h1>
-        <div class="hero-photo">
-          <div class="portrait">
-            <canvas id="portraitCanvas" width="800" height="800" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
-            <div class="portrait-meta">
-              <span><span class="portrait-count" id="particleCount">0</span> partículas em tempo real</span>
-              <span class="portrait-hint">Toque no retrato.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-bio-row">
         <div class="hero-bio">
           <p class="hero-sub">
             Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão de TI</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Infraestrutura de Redes</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
@@ -1544,9 +1543,20 @@
           </div>
           <div class="hero-actions">
             <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
-            <a href="#contato" class="btn btn-outline">Entre em contato</a>
+            <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
           </div>
           <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
+        </div>
+      </div>
+      <div class="hero-col-media">
+        <div class="hero-photo">
+          <div class="portrait">
+            <canvas id="portraitCanvas" width="800" height="800" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
+            <div class="portrait-meta">
+              <span><span class="portrait-count" id="particleCount">0</span> partículas em tempo real</span>
+              <span class="portrait-hint">Toque no retrato.</span>
+            </div>
+          </div>
         </div>
         <div class="dev-card">
           <div class="dev-card-header">
