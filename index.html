@@ -151,21 +151,21 @@
     position: relative;
   }
 
-  .hero-name-row {
-    display: flex;
+  /* Nome | retrato e bio | terminal dividem as mesmas duas colunas,
+     então retrato e terminal ficam no mesmo eixo vertical. */
+  .hero-text {
+    display: grid;
+    grid-template-columns: minmax(min-content, 1fr) minmax(0, 400px);
+    column-gap: 2rem;
     align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
   }
 
+  .hero-name-row, .hero-bio-row { display: contents; }
+
+  .hero-badge, .hero-stats { grid-column: 1 / -1; }
+
   .hero-photo {
-    flex: 0 1 400px;
-    min-width: 0;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    width: 100%;
     animation: fadeUp 0.8s 0.15s ease both;
   }
 
@@ -183,6 +183,7 @@
     position: relative;
     width: 400px;
     max-width: 100%;
+    margin: 0 auto;
   }
 
   .portrait canvas {
@@ -193,12 +194,17 @@
     cursor: pointer;
   }
 
+  /* Legenda fora do fluxo: a caixa do retrato é só o canvas, então o centro
+     do círculo alinha exatamente com o centro do nome. */
   .portrait-meta {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
     font-size: 0.72rem;
     color: var(--muted);
   }
@@ -209,7 +215,6 @@
   }
 
   .portrait-hint {
-    text-align: right;
     line-height: 1.4;
   }
 
@@ -388,7 +393,6 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     animation: fadeUp 0.8s 0.1s ease both;
-    flex: 1 1 380px;
     min-width: 280px;
   }
 
@@ -400,17 +404,16 @@
     background-clip: text;
   }
 
-  .hero-bio-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
+  .hero-bio {
+    min-width: 0;
+    align-self: start;
+    margin-top: 3rem;
   }
 
-  .hero-bio {
-    flex: 1 1 380px;
-    min-width: 0;
+  .hero-bio-row .dev-card {
+    justify-self: center;
+    align-self: start;
+    margin-top: 3rem;
   }
 
   .hero-sub {
@@ -1364,9 +1367,11 @@
 
   @media (max-width: 860px) {
     .hero-inner { text-align: center; }
-    .hero-name-row { justify-content: center; }
-    .hero-bio-row { justify-content: center; }
-    .hero-bio { display: flex; flex-direction: column; align-items: center; }
+    .hero-text { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+    .hero-photo { margin-top: 2rem; }
+    .portrait-meta { position: static; margin-top: 0.5rem; }
+    .hero-bio { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
+    .hero-bio-row .dev-card { margin-top: 2.5rem; }
     .hero-sub { text-align: center; }
     .hero-chips { justify-content: center; }
     .hero-actions { justify-content: center; }
@@ -1520,11 +1525,11 @@
         </h1>
         <div class="hero-photo">
           <div class="portrait">
+            <canvas id="portraitCanvas" width="800" height="800" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
             <div class="portrait-meta">
               <span><span class="portrait-count" id="particleCount">0</span> partículas em tempo real</span>
               <span class="portrait-hint">Toque no retrato.</span>
             </div>
-            <canvas id="portraitCanvas" width="800" height="800" role="img" aria-label="Retrato de Hariel Silva Fabrício, formado por partículas interativas"></canvas>
           </div>
         </div>
       </div>
@@ -2289,16 +2294,156 @@ async function loadPortraitSource(url) {
   }
 }
 
+// Renderiza as partículas na GPU (um único drawArrays por quadro).
+function createGLRenderer(canvas, size) {
+  const gl = canvas.getContext('webgl', { antialias: false, powerPreference: 'low-power' });
+  if (!gl) return null;
+
+  let attrBuf, posBuf, lastAttrs, lastCount = 0;
+
+  function init() {
+    const compile = (type, src) => {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, src);
+      gl.compileShader(shader);
+      return shader;
+    };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, `
+      attribute vec2 aPos;
+      attribute vec3 aAttr; // raio, t (gradiente), alpha
+      uniform float uScale;
+      varying float vRadius;
+      varying vec4 vColor;
+      void main() {
+        gl_Position = vec4(aPos.x * uScale - 1.0, 1.0 - aPos.y * uScale, 0.0, 1.0);
+        gl_PointSize = aAttr.x * 2.0 + 1.0;
+        vRadius = aAttr.x;
+        vColor = vec4(mix(vec3(0.0, 200.0, 255.0), vec3(123.0, 97.0, 255.0), aAttr.y) / 255.0, aAttr.z);
+      }`));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, `
+      precision mediump float;
+      varying float vRadius;
+      varying vec4 vColor;
+      void main() {
+        float d = length(gl_PointCoord - 0.5) * (vRadius * 2.0 + 1.0);
+        float a = vColor.a * clamp(vRadius + 0.5 - d, 0.0, 1.0);
+        gl_FragColor = vec4(vColor.rgb * a, a);
+      }`));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+    gl.uniform1f(gl.getUniformLocation(prog, 'uScale'), 2 / size);
+    gl.viewport(0, 0, size, size);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+
+    const aPos = gl.getAttribLocation(prog, 'aPos');
+    const aAttr = gl.getAttribLocation(prog, 'aAttr');
+    attrBuf = gl.createBuffer();
+    posBuf = gl.createBuffer();
+    gl.enableVertexAttribArray(aAttr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, attrBuf);
+    gl.vertexAttribPointer(aAttr, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(aPos);
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  }
+
+  const renderer = {
+    onRestore: null,
+    setParticles(attrs, count) {
+      lastAttrs = attrs;
+      lastCount = count;
+      gl.bindBuffer(gl.ARRAY_BUFFER, attrBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, attrs, gl.STATIC_DRAW);
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, count * 8, gl.DYNAMIC_DRAW);
+    },
+    draw(pos, count) {
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, pos);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.POINTS, 0, count);
+    },
+  };
+
+  // O navegador pode descartar o contexto da GPU (aba em segundo plano no celular,
+  // reset de driver): esconde o canvas nesse intervalo e recria tudo na volta.
+  canvas.addEventListener('webglcontextlost', (e) => {
+    e.preventDefault();
+    canvas.style.visibility = 'hidden';
+  });
+  canvas.addEventListener('webglcontextrestored', () => {
+    init();
+    if (lastAttrs) renderer.setParticles(lastAttrs, lastCount);
+    if (renderer.onRestore) renderer.onRestore();
+    canvas.style.visibility = '';
+  });
+
+  init();
+  return renderer;
+}
+
+// Sem WebGL: canvas 2D, com as partículas agrupadas por cor/opacidade uma única
+// vez, para desenhar cada grupo com um só fill() por quadro.
+function create2DRenderer(canvas, size) {
+  const ctx = canvas.getContext('2d');
+  let radius, order, groupEnds, groupStyles;
+
+  return {
+    setParticles(attrs, count) {
+      const groups = new Map();
+      radius = new Float32Array(count);
+      for (let i = 0; i < count; i++) {
+        radius[i] = attrs[i * 3];
+        const t = Math.round(attrs[i * 3 + 1] / 0.04) * 0.04;
+        const alpha = (Math.round(attrs[i * 3 + 2] / 0.05) * 0.05).toFixed(2);
+        const style = `rgba(${Math.round(123 * t)},${Math.round(200 - 103 * t)},255,${alpha})`;
+        if (!groups.has(style)) groups.set(style, []);
+        groups.get(style).push(i);
+      }
+      order = new Uint32Array(count);
+      groupEnds = [];
+      groupStyles = [];
+      let k = 0;
+      for (const [style, members] of groups) {
+        for (const i of members) order[k++] = i;
+        groupEnds.push(k);
+        groupStyles.push(style);
+      }
+    },
+    draw(pos) {
+      ctx.clearRect(0, 0, size, size);
+      let k = 0;
+      for (let g = 0; g < groupStyles.length; g++) {
+        ctx.fillStyle = groupStyles[g];
+        ctx.beginPath();
+        for (const end = groupEnds[g]; k < end; k++) {
+          const i = order[k];
+          const x = pos[i * 2], y = pos[i * 2 + 1], r = radius[i];
+          ctx.rect(x - r, y - r, r * 2, r * 2); // ~3x mais barato que arc() e igual a olho nesse tamanho
+        }
+        ctx.fill();
+      }
+    },
+  };
+}
+
 (async function initParticlePortrait() {
   const canvas = document.getElementById('portraitCanvas');
   const countEl = document.getElementById('particleCount');
   if (!canvas) { hidePreloader(); return; }
 
-  const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SIZE = canvas.width; // 800, canvas is always square
-  const STEP = 4;
   const MIN_BRIGHTNESS = 16;
+  // Teto de partículas: menor em telas pequenas e aparelhos com poucos núcleos;
+  // cai mais ainda em tempo real se o aparelho não sustentar a animação.
+  const lowEnd = window.matchMedia('(max-width: 640px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  const MIN_BUDGET = 4000;
+  let budget = lowEnd ? 8000 : 12000;
+
+  const renderer = createGLRenderer(canvas, SIZE) || create2DRenderer(canvas, SIZE);
 
   const imgUrl = await loadPortraitSource('particle-source.jpg');
   const img = new Image();
@@ -2312,135 +2457,169 @@ async function loadPortraitSource(url) {
     const octx = off.getContext('2d');
     octx.drawImage(img, 0, 0, SIZE, SIZE);
     const data = octx.getImageData(0, 0, SIZE, SIZE).data;
+    const lumAt = (x, y) => {
+      const i = (y * SIZE + x) * 4;
+      return 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+    };
 
-    const particles = [];
-    for (let y = 0; y < SIZE; y += STEP) {
-      for (let x = 0; x < SIZE; x += STEP) {
-        const i = (y * SIZE + x) * 4;
-        const lum = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-        if (lum < MIN_BRIGHTNESS) continue;
-
-        const brightness = Math.min(1, lum / 255);
-
-        // Cor e opacidade são agrupadas em "baldes" (buckets) para permitir
-        // desenhar centenas de partículas por chamada de fill() em vez de uma
-        // a uma — a diferença visual é imperceptível, mas o custo de desenho cai muito.
-        const t = Math.round((y / SIZE) / 0.04) * 0.04; // 0 (topo) -> 1 (base), para o gradiente ciano->roxo
-        const r = Math.round(0 + (123 - 0) * t);
-        const g = Math.round(200 + (97 - 200) * t);
-        const b = Math.round(255 + (255 - 255) * t);
-        const alpha = (Math.round((0.35 + brightness * 0.65) / 0.05) * 0.05).toFixed(2);
-
-        particles.push({
-          baseX: x,
-          baseY: y,
-          x: reduceMotion ? x : Math.random() * SIZE,
-          y: reduceMotion ? y : Math.random() * SIZE,
-          vx: 0,
-          vy: 0,
-          radius: 0.5 + brightness * 1.3,
-          bucketKey: `${r},${g},${b},${alpha}`,
-        });
+    // Área "acesa" da imagem, para escolher o espaçamento da grade que cabe no teto.
+    let lit = 0, samples = 0;
+    for (let y = 0; y < SIZE; y += 4) {
+      for (let x = 0; x < SIZE; x += 4) {
+        samples++;
+        if (lumAt(x, y) >= MIN_BRIGHTNESS) lit++;
       }
     }
+    const litArea = (lit / samples) * SIZE * SIZE;
 
-    if (countEl) countEl.textContent = particles.length.toLocaleString('pt-BR');
+    // Estado em typed arrays alocados só ao (re)construir: nada é criado por quadro.
+    let count = 0, pos, vel, base;
 
-    const pointer = { x: -9999, y: -9999, active: false };
+    function build(scatter) {
+      let step = Math.max(3, Math.sqrt(litArea / budget));
+      let pts;
+      do {
+        pts = [];
+        for (let gy = step / 2; gy < SIZE; gy += step) {
+          for (let gx = step / 2; gx < SIZE; gx += step) {
+            // Deslocamento aleatório leve quebra o padrão de grade (efeito retícula).
+            const x = Math.min(SIZE - 1, Math.max(0, gx + (Math.random() - 0.5) * step * 0.7));
+            const y = Math.min(SIZE - 1, Math.max(0, gy + (Math.random() - 0.5) * step * 0.7));
+            const lum = lumAt(x | 0, y | 0);
+            if (lum >= MIN_BRIGHTNESS) pts.push(x, y, Math.min(1, lum / 255));
+          }
+        }
+        step *= 1.04;
+      } while (pts.length / 3 > budget);
 
-    function updatePointer(clientX, clientY) {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = ((clientX - rect.left) / rect.width) * SIZE;
-      pointer.y = ((clientY - rect.top) / rect.height) * SIZE;
+      count = pts.length / 3;
+      pos = new Float32Array(count * 2);
+      vel = new Float32Array(count * 2);
+      base = new Float32Array(count * 2);
+      const attrs = new Float32Array(count * 3);
+      const sizeScale = step / 1.04 / 4; // grade mais espaçada -> partículas maiores
+      for (let i = 0; i < count; i++) {
+        const x = pts[i * 3], y = pts[i * 3 + 1], brightness = pts[i * 3 + 2];
+        base[i * 2] = x;
+        base[i * 2 + 1] = y;
+        pos[i * 2] = scatter ? Math.random() * SIZE : x;
+        pos[i * 2 + 1] = scatter ? Math.random() * SIZE : y;
+        attrs[i * 3] = (0.5 + brightness * 1.3) * sizeScale;
+        attrs[i * 3 + 1] = y / SIZE; // 0 (topo) -> 1 (base), gradiente ciano -> roxo
+        attrs[i * 3 + 2] = 0.35 + brightness * 0.65;
+      }
+      renderer.setParticles(attrs, count);
+      if (countEl) countEl.textContent = count.toLocaleString('pt-BR');
     }
 
-    canvas.addEventListener('mousemove', (e) => { pointer.active = true; updatePointer(e.clientX, e.clientY); });
-    canvas.addEventListener('mouseleave', () => { pointer.active = false; });
-    canvas.addEventListener('touchmove', (e) => {
+    build(!reduceMotion);
+    renderer.onRestore = () => renderer.draw(pos, count);
+
+    if (reduceMotion) {
+      renderer.draw(pos, count);
+      return;
+    }
+
+    // Os eventos só guardam a posição do ponteiro; conversão e física rodam no máximo uma vez por quadro.
+    const pointer = { clientX: 0, clientY: 0, active: false };
+    function setPointer(clientX, clientY) {
       pointer.active = true;
-      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
-    }, { passive: true });
+      pointer.clientX = clientX;
+      pointer.clientY = clientY;
+      wake();
+    }
+
+    canvas.addEventListener('mousemove', (e) => setPointer(e.clientX, e.clientY));
+    canvas.addEventListener('mouseleave', () => { pointer.active = false; });
+    canvas.addEventListener('touchmove', (e) => setPointer(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
     canvas.addEventListener('touchend', () => { pointer.active = false; });
 
     const REPEL_RADIUS = 88;
-    const REPEL_STRENGTH = 900;
+    const REPEL_R2 = REPEL_RADIUS * REPEL_RADIUS;
+    const REPEL_STRENGTH = 0.0066;
     const SPRING = 0.06;
     const FRICTION = 0.82;
     const REST_SPEED = 0.04;
+    const FRAME_MS = 1000 / 60;
 
-    const buckets = new Map();
+    function step() {
+      let px = -1e6, py = -1e6;
+      if (pointer.active) {
+        const rect = canvas.getBoundingClientRect();
+        px = ((pointer.clientX - rect.left) / rect.width) * SIZE;
+        py = ((pointer.clientY - rect.top) / rect.height) * SIZE;
+      }
 
-    function render() {
-      ctx.clearRect(0, 0, SIZE, SIZE);
-      buckets.clear();
       let maxSpeed = 0;
-
-      for (const p of particles) {
-        if (pointer.active) {
-          const dx = p.x - pointer.x;
-          const dy = p.y - pointer.y;
-          const dist2 = dx * dx + dy * dy;
-          if (dist2 < REPEL_RADIUS * REPEL_RADIUS) {
-            const dist = Math.sqrt(dist2) || 1;
-            const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH / dist;
-            p.vx += dx * force * 0.0016;
-            p.vy += dy * force * 0.0016;
-          }
+      for (let j = 0, n = count * 2; j < n; j += 2) {
+        const x = pos[j], y = pos[j + 1];
+        let vx = vel[j], vy = vel[j + 1];
+        const dx = x - px, dy = y - py;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < REPEL_R2) {
+          // Repulsão forte perto do ponteiro e nula na borda do raio, sem Math.sqrt.
+          const f = ((REPEL_R2 - d2) / (d2 + 400)) * REPEL_STRENGTH;
+          vx += dx * f;
+          vy += dy * f;
         }
-        p.vx += (p.baseX - p.x) * SPRING;
-        p.vy += (p.baseY - p.y) * SPRING;
-        p.vx *= FRICTION;
-        p.vy *= FRICTION;
-        p.x += p.vx;
-        p.y += p.vy;
-
-        const speed = Math.abs(p.vx) + Math.abs(p.vy);
+        vx = (vx + (base[j] - x) * SPRING) * FRICTION;
+        vy = (vy + (base[j + 1] - y) * SPRING) * FRICTION;
+        vel[j] = vx;
+        vel[j + 1] = vy;
+        pos[j] = x + vx;
+        pos[j + 1] = y + vy;
+        const speed = Math.abs(vx) + Math.abs(vy);
         if (speed > maxSpeed) maxSpeed = speed;
-
-        let path = buckets.get(p.bucketKey);
-        if (!path) {
-          path = new Path2D();
-          buckets.set(p.bucketKey, path);
-        }
-        path.moveTo(p.x + p.radius, p.y);
-        path.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       }
-
-      for (const [key, path] of buckets) {
-        const parts = key.split(',');
-        const alpha = parts.pop();
-        ctx.fillStyle = `rgba(${parts.join(',')},${alpha})`;
-        ctx.fill(path);
-      }
-
       return maxSpeed;
     }
 
-    if (reduceMotion) {
-      render();
-    } else {
-      let running = false;
+    let running = false, lastStep = 0, lastFrame = 0, sampled = 0, slow = 0;
 
-      function loop() {
-        const maxSpeed = render();
-        if (!pointer.active && maxSpeed < REST_SPEED) {
-          running = false; // partículas em repouso: evita redesenhar/recalcular para sempre
-          return;
+    function loop(now) {
+      // Física limitada a ~60 passos/s, também em telas de 120/144 Hz.
+      if (now - lastStep < FRAME_MS - 1) {
+        requestAnimationFrame(loop);
+        return;
+      }
+      const dt = now - lastFrame;
+      lastFrame = now;
+      lastStep = Math.max(lastStep + FRAME_MS, now - FRAME_MS);
+
+      const workStart = performance.now();
+      const maxSpeed = step();
+      renderer.draw(pos, count);
+      const work = performance.now() - workStart;
+
+      // Abaixo de ~25 fps na maior parte de 45 quadros, com o retrato custando
+      // mais de 8 ms por quadro: reconstrói com menos partículas. Se a lentidão
+      // vem do resto da página, cortar partículas não ajudaria, então não corta.
+      if (dt < 250) {
+        if (dt > 40 && work > 8) slow++;
+        if (++sampled === 45) {
+          if (slow > 30 && budget > MIN_BUDGET) {
+            budget = Math.max(MIN_BUDGET, Math.round(budget * 0.6));
+            build(false);
+          }
+          sampled = slow = 0;
         }
-        requestAnimationFrame(loop);
       }
 
-      function wake() {
-        if (running) return;
-        running = true;
-        requestAnimationFrame(loop);
+      if (!pointer.active && maxSpeed < REST_SPEED) {
+        running = false; // partículas em repouso: evita redesenhar/recalcular para sempre
+        return;
       }
-
-      canvas.addEventListener('mousemove', wake);
-      canvas.addEventListener('touchmove', wake, { passive: true });
-
-      wake();
+      requestAnimationFrame(loop);
     }
+
+    function wake() {
+      if (running) return;
+      running = true;
+      lastStep = lastFrame = 0;
+      requestAnimationFrame(loop);
+    }
+
+    wake();
   };
 })();
 </script>
