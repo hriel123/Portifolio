@@ -457,14 +457,15 @@
   .hero-stats {
     margin-top: 2.5rem;
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem 3rem;
     flex-wrap: wrap;
+    text-align: center;
     animation: fadeUp 0.8s 0.4s ease both;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
   }
 
-  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-item { flex: 1 1 140px; display: flex; flex-direction: column; gap: 0.2rem; }
 
   .stat-num {
     font-family: 'Syne', sans-serif;
@@ -1309,7 +1310,8 @@
 
   /* DIVIDER */
   .section-divider {
-    max-width: 1100px;
+    width: calc(100% - 4rem);
+    max-width: calc(1100px - 4rem);
     margin: 0 auto;
     height: 1px;
     background: var(--border);
