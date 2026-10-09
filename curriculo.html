@@ -285,18 +285,10 @@
 
   .cv-side .cv-section h2 { font-size: 9.2pt; }
 
-  .cv-group + .cv-group { margin-top: 2mm; }
-
-  .cv-group h3 {
-    font-size: 8.8pt;
-    font-weight: 700;
-    margin-bottom: 0.6mm;
-  }
-
-  .cv-group p {
-    font-size: 8.6pt;
-    color: var(--ink-muted);
-  }
+  .cv-skills { list-style: none; }
+  .cv-skills li { font-size: 8.6pt; color: var(--ink-muted); }
+  .cv-skills li + li { margin-top: 1.4mm; }
+  .cv-skills strong { color: var(--ink); font-weight: 700; }
 
   .cv-langs { list-style: none; }
   .cv-langs li { display: flex; justify-content: space-between; font-size: 8.8pt; }
@@ -457,34 +449,15 @@
 
         <section class="cv-section">
           <h2>Habilidades</h2>
-          <div class="cv-group">
-            <h3>Front-end</h3>
-            <p>React, TypeScript, JavaScript, HTML, CSS, Tailwind</p>
-          </div>
-          <div class="cv-group">
-            <h3>Back-end</h3>
-            <p>Node.js, NestJS, Express, APIs REST, autenticação JWT · lógica de programação e estruturas de dados</p>
-          </div>
-          <div class="cv-group">
-            <h3>Dados</h3>
-            <p>SQL, PostgreSQL, Prisma, Python, Planilhas, Tableau, Google Data Analytics</p>
-          </div>
-          <div class="cv-group">
-            <h3>Cloud &amp; Infra</h3>
-            <p>AWS, Huawei Cloud, Vercel, Redes TCP/IP, Configuração de Redes, Virtualização, Segurança · IaaS, PaaS, SaaS</p>
-          </div>
-          <div class="cv-group">
-            <h3>Ferramentas</h3>
-            <p>Git, GitLab (MR, CI), Jest, Linux, App Inventor</p>
-          </div>
-          <div class="cv-group">
-            <h3>Inteligência Artificial</h3>
-            <p>IA Generativa, Machine Learning, IA em Jogos, Teachable Machine</p>
-          </div>
-          <div class="cv-group">
-            <h3>Comportamentais</h3>
-            <p>Liderança, Comunicação, Trabalho em Equipe, Resolução de Problemas</p>
-          </div>
+          <ul class="cv-skills">
+            <li><strong>Front-end:</strong> React, TypeScript, JavaScript, HTML/CSS, Tailwind</li>
+            <li><strong>Back-end:</strong> Node.js, NestJS, Express, APIs REST, JWT; lógica e estruturas de dados</li>
+            <li><strong>Dados:</strong> SQL, PostgreSQL, Prisma, Python, Tableau, planilhas, Google Data Analytics</li>
+            <li><strong>Cloud &amp; Infra:</strong> AWS, Huawei Cloud, Vercel, IaaS/PaaS/SaaS; redes (TCP/IP, configuração), virtualização, segurança</li>
+            <li><strong>Ferramentas:</strong> Git/GitLab (MR, CI), Jest, Linux, App Inventor</li>
+            <li><strong>IA:</strong> IA generativa, machine learning, IA em jogos, Teachable Machine</li>
+            <li><strong>Comportamentais:</strong> liderança, comunicação, trabalho em equipe, resolução de problemas</li>
+          </ul>
         </section>
 
         <section class="cv-section">
