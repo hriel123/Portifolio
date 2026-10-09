@@ -68,6 +68,7 @@
 
   .toolbar-back {
     margin-right: auto;
+    padding: 0.35rem 0;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -320,6 +321,13 @@
     .sheet { padding: 1.5rem 1.25rem; font-size: 10.5pt; }
     .cv-body { grid-template-columns: 1fr; gap: 1.5rem; }
     .cv-entry-head { flex-direction: column; gap: 0.15rem; }
+    .cv-contacts { gap: 0.25rem 1rem; }
+  }
+
+  /* Área de toque maior nos links da folha. "screen" porque a página A4
+     impressa tem ~794px e também cairia nesta faixa. */
+  @media screen and (max-width: 820px) {
+    .cv-contacts a, .cv-projects a { display: inline-block; padding: 0.3rem 0; }
   }
 
   /* ===== IMPRESSÃO / PDF: só a folha, em A4 ===== */
