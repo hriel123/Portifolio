@@ -145,6 +145,43 @@
   .nav-icon-btn:hover { color: var(--accent); border-color: rgba(0,200,255,0.3); }
 
   .theme-toggle { background: none; cursor: pointer; font: inherit; }
+
+  .nav-menu-btn { display: none; background: none; cursor: pointer; font: inherit; }
+  .nav-menu-btn .icon-close { display: none; }
+  .nav-menu-btn[aria-expanded="true"] .icon-open { display: none; }
+  .nav-menu-btn[aria-expanded="true"] .icon-close { display: flex; }
+  .nav-menu-btn span { display: flex; }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 0.75rem 2rem 1.25rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .mobile-menu[hidden] { display: none; }
+
+  .mobile-menu ul { list-style: none; }
+
+  .mobile-menu li a {
+    display: block;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobile-menu li a:hover { color: var(--accent); padding-left: 0.4rem; }
+
+  .mobile-menu-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
   .theme-toggle .icon-sun { display: none; }
   [data-theme="light"] .theme-toggle .icon-moon { display: none; }
   [data-theme="light"] .theme-toggle .icon-sun { display: block; }
@@ -1092,8 +1129,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 0.9rem;
-    padding: 0;
+    margin-top: 0.6rem;
+    padding: 0.3rem 0;
     border: none;
     background: none;
     color: var(--accent);
@@ -1289,10 +1326,19 @@
   .exp-pillars li span { flex: 1; }
 
   /* PROJECTS */
+  /* Flex centralizado: com 2 por linha, o terceiro projeto fica no meio
+     (no grid ele ficava colado à esquerda) */
   .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
+  }
+
+  .projects-grid .project-card { flex: 1 1 300px; min-width: 0; }
+
+  @media (min-width: 688px) and (max-width: 1035px) {
+    .projects-grid .project-card { max-width: calc(50% - 0.75rem); }
   }
 
   .project-card {
@@ -1695,6 +1741,8 @@
   }
 
   .footer-nav a {
+    display: inline-block;
+    padding: 0.35rem 0;
     color: var(--muted);
     text-decoration: none;
     font-size: 0.78rem;
@@ -1739,10 +1787,12 @@
     background: var(--border);
   }
 
-  @media (max-width: 1080px) {
-    nav { min-height: 3.65rem; } /* sem os links, mantém a altura do desktop para caber o botão de tema */
+  /* Até 1180px os links do centro encostariam nos ícones da direita */
+  @media (max-width: 1180px) {
+    nav { min-height: 3.65rem; } /* sem os links, mantém a altura do desktop para caber os botões */
     .nav-links { display: none; }
-    .nav-extras > :not(.theme-toggle) { display: none; }
+    .nav-extras > :not(.theme-toggle):not(.nav-menu-btn) { display: none; }
+    .nav-menu-btn { display: flex; }
   }
 
   @media (max-width: 860px) {
@@ -1778,6 +1828,10 @@
 
   @media (max-width: 370px) {
     .tl-filters { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 380px) {
+    h2 { font-size: 1.55rem; }
   }
 
   /* ===== PRELOADER ===== */
@@ -1940,6 +1994,25 @@
       <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
     <a href="#contato" class="nav-cta">Contato ↗</a>
+    <button type="button" class="nav-icon-btn nav-menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu">
+      <span class="icon-open"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
+      <span class="icon-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#certs">Certificados</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="curriculo.html">Currículo</a></li>
+    </ul>
+    <div class="mobile-menu-socials">
+      <a href="https://github.com/hriel123" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+      <a href="https://www.linkedin.com/in/h%D0%B0riel-silva-fabr%C3%ADcio-1b1004353/" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    </div>
   </div>
 </nav>
 
@@ -2817,6 +2890,26 @@ document.addEventListener('keydown', e => {
     }
   }
 });
+
+/* ===================== MENU DO CELULAR ===================== */
+(function initMobileMenu() {
+  const btn = document.getElementById('navMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+
+  function setOpen(open, restoreFocus) {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    if (!open && restoreFocus) btn.focus();
+  }
+
+  btn.addEventListener('click', () => setOpen(menu.hidden));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) setOpen(false, true); });
+  document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('nav')) setOpen(false); });
+  window.matchMedia('(min-width: 1181px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+})();
 
 /* ===================== LINHA DO TEMPO ===================== */
 (function initTimeline() {
