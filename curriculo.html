@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Currículo · Hariel Silva Fabrício</title>
+<meta name="description" content="Currículo de Hariel Silva Fabrício: Técnico em Informática em formação, estagiário de Gestão de TI na Delfos, com foco em Cloud Computing e Infraestrutura de Redes." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23080b10'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='800' font-size='58' fill='%2300c8ff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('portfolio-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Fundo e barra seguem o tema do portfólio; a folha é sempre "papel" */
+  :root {
+    --bg: #080b10;
+    --surface: #111722;
+    --border: #1e2a3a;
+    --text: #e8edf5;
+    --muted: #7e8ca0;
+    --accent: #00c8ff;
+
+    --ink: #11161d;
+    --ink-muted: #4a5563;
+    --rule: #dde3ec;
+    --brand: #0077a3;
+    --brand2: #5b3fd6;
+  }
+
+  [data-theme="light"] {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --border: #dde3ec;
+    --text: #11161d;
+    --muted: #525c69;
+    --accent: #0077a3;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.9rem 1.5rem;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toolbar-back {
+    margin-right: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .toolbar-back:hover { color: var(--accent); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.2rem;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #000; }
+  .btn-primary:hover { background: #fff; border-color: #fff; color: #000; }
+  [data-theme="light"] .btn-primary { color: #fff; }
+  [data-theme="light"] .btn-primary:hover { background: #5b3fd6; border-color: #5b3fd6; color: #fff; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .page {
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* ===== FOLHA ===== */
+  .sheet {
+    width: 100%;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 10mm 12mm;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    font-size: 9pt;
+    line-height: 1.33;
+  }
+
+  .cv-header {
+    padding-bottom: 4mm;
+    margin-bottom: 4mm;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cv-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 23pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .cv-name span {
+    background: linear-gradient(90deg, var(--brand), var(--brand2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cv-role {
+    margin-top: 1mm;
+    font-size: 10.5pt;
+    font-weight: 500;
+    color: var(--ink-muted);
+  }
+
+  .cv-contacts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2mm 4mm;
+    margin-top: 2.5mm;
+    font-size: 8.4pt;
+  }
+
+  .cv-contacts li {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .cv-contacts svg { color: var(--brand); flex-shrink: 0; }
+  .cv-contacts a { color: var(--ink); text-decoration: none; }
+  .cv-contacts a:hover { color: var(--brand); text-decoration: underline; }
+
+  .cv-body {
+    display: grid;
+    grid-template-columns: 1fr 52mm;
+    gap: 6mm;
+  }
+
+  .cv-section + .cv-section { margin-top: 3.5mm; }
+
+  .cv-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand);
+    padding-bottom: 1mm;
+    margin-bottom: 2mm;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cv-entry { break-inside: avoid; }
+  .cv-entry + .cv-entry { margin-top: 2.5mm; }
+
+  .cv-entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 3mm;
+  }
+
+  .cv-entry-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 9.8pt;
+    font-weight: 700;
+  }
+
+  .cv-entry-date {
+    flex-shrink: 0;
+    font-size: 8.4pt;
+    font-weight: 700;
+    color: var(--brand2);
+    white-space: nowrap;
+  }
+
+  .cv-entry-org {
+    font-size: 8.8pt;
+    color: var(--ink-muted);
+    margin-bottom: 1mm;
+  }
+
+  .cv-entry-org strong { color: var(--ink); font-weight: 600; }
+
+  .cv-entry p { color: var(--ink); }
+
+  .cv-entry ul {
+    margin-top: 0.6mm;
+    padding-left: 4mm;
+  }
+
+  .cv-entry li + li { margin-top: 0.3mm; }
+  .cv-entry li::marker { color: var(--brand); }
+
+  .cv-summary { color: var(--ink); }
+
+  .cv-certs {
+    list-style: none;
+  }
+
+  .cv-certs li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 3mm;
+    break-inside: avoid;
+  }
+
+  .cv-certs li + li { margin-top: 1mm; }
+  .cv-cert-title { font-weight: 600; }
+  .cv-cert-meta { grid-column: 1; font-size: 8.4pt; color: var(--ink-muted); }
+
+  .cv-cert-hours {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+    font-size: 8.4pt;
+    font-weight: 700;
+    color: var(--brand2);
+    white-space: nowrap;
+  }
+
+  .cv-total {
+    margin-top: 2mm;
+    font-size: 8.4pt;
+    font-weight: 700;
+    color: var(--ink-muted);
+    text-align: right;
+  }
+
+  .cv-side .cv-section h2 { font-size: 9.2pt; }
+
+  .cv-group + .cv-group { margin-top: 2mm; }
+
+  .cv-group h3 {
+    font-size: 8.8pt;
+    font-weight: 700;
+    margin-bottom: 0.6mm;
+  }
+
+  .cv-group p {
+    font-size: 8.6pt;
+    color: var(--ink-muted);
+  }
+
+  .cv-langs { list-style: none; }
+  .cv-langs li { display: flex; justify-content: space-between; font-size: 8.8pt; }
+  .cv-langs li + li { margin-top: 1mm; }
+  .cv-langs span { color: var(--ink-muted); }
+
+  .cv-projects { list-style: none; }
+  .cv-projects li { break-inside: avoid; }
+  .cv-projects li + li { margin-top: 1.6mm; }
+  .cv-projects strong { font-family: 'Syne', sans-serif; font-size: 9.6pt; }
+  .cv-projects a { color: var(--brand); text-decoration: none; font-size: 8.4pt; overflow-wrap: anywhere; }
+  .cv-projects p { font-size: 8.6pt; color: var(--ink-muted); }
+
+  @media (max-width: 720px) {
+    .toolbar { padding: 0.75rem 1rem; }
+    .toolbar-back { flex-basis: 100%; }
+    .page { padding: 1rem 0.75rem 3rem; }
+    .sheet { padding: 1.5rem 1.25rem; font-size: 10.5pt; }
+    .cv-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cv-entry-head { flex-direction: column; gap: 0.15rem; }
+  }
+
+  /* ===== IMPRESSÃO / PDF: só a folha, em A4 ===== */
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    .sheet, .sheet * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    /* No PDF do Chrome o degradê recortado no texto deixa um contorno fino */
+    .cv-name span { background: none; -webkit-text-fill-color: var(--brand); color: var(--brand); }
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .page { padding: 0; }
+    .sheet {
+      max-width: none;
+      width: 210mm;
+      min-height: 297mm;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+
+<header class="toolbar">
+  <a class="toolbar-back" href="./"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Voltar ao portfólio</a>
+  <button type="button" class="btn" onclick="window.print()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Imprimir</button>
+  <a class="btn btn-primary" href="curriculo-hariel-silva-fabricio.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar PDF</a>
+</header>
+
+<main class="page">
+  <article class="sheet">
+
+    <header class="cv-header">
+      <h1 class="cv-name">Hariel <span>Silva Fabrício</span></h1>
+      <p class="cv-role">Técnico em Informática em formação · Estagiário de Gestão de TI na Delfos</p>
+      <ul class="cv-contacts">
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil</li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:hariel.silvafabricio@gmail.com">hariel.silvafabricio@gmail.com</a></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+5585991690153">(85) 99169-0153</a></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><a href="https://www.linkedin.com/in/h%D0%B0riel-silva-fabr%C3%ADcio-1b1004353/">LinkedIn</a></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg><a href="https://github.com/hriel123">github.com/hriel123</a></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><a href="https://hriel123.github.io/Portifolio/">hriel123.github.io/Portifolio</a></li>
+      </ul>
+    </header>
+
+    <div class="cv-body">
+      <div class="cv-main">
+
+        <section class="cv-section">
+          <h2>Resumo</h2>
+          <p class="cv-summary">Técnico em Informática em formação, atualmente estagiário de Gestão de TI na Delfos. Foco em Cloud Computing, Infraestrutura de Redes e AWS &amp; Huawei Cloud. Aberto a estágios e oportunidades em infraestrutura de redes, cloud computing e TI em geral.</p>
+        </section>
+
+        <section class="cv-section">
+          <h2>Experiência</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Estagiário de Gestão</h3>
+              <span class="cv-entry-date">Ago 2026 – atual</span>
+            </div>
+            <p class="cv-entry-org"><strong>Delfos</strong> · América Latina · Remoto</p>
+            <p>Auxílio de tarefas em Gestão de TI e Gestão de Projetos, incluindo apoio a um portfólio de monitoramento interno.</p>
+            <ul>
+              <li>Participação na produção da tela de Portfolio Overview do sistema de monitoramento</li>
+              <li>Organização e acompanhamento de indicadores de um portfólio de monitoramento</li>
+              <li>Comunicação direta com times técnicos em ambiente corporativo real</li>
+            </ul>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Freelance &amp; Projetos Pessoais</h3>
+              <span class="cv-entry-date">2026</span>
+            </div>
+            <p class="cv-entry-org"><strong>Projetos independentes</strong> · Remoto</p>
+            <p>Desenvolvimento independente de aplicações web completas, do front-end ao back-end, com deploy em produção.</p>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2>Formação</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Técnico em Informática</h3>
+              <span class="cv-entry-date">Jan 2024 – Jan 2027</span>
+            </div>
+            <p class="cv-entry-org"><strong>E.E.E.P Edson Queiroz</strong> · Cascavel, CE · cursando o 3º ano</p>
+            <p>Formação técnica integrada ao Ensino Médio, com foco em Cloud Computing e Infraestrutura de Redes.</p>
+            <ul>
+              <li>Base em lógica de programação, estruturas de dados e CSS</li>
+              <li>Formação prática alinhada às certificações AWS Academy e Huawei Cloud</li>
+            </ul>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Ensino Médio</h3>
+              <span class="cv-entry-date">Jan 2024 – Jan 2027</span>
+            </div>
+            <p class="cv-entry-org"><strong>E.E.E.P Edson Queiroz</strong> · Cascavel, CE</p>
+            <ul>
+              <li>Grupo Fertify: projeto de avaliação do pH do solo</li>
+              <li>Grupo Labtime: projeto de agendamento de horário de ambientes escolares</li>
+              <li>Monitoria de Química (60h)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2>Certificações</h2>
+          <ul class="cv-certs">
+            <li><span class="cv-cert-title">Google Data Analytics Professional Certificate</span><span class="cv-cert-hours">180h</span><span class="cv-cert-meta">Google / Coursera · Mai 2026 · 9 cursos</span></li>
+            <li><span class="cv-cert-title">AWS Academy Graduate — Cloud Foundations</span><span class="cv-cert-hours">20h</span><span class="cv-cert-meta">Amazon Web Services · Abr 2026</span></li>
+            <li><span class="cv-cert-title">Computação em Nuvem — Formação Específica</span><span class="cv-cert-hours">240h</span><span class="cv-cert-meta">IFCE — Capacita Brasil / Residência TIC 20 · Jan 2026</span></li>
+            <li><span class="cv-cert-title">HCIA-Cloud Service V3.5</span><span class="cv-cert-hours">60h</span><span class="cv-cert-meta">Huawei ICT Academy · Out 2025</span></li>
+            <li><span class="cv-cert-title">Computação em Nuvem — Habilidades Interpessoais</span><span class="cv-cert-hours">120h</span><span class="cv-cert-meta">IFCE — Capacita Brasil / Residência TIC 20 · Out 2025</span></li>
+            <li><span class="cv-cert-title">Curso de Língua Espanhola</span><span class="cv-cert-hours">180h</span><span class="cv-cert-meta">Centro Cearense de Idiomas — SEDUC · Fev 2024 – Jun 2025</span></li>
+            <li><span class="cv-cert-title">Monitoria de Química</span><span class="cv-cert-hours">60h</span><span class="cv-cert-meta">E.E.E.P. Edson Queiroz · Abr – Dez 2024</span></li>
+          </ul>
+          <p class="cv-total">Total: 860 horas de formação técnica</p>
+        </section>
+
+      </div>
+
+      <aside class="cv-side">
+
+        <section class="cv-section">
+          <h2>Habilidades</h2>
+          <div class="cv-group">
+            <h3>Cloud</h3>
+            <p>AWS Cloud, Huawei Cloud · IaaS, PaaS, SaaS</p>
+          </div>
+          <div class="cv-group">
+            <h3>Redes &amp; Infraestrutura</h3>
+            <p>TCP/IP, Configuração de Redes, Virtualização, Segurança</p>
+          </div>
+          <div class="cv-group">
+            <h3>Análise de Dados</h3>
+            <p>SQL, Tableau, Python, Planilhas, Google Data Analytics</p>
+          </div>
+          <div class="cv-group">
+            <h3>Programação</h3>
+            <p>Python, JavaScript, Node.js, Lógica de Programação, Estruturas de Dados, App Inventor</p>
+          </div>
+          <div class="cv-group">
+            <h3>Inteligência Artificial</h3>
+            <p>IA Generativa, Machine Learning, IA em Jogos, Teachable Machine</p>
+          </div>
+          <div class="cv-group">
+            <h3>Comportamentais</h3>
+            <p>Liderança, Comunicação, Trabalho em Equipe, Resolução de Problemas</p>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2>Idiomas</h2>
+          <ul class="cv-langs">
+            <li>Português <span>Nativo</span></li>
+            <li>Espanhol <span>Avançado</span></li>
+            <li>Inglês <span>Técnico</span></li>
+          </ul>
+        </section>
+
+        <section class="cv-section">
+          <h2>Projetos</h2>
+          <ul class="cv-projects">
+            <li>
+              <strong>FinFlow</strong>
+              <p>Finanças pessoais full-stack: React, Node.js/Express, Prisma, PostgreSQL.</p>
+              <a href="https://finflow-omega-five.vercel.app/">finflow-omega-five.vercel.app</a>
+            </li>
+            <li>
+              <strong>FilaFácil</strong>
+              <p>Gestão de filas para pequenos negócios: HTML, CSS, JavaScript.</p>
+              <a href="https://hriel123.github.io/fila-facil1/">hriel123.github.io/fila-facil1</a>
+            </li>
+            <li>
+              <strong>JLVariedades</strong>
+              <p>Site de loja local com catálogo e contato via WhatsApp.</p>
+              <a href="https://hriel123.github.io/jlvariedades-/">hriel123.github.io/jlvariedades-</a>
+            </li>
+          </ul>
+        </section>
+
+      </aside>
+    </div>
+
+  </article>
+</main>
+
+</body>
+</html>
