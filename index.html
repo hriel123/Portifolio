@@ -927,56 +927,68 @@
 
   /* EXPERIENCE: linha do tempo interativa */
   .tl-filters {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.35rem;
+    padding: 0.35rem;
     margin-bottom: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
   }
 
   .tl-filter {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--card);
+    gap: 0.55rem;
+    padding: 0.55rem 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
     color: var(--muted);
     font: inherit;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
   }
 
-  .tl-filter:hover { color: var(--text); border-color: rgba(0,200,255,0.3); }
+  .tl-filter svg { color: var(--tl-ink); transition: transform 0.2s; }
+
+  .tl-filter:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--tl-color) 8%, transparent);
+  }
+
+  .tl-filter:hover svg { transform: scale(1.12); }
 
   .tl-filter[aria-pressed="true"] {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #000;
+    color: var(--text);
+    background: color-mix(in srgb, var(--tl-color) 16%, var(--card));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tl-color) 50%, transparent);
   }
 
   .tl-count {
+    min-width: 1.5rem;
+    padding: 0.05rem 0.45rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--muted) 18%, transparent);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
-    opacity: 0.75;
+    text-align: center;
   }
 
-  .tl-filter-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--tl-color);
-  }
+  .tl-filter[aria-pressed="true"] .tl-count { background: var(--tl-color); color: #000; }
 
-  .tl-filter[data-filter="work"], .tl-item[data-type="work"] { --tl-color: var(--accent); }
-  .tl-filter[data-filter="edu"], .tl-item[data-type="edu"] { --tl-color: var(--accent2); }
-  .tl-filter[data-filter="cert"], .tl-item[data-type="cert"] { --tl-color: var(--accent3); }
+  /* --tl-color: pontos, bordas e brilhos; --tl-ink: texto e ícones (contraste AA) */
+  .tl-filter[data-filter="all"] { --tl-color: var(--accent); --tl-ink: var(--accent); }
+  .tl-filter[data-filter="work"], .tl-item[data-type="work"] { --tl-color: var(--accent); --tl-ink: var(--accent); }
+  .tl-filter[data-filter="edu"], .tl-item[data-type="edu"] { --tl-color: var(--accent2); --tl-ink: #a593ff; }
+  .tl-filter[data-filter="cert"], .tl-item[data-type="cert"] { --tl-color: var(--accent3); --tl-ink: var(--accent3); }
 
   .timeline {
     --tl-year-w: 7.5rem;
-    --tl-gap: 2rem;
+    --tl-gap: 3rem;
     position: relative;
     max-width: 900px;
   }
@@ -1034,20 +1046,26 @@
   .tl-dot {
     position: absolute;
     left: calc(var(--tl-gap) / -2);
-    top: 1.45rem;
-    width: 14px;
-    height: 14px;
+    top: 1.05rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     background: var(--bg);
-    border: 2px solid var(--border);
+    border: 1.5px solid var(--border);
+    color: var(--muted);
     transform: translateX(-50%);
-    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
   }
 
   .tl-item.reached .tl-dot {
-    background: var(--tl-color);
+    background: color-mix(in srgb, var(--tl-color) 16%, var(--bg));
     border-color: var(--tl-color);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tl-color) 18%, transparent);
+    color: var(--tl-ink);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tl-color) 12%, transparent),
+                0 0 18px color-mix(in srgb, var(--tl-color) 30%, transparent);
   }
 
   .tl-card {
@@ -1085,9 +1103,41 @@
     cursor: pointer;
   }
 
-  .tl-toggle:hover { text-decoration: underline; }
+  .tl-toggle { transition: color 0.2s, gap 0.2s; }
+  .tl-toggle:hover { color: var(--tl-ink); gap: 0.5rem; }
   .tl-toggle svg { transition: transform 0.25s; }
   .tl-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  .tl-cert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.9rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--tl-color) 35%, var(--border));
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tl-color) 8%, transparent);
+    color: var(--tl-ink);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+
+  .tl-cert-arrow { display: inline-flex; transition: transform 0.25s; }
+
+  .tl-cert-btn:hover {
+    background: color-mix(in srgb, var(--tl-color) 16%, transparent);
+    border-color: var(--tl-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tl-color) 14%, transparent),
+                0 6px 20px color-mix(in srgb, var(--tl-color) 22%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .tl-cert-btn:hover .tl-cert-arrow { transform: translate(2px, -2px); }
+  .tl-cert-btn-down { margin-right: 0.9rem; text-decoration: none; }
+  .tl-cert-btn-down:hover .tl-cert-arrow { transform: translateY(2px); }
 
   .tl-item.tl-enter { animation: tlEnter 0.35s ease both; }
 
@@ -1717,11 +1767,17 @@
   }
 
   @media (max-width: 820px) {
-    .timeline { --tl-gap: 1.5rem; }
+    .tl-filters { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+    .tl-filter { justify-content: center; gap: 0.4rem; padding: 0.55rem; font-size: 0.8rem; }
+    .timeline { --tl-gap: 2.75rem; }
     .tl-line { left: calc(var(--tl-gap) / 2 - 1px); }
     .tl-year { grid-template-columns: 1fr; }
     .tl-year-label { position: static; padding-left: var(--tl-gap); margin-bottom: 0.75rem; font-size: 1.3rem; }
     .tl-items { padding-left: var(--tl-gap); }
+  }
+
+  @media (max-width: 370px) {
+    .tl-filters { grid-template-columns: 1fr; }
   }
 
   /* ===== PRELOADER ===== */
@@ -1842,8 +1898,10 @@
   [data-theme="light"] .tag { background: rgba(17,22,29,0.05); }
   [data-theme="light"] .cert-status { color: #15803d; }
   [data-theme="light"] .modal-close:hover { background: rgba(17,22,29,0.06); }
-  [data-theme="light"] .tl-filter[aria-pressed="true"] { color: #fff; }
   [data-theme="light"] .tl-pill-cert { color: #b5410f; }
+  [data-theme="light"] .tl-filter[data-filter="edu"], [data-theme="light"] .tl-item[data-type="edu"] { --tl-ink: var(--accent2); }
+  [data-theme="light"] .tl-filter[data-filter="cert"], [data-theme="light"] .tl-item[data-type="cert"] { --tl-color: #b5410f; --tl-ink: #b5410f; }
+  [data-theme="light"] .tl-filter[aria-pressed="true"] .tl-count { color: #fff; }
   [data-theme="light"] .exp-status-pill-edu { color: var(--accent2); }
 </style>
 </head>
@@ -2013,10 +2071,10 @@
   <h2>Experiência & Formação</h2>
 
   <div class="tl-filters" role="group" aria-label="Filtrar a linha do tempo">
-    <button type="button" class="tl-filter" data-filter="all" aria-pressed="true">Tudo <span class="tl-count">11</span></button>
-    <button type="button" class="tl-filter" data-filter="work" aria-pressed="false"><span class="tl-filter-dot" aria-hidden="true"></span>Experiência <span class="tl-count">2</span></button>
-    <button type="button" class="tl-filter" data-filter="edu" aria-pressed="false"><span class="tl-filter-dot" aria-hidden="true"></span>Formação <span class="tl-count">2</span></button>
-    <button type="button" class="tl-filter" data-filter="cert" aria-pressed="false"><span class="tl-filter-dot" aria-hidden="true"></span>Certificações <span class="tl-count">7</span></button>
+    <button type="button" class="tl-filter" data-filter="all" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Tudo</span><span class="tl-count">11</span></button>
+    <button type="button" class="tl-filter" data-filter="work" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Experiência</span><span class="tl-count">3</span></button>
+    <button type="button" class="tl-filter" data-filter="edu" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Formação</span><span class="tl-count">2</span></button>
+    <button type="button" class="tl-filter" data-filter="cert" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Certificações</span><span class="tl-count">7</span></button>
   </div>
   <p class="visually-hidden" id="tl-status" aria-live="polite"></p>
 
@@ -2024,154 +2082,14 @@
     <div class="tl-line" aria-hidden="true"><div class="tl-line-fill"></div></div>
     <div class="tl-years">
       <div class="tl-year">
-        <h3 class="tl-year-label">2026</h3>
-        <ol class="tl-items">
-          <li class="tl-item" data-type="work">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-              <span class="exp-date-mono">Ago 2026 – o momento</span>
-              <span class="exp-status-pill exp-status-pill-work">Em andamento</span>
-              </div>
-              <h4 class="exp-edu-title">Estagiário de Gestão</h4>
-              <div class="exp-edu-institution">Delfos</div>
-              <div class="exp-edu-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>América Latina · Remoto</div>
-              <p class="exp-desc">Auxílio de tarefas em Gestão de TI e Gestão de Projetos, incluindo apoio a um portfólio de monitoramento interno.</p>
-              <button type="button" class="tl-toggle" aria-expanded="true" aria-controls="tl-delfos"><span class="tl-toggle-text">Ocultar destaques</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-              <div class="tl-details" id="tl-delfos">
-                <div class="exp-edu-divider"></div>
-                <div class="exp-pillars-label">Destaques do estágio</div>
-                <ul class="exp-pillars">
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Participação na produção da tela de <strong>Portfolio Overview</strong> do sistema de monitoramento</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Organização e acompanhamento de indicadores de um portfólio de monitoramento</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Comunicação direta com times técnicos em ambiente corporativo real</span></li>
-                </ul>
-              </div>
-            </article>
-          </li>
-          <li class="tl-item" data-type="work">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-              <span class="exp-date-mono">2026</span>
-              <span class="exp-status-pill exp-status-pill-work">Projetos autorais</span>
-              </div>
-              <h4 class="exp-edu-title">Freelance & Projetos Pessoais</h4>
-              <div class="exp-edu-institution">Projetos independentes</div>
-              <div class="exp-edu-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Remoto</div>
-              <p class="exp-desc">Desenvolvimento independente de aplicações web completas — do front-end ao back-end, com deploy em produção.</p>
-              <button type="button" class="tl-toggle" aria-expanded="false" aria-controls="tl-projetos"><span class="tl-toggle-text">Ver destaques</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-              <div class="tl-details" id="tl-projetos" hidden>
-                <div class="exp-edu-divider"></div>
-                <div class="exp-pillars-label">Destaques dos projetos</div>
-                <ul class="exp-pillars">
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FinFlow</strong> — app full-stack de finanças pessoais, com autenticação e banco de dados (React, Node.js/Express, PostgreSQL)</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — sistema de gestão de filas para pequenos negócios (HTML, CSS, JavaScript)</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>JLVariedades</strong> — site institucional para loja local, com integração via WhatsApp</span></li>
-                </ul>
-              </div>
-            </article>
-          </li>
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Mai 2026</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 180h</span>
-              </div>
-              <h4 class="tl-cert-title">Google Data Analytics Professional Certificate</h4>
-              <div class="exp-edu-institution">Google / Coursera</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('google-data')">Ver certificado ↗</button>
-            </article>
-          </li>
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Abr 2026</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 20h</span>
-              </div>
-              <h4 class="tl-cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</h4>
-              <div class="exp-edu-institution">Amazon Web Services</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('aws')">Ver certificado ↗</button>
-            </article>
-          </li>
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Jan 2026</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 240h</span>
-              </div>
-              <h4 class="tl-cert-title">Computação em Nuvem — Formação Específica</h4>
-              <div class="exp-edu-institution">IFCE — Capacita Brasil / Residência TIC 20</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('ifce-cloud')">Ver certificado ↗</button>
-            </article>
-          </li>
-        </ol>
-      </div>
-      <div class="tl-year">
-        <h3 class="tl-year-label">2025</h3>
-        <ol class="tl-items">
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Out 2025</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 60h</span>
-              </div>
-              <h4 class="tl-cert-title">HCIA-Cloud Service V3.5 — Certificado de Conclusão (Portuguese)</h4>
-              <div class="exp-edu-institution">Huawei ICT Academy</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('huawei')">Ver certificado ↗</button>
-            </article>
-          </li>
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Out 2025</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 120h</span>
-              </div>
-              <h4 class="tl-cert-title">Computação em Nuvem — Habilidades Interpessoais</h4>
-              <div class="exp-edu-institution">IFCE — Capacita Brasil / Residência TIC 20</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('ifce-interpessoal')">Ver certificado ↗</button>
-            </article>
-          </li>
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Fev 2024 – Jun 2025</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 180h</span>
-              </div>
-              <h4 class="tl-cert-title">Curso de Língua Espanhola — Conclusão com Aproveitamento</h4>
-              <div class="exp-edu-institution">Centro Cearense de Idiomas — SEDUC</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('espanhol')">Ver certificado ↗</button>
-            </article>
-          </li>
-        </ol>
-      </div>
-      <div class="tl-year">
         <h3 class="tl-year-label">2024</h3>
         <ol class="tl-items">
-          <li class="tl-item" data-type="cert">
-            <span class="tl-dot" aria-hidden="true"></span>
-            <article class="tl-card">
-              <div class="exp-edu-top">
-                <span class="exp-date-mono">Abr – Dez 2024</span>
-                <span class="exp-status-pill tl-pill-cert">Certificado · 60h</span>
-              </div>
-              <h4 class="tl-cert-title">Monitoria de Química — Curso Técnico de Informática</h4>
-              <div class="exp-edu-institution">E.E.E.P. Edson Queiroz</div>
-              <button type="button" class="tl-toggle" aria-haspopup="dialog" onclick="openModal('quimica')">Ver certificado ↗</button>
-            </article>
-          </li>
           <li class="tl-item" data-type="edu">
-            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
             <article class="tl-card">
               <div class="exp-edu-top">
-              <span class="exp-date-mono">Jan 2024 – Jan 2027</span>
-              <span class="exp-status-pill exp-status-pill-edu">Cursando o 3º ano</span>
+                <span class="exp-date-mono">Jan 2024 – Jan 2027</span>
+                <span class="exp-status-pill exp-status-pill-edu">Cursando o 3º ano</span>
               </div>
               <h4 class="exp-edu-title">Técnico em Informática</h4>
               <div class="exp-edu-institution">E.E.E.P Edson Queiroz</div>
@@ -2189,11 +2107,11 @@
             </article>
           </li>
           <li class="tl-item" data-type="edu">
-            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
             <article class="tl-card">
               <div class="exp-edu-top">
-              <span class="exp-date-mono">Jan 2024 – Jan 2027</span>
-              <span class="exp-status-pill exp-status-pill-edu">Cursando o 3º ano</span>
+                <span class="exp-date-mono">Jan 2024 – Jan 2027</span>
+                <span class="exp-status-pill exp-status-pill-edu">Cursando o 3º ano</span>
               </div>
               <h4 class="exp-edu-title">Ensino Médio</h4>
               <div class="exp-edu-institution">E.E.E.P Edson Queiroz</div>
@@ -2206,6 +2124,149 @@
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Participação no grupo <strong>Fertify</strong> — projeto de avaliação do pH do solo</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Participação no grupo <strong>Labtime</strong> — projeto de agendamento de horário de ambientes escolares</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Monitoria de Química (60h)</span></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+          <li class="tl-item" data-type="work" data-also="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Abr – Dez 2024</span>
+                <span class="exp-status-pill exp-status-pill-work">Voluntariado · 60h</span>
+              </div>
+              <h4 class="exp-edu-title">Monitor de Química</h4>
+              <div class="exp-edu-institution">E.E.E.P. Edson Queiroz</div>
+              <div class="exp-edu-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, Ceará</div>
+              <p class="exp-desc">Monitoria de Química no Curso Técnico de Informática, desenvolvendo liderança e comunicação.</p>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('quimica')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+        </ol>
+      </div>
+      <div class="tl-year">
+        <h3 class="tl-year-label">2025</h3>
+        <ol class="tl-items">
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Fev 2024 – Jun 2025</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 180h</span>
+              </div>
+              <h4 class="tl-cert-title">Curso de Língua Espanhola — Conclusão com Aproveitamento</h4>
+              <div class="exp-edu-institution">Centro Cearense de Idiomas — SEDUC</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('espanhol')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Out 2025</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 60h</span>
+              </div>
+              <h4 class="tl-cert-title">HCIA-Cloud Service V3.5 — Certificado de Conclusão (Portuguese)</h4>
+              <div class="exp-edu-institution">Huawei ICT Academy</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('huawei')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Out 2025</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 120h</span>
+              </div>
+              <h4 class="tl-cert-title">Computação em Nuvem — Habilidades Interpessoais</h4>
+              <div class="exp-edu-institution">IFCE — Capacita Brasil / Residência TIC 20</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('ifce-interpessoal')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+        </ol>
+      </div>
+      <div class="tl-year">
+        <h3 class="tl-year-label">2026</h3>
+        <ol class="tl-items">
+          <li class="tl-item" data-type="work">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">2026</span>
+                <span class="exp-status-pill exp-status-pill-work">Projetos autorais</span>
+              </div>
+              <h4 class="exp-edu-title">Freelance & Projetos Pessoais</h4>
+              <div class="exp-edu-institution">Projetos independentes</div>
+              <div class="exp-edu-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Remoto</div>
+              <p class="exp-desc">Desenvolvimento independente de aplicações web completas — do front-end ao back-end, com deploy em produção.</p>
+              <a href="#projetos" class="tl-cert-btn tl-cert-btn-down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Ver projetos</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></span></a>
+              <button type="button" class="tl-toggle" aria-expanded="false" aria-controls="tl-projetos"><span class="tl-toggle-text">Ver destaques</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="tl-details" id="tl-projetos" hidden>
+                <div class="exp-edu-divider"></div>
+                <div class="exp-pillars-label">Destaques dos projetos</div>
+                <ul class="exp-pillars">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FinFlow</strong> — app full-stack de finanças pessoais, com autenticação e banco de dados (React, Node.js/Express, PostgreSQL)</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — sistema de gestão de filas para pequenos negócios (HTML, CSS, JavaScript)</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>JLVariedades</strong> — site institucional para loja local, com integração via WhatsApp</span></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Jan 2026</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 240h</span>
+              </div>
+              <h4 class="tl-cert-title">Computação em Nuvem — Formação Específica</h4>
+              <div class="exp-edu-institution">IFCE — Capacita Brasil / Residência TIC 20</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('ifce-cloud')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Abr 2026</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 20h</span>
+              </div>
+              <h4 class="tl-cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</h4>
+              <div class="exp-edu-institution">Amazon Web Services</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('aws')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+          <li class="tl-item" data-type="cert">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Mai 2026</span>
+                <span class="exp-status-pill tl-pill-cert">Certificado · 180h</span>
+              </div>
+              <h4 class="tl-cert-title">Google Data Analytics Professional Certificate</h4>
+              <div class="exp-edu-institution">Google / Coursera</div>
+              <button type="button" class="tl-cert-btn" aria-haspopup="dialog" onclick="openModal('google-data')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Ver certificado</span><span class="tl-cert-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></button>
+            </article>
+          </li>
+          <li class="tl-item" data-type="work">
+            <span class="tl-dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+            <article class="tl-card">
+              <div class="exp-edu-top">
+                <span class="exp-date-mono">Ago 2026 – o momento</span>
+                <span class="exp-status-pill exp-status-pill-work">Em andamento</span>
+              </div>
+              <h4 class="exp-edu-title">Estagiário de Gestão</h4>
+              <div class="exp-edu-institution">Delfos</div>
+              <div class="exp-edu-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>América Latina · Remoto</div>
+              <p class="exp-desc">Auxílio de tarefas em Gestão de TI e Gestão de Projetos, incluindo apoio a um portfólio de monitoramento interno.</p>
+              <button type="button" class="tl-toggle" aria-expanded="true" aria-controls="tl-delfos"><span class="tl-toggle-text">Ocultar destaques</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="tl-details" id="tl-delfos">
+                <div class="exp-edu-divider"></div>
+                <div class="exp-pillars-label">Destaques do estágio</div>
+                <ul class="exp-pillars">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Participação na produção da tela de <strong>Portfolio Overview</strong> do sistema de monitoramento</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Organização e acompanhamento de indicadores de um portfólio de monitoramento</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Comunicação direta com times técnicos em ambiente corporativo real</span></li>
                 </ul>
               </div>
             </article>
@@ -2812,7 +2873,7 @@ document.addEventListener('keydown', e => {
       filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       let shown = 0;
       items.forEach((item) => {
-        const show = filter === 'all' || item.dataset.type === filter;
+        const show = filter === 'all' || item.dataset.type === filter || item.dataset.also === filter;
         item.hidden = !show;
         item.classList.remove('tl-enter');
         if (show) {
