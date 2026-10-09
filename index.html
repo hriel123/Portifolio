@@ -1166,6 +1166,201 @@
     padding: 0.65rem 1.4rem;
   }
 
+  /* GALERIA DOS PROJETOS */
+  .project-cover {
+    position: relative;
+    display: block;
+    margin: -1.75rem -1.75rem 1.5rem;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: var(--surface);
+    cursor: zoom-in;
+  }
+
+  .project-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.4s ease;
+  }
+
+  .project-cover:hover img { transform: scale(1.04); }
+
+  .project-cover-badge {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(8,11,16,0.75);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  /* Visualizador escuro nos dois temas, como um visualizador de fotos */
+  .gallery-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: rgba(5,7,10,0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0s 0.25s;
+  }
+
+  .gallery-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s;
+  }
+
+  .gallery {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #e8edf5;
+  }
+
+  .gallery-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .gallery-header h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .gallery-counter {
+    margin-right: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #7e8ca0;
+  }
+
+  .gallery-stage {
+    position: relative;
+    height: min(62vh, 620px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d1117;
+  }
+
+  .gallery-stage img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .gallery-nav,
+  .gallery-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(8,11,16,0.7);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .gallery-nav:hover,
+  .gallery-close:hover { background: rgba(0,200,255,0.2); border-color: #00c8ff; }
+
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  .gallery-nav.prev { left: 0.75rem; }
+  .gallery-nav.next { right: 0.75rem; }
+
+  .gallery-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .gallery-caption {
+    min-height: 1.5em;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #b8c2d0;
+    text-align: center;
+  }
+
+  .gallery-thumbs {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: safe center;
+    overflow-x: auto;
+    padding: 3px;
+  }
+
+  .gallery-thumb {
+    flex: 0 0 auto;
+    width: 88px;
+    height: 56px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0d1117;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+
+  .gallery-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .gallery-thumb:hover { opacity: 0.85; }
+  .gallery-thumb[aria-current="true"] { opacity: 1; border-color: #00c8ff; }
+  .gallery button:focus-visible { outline-color: #00c8ff; }
+
+  @media (max-width: 640px) {
+    .gallery-overlay { padding: 1rem; }
+    .gallery-stage { height: min(58vh, 480px); }
+    .gallery-nav { width: 38px; height: 38px; }
+    .gallery-nav.prev { left: 0.5rem; }
+    .gallery-nav.next { right: 0.5rem; }
+    .gallery-thumb { width: 64px; height: 42px; }
+  }
+
   /* SKILLS */
   .skills-grid {
     display: flex;
@@ -1768,6 +1963,10 @@
   <div class="projects-grid">
 
     <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="finflow" aria-label="Abrir galeria do FinFlow, 6 imagens">
+        <img src="assets/projetos/finflow/dashboard-escuro-sm.webp" alt="Dashboard do FinFlow no tema escuro" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
+      </button>
       <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div class="project-title">FinFlow</div>
       <div class="project-tagline">Gestão financeira pessoal</div>
@@ -1781,6 +1980,10 @@
     </div>
 
     <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 5 imagens">
+        <img src="assets/projetos/filafacil/inicio-sm.webp" alt="Página inicial do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
+      </button>
       <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
       <div class="project-title">FilaFácil</div>
       <div class="project-tagline">Gestão de filas para pequenos negócios</div>
@@ -1792,6 +1995,10 @@
     </div>
 
     <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="jlvariedades" aria-label="Abrir galeria do JLVariedades, 5 imagens">
+        <img src="assets/projetos/jlvariedades/inicio-sm.webp" alt="Página inicial do site da JLVariedades" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
+      </button>
       <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
       <div class="project-title">JLVariedades</div>
       <div class="project-tagline">Loja de moda e variedades — Cascavel, CE</div>
@@ -2069,6 +2276,24 @@
   </div>
 </div>
 
+<!-- GALERIA DOS PROJETOS -->
+<div class="gallery-overlay" id="gallery">
+  <div class="gallery" role="dialog" aria-modal="true" aria-labelledby="gallery-title">
+    <div class="gallery-header">
+      <h3 id="gallery-title"></h3>
+      <span class="gallery-counter" id="gallery-counter"></span>
+      <button type="button" class="gallery-close" id="gallery-close" aria-label="Fechar galeria"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="gallery-stage" id="gallery-stage">
+      <img id="gallery-img" alt="">
+      <button type="button" class="gallery-nav prev" id="gallery-prev" aria-label="Imagem anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button type="button" class="gallery-nav next" id="gallery-next" aria-label="Próxima imagem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <p class="gallery-caption" id="gallery-caption" aria-live="polite"></p>
+    <div class="gallery-thumbs" id="gallery-thumbs"></div>
+  </div>
+</div>
+
 <script>
 const certs = {
   aws: {
@@ -2265,6 +2490,135 @@ document.addEventListener('keydown', e => {
     }
   }
 });
+
+/* ===================== GALERIA DOS PROJETOS ===================== */
+// Cada imagem: [caminho sem extensão, texto alternativo, legenda].
+const GALLERIES = {
+  finflow: {
+    title: 'FinFlow',
+    images: [
+      ['finflow/dashboard-escuro', 'Dashboard do FinFlow no tema escuro', 'Dashboard no tema escuro: receitas x despesas, despesas por categoria, últimas transações e resumo do período.'],
+      ['finflow/dashboard-claro', 'Dashboard do FinFlow no tema claro', 'Dashboard no tema claro, com saldo atual, receitas e despesas e filtros por período, tipo e categoria.'],
+      ['finflow/metas', 'Tela de metas financeiras do FinFlow', 'Metas financeiras: progresso de cada objetivo, quanto falta e prazo, com atalho para adicionar dinheiro.'],
+      ['finflow/relatorios', 'Tela de relatórios do FinFlow', 'Relatórios: médias mensais, maior despesa, taxa de economia e evolução mensal de receitas x despesas.'],
+      ['finflow/transacoes', 'Lista de transações do FinFlow', 'Transações: busca por descrição e filtros por tipo e categoria.'],
+      ['finflow/celular-metas', 'Tela de metas do FinFlow no celular', 'Versão para celular da tela de metas.'],
+    ],
+  },
+  filafacil: {
+    title: 'FilaFácil',
+    images: [
+      ['filafacil/inicio', 'Página inicial do FilaFácil', 'Página inicial, com a senha em atendimento e quantas pessoas aguardam.'],
+      ['filafacil/como-funciona', 'Seção "Como funciona" do FilaFácil', 'Como funciona: gerar a senha, acompanhar a fila e chamar o próximo.'],
+      ['filafacil/recursos', 'Seção de recursos do FilaFácil', 'Recursos: senhas automáticas, fila em tempo real, chamada do próximo, tempo estimado, histórico e dados salvos no navegador.'],
+      ['filafacil/demonstracao', 'Demonstração da fila do FilaFácil em uso', 'Demonstração ao vivo: senha atual, pessoas aguardando, tempo estimado e histórico de atendimentos.'],
+      ['filafacil/celular-inicio', 'Página inicial do FilaFácil no celular', 'Versão para celular da página inicial.'],
+    ],
+  },
+  jlvariedades: {
+    title: 'JLVariedades',
+    images: [
+      ['jlvariedades/inicio', 'Página inicial do site da JLVariedades', 'Página inicial da loja, com acesso à coleção e ao WhatsApp.'],
+      ['jlvariedades/variedades', 'Seção de variedades e presentes da JLVariedades', 'Variedades e presentes, com fotos reais da loja.'],
+      ['jlvariedades/roupas', 'Seção de moda feminina e masculina da JLVariedades', 'Coleção de moda feminina e masculina.'],
+      ['jlvariedades/roupas-escuro', 'Seção de moda da JLVariedades no modo escuro', 'A mesma coleção no modo escuro do site.'],
+      ['jlvariedades/celular-variedades', 'Seção de variedades da JLVariedades no celular', 'Versão para celular da seção de variedades.'],
+    ],
+  },
+};
+
+(function initProjectGalleries() {
+  const overlay = document.getElementById('gallery');
+  const img = document.getElementById('gallery-img');
+  const title = document.getElementById('gallery-title');
+  const counter = document.getElementById('gallery-counter');
+  const caption = document.getElementById('gallery-caption');
+  const thumbs = document.getElementById('gallery-thumbs');
+  const closeBtn = document.getElementById('gallery-close');
+  const stage = document.getElementById('gallery-stage');
+  let images = [];
+  let index = 0;
+  let opener = null;
+
+  const srcOf = (path, small) => `assets/projetos/${path}${small ? '-sm' : ''}.webp`;
+
+  function show(i) {
+    index = (i + images.length) % images.length;
+    const [path, alt, text] = images[index];
+    img.src = srcOf(path);
+    img.alt = alt;
+    caption.textContent = text;
+    counter.textContent = `${index + 1} / ${images.length}`;
+    [...thumbs.children].forEach((t, j) => t.setAttribute('aria-current', j === index ? 'true' : 'false'));
+    const active = thumbs.children[index];
+    thumbs.scrollTo({ left: active.offsetLeft - (thumbs.clientWidth - active.offsetWidth) / 2 });
+    new Image().src = srcOf(images[(index + 1) % images.length][0]); // já baixa a próxima
+  }
+
+  function open(key, from) {
+    const data = GALLERIES[key];
+    images = data.images;
+    opener = from;
+    title.textContent = data.title;
+    thumbs.innerHTML = '';
+    images.forEach(([path, alt], i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gallery-thumb';
+      b.setAttribute('aria-label', `Imagem ${i + 1}: ${alt}`);
+      b.innerHTML = `<img src="${srcOf(path, true)}" alt="" decoding="async">`;
+      b.addEventListener('click', () => show(i));
+      thumbs.appendChild(b);
+    });
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    show(0);
+    closeBtn.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    if (opener) opener.focus();
+  }
+
+  document.querySelectorAll('.project-cover').forEach((btn) => {
+    btn.addEventListener('click', () => open(btn.dataset.gallery, btn));
+  });
+  document.getElementById('gallery-prev').addEventListener('click', () => show(index - 1));
+  document.getElementById('gallery-next').addEventListener('click', () => show(index + 1));
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+
+  // Deslizar o dedo para os lados troca de imagem no celular
+  let touchX = null;
+  stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { show(index - 1); return; }
+    if (e.key === 'ArrowRight') { show(index + 1); return; }
+    if (e.key === 'Tab') {
+      const focusable = overlay.querySelectorAll('button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+})();
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
