@@ -190,11 +190,11 @@
 
   .cv-body {
     display: grid;
-    grid-template-columns: 1fr 52mm;
+    grid-template-columns: 1fr 46mm;
     gap: 6mm;
   }
 
-  .cv-section + .cv-section { margin-top: 3.5mm; }
+  .cv-section + .cv-section { margin-top: 3mm; }
 
   .cv-section h2 {
     font-family: 'Syne', sans-serif;
@@ -209,7 +209,7 @@
   }
 
   .cv-entry { break-inside: avoid; }
-  .cv-entry + .cv-entry { margin-top: 2.5mm; }
+  .cv-entry + .cv-entry { margin-top: 2.2mm; }
 
   .cv-entry-head {
     display: flex;
@@ -260,17 +260,15 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 0 3mm;
+    align-items: baseline;
     break-inside: avoid;
   }
 
   .cv-certs li + li { margin-top: 1mm; }
   .cv-cert-title { font-weight: 600; }
-  .cv-cert-meta { grid-column: 1; font-size: 8.4pt; color: var(--ink-muted); }
+  .cv-cert-meta { font-size: 8.4pt; color: var(--ink-muted); }
 
   .cv-cert-hours {
-    grid-row: 1 / span 2;
-    grid-column: 2;
-    align-self: center;
     font-size: 8.4pt;
     font-weight: 700;
     color: var(--brand2);
@@ -394,11 +392,12 @@
               <span class="cv-entry-date">Ago 2026 – atual</span>
             </div>
             <p class="cv-entry-org"><strong>Delfos</strong> · América Latina · Remoto</p>
-            <p>Auxílio de tarefas em Gestão de TI e Gestão de Projetos, incluindo apoio a um portfólio de monitoramento interno.</p>
             <ul>
-              <li>Participação na produção da tela de Portfolio Overview do sistema de monitoramento</li>
-              <li>Organização e acompanhamento de indicadores de um portfólio de monitoramento</li>
-              <li>Comunicação direta com times técnicos em ambiente corporativo real</li>
+              <li>Página de detalhe de usina do Portfolio Overview (React, TypeScript) na migração do Dashboard 3 para a nova plataforma: cabeçalho, linha do tempo de potência, KPIs e gráfico de produção diária</li>
+              <li>Endpoints dessa página na API (NestJS), com seletor de data e tratamento do fuso horário de cada usina</li>
+              <li>Reforço do controle de acesso nos endpoints de usina, validando a permissão do usuário sobre cada ativo</li>
+              <li>Entregas via merge request no GitLab, com code review, testes automatizados (Jest) e CI</li>
+              <li>Apoio à gestão de projetos e acompanhamento de indicadores do portfólio de monitoramento</li>
             </ul>
           </div>
           <div class="cv-entry">
@@ -434,7 +433,6 @@
             <ul>
               <li>Grupo Fertify: projeto de avaliação do pH do solo</li>
               <li>Grupo Labtime: projeto de agendamento de horário de ambientes escolares</li>
-              <li>Monitoria de Química (60h)</li>
             </ul>
           </div>
         </section>
@@ -442,13 +440,13 @@
         <section class="cv-section">
           <h2>Certificações</h2>
           <ul class="cv-certs">
-            <li><span class="cv-cert-title">Google Data Analytics Professional Certificate</span><span class="cv-cert-hours">180h</span><span class="cv-cert-meta">Google / Coursera · Mai 2026 · 9 cursos</span></li>
-            <li><span class="cv-cert-title">AWS Academy Graduate — Cloud Foundations</span><span class="cv-cert-hours">20h</span><span class="cv-cert-meta">Amazon Web Services · Abr 2026</span></li>
-            <li><span class="cv-cert-title">Computação em Nuvem — Formação Específica</span><span class="cv-cert-hours">240h</span><span class="cv-cert-meta">IFCE — Capacita Brasil / Residência TIC 20 · Jan 2026</span></li>
-            <li><span class="cv-cert-title">HCIA-Cloud Service V3.5</span><span class="cv-cert-hours">60h</span><span class="cv-cert-meta">Huawei ICT Academy · Out 2025</span></li>
-            <li><span class="cv-cert-title">Computação em Nuvem — Habilidades Interpessoais</span><span class="cv-cert-hours">120h</span><span class="cv-cert-meta">IFCE — Capacita Brasil / Residência TIC 20 · Out 2025</span></li>
-            <li><span class="cv-cert-title">Curso de Língua Espanhola</span><span class="cv-cert-hours">180h</span><span class="cv-cert-meta">Centro Cearense de Idiomas — SEDUC · Fev 2024 – Jun 2025</span></li>
-            <li><span class="cv-cert-title">Monitoria de Química</span><span class="cv-cert-hours">60h</span><span class="cv-cert-meta">E.E.E.P. Edson Queiroz · Abr – Dez 2024</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">Google Data Analytics Professional Certificate</span> <span class="cv-cert-meta">· Google / Coursera · Mai 2026</span></span><span class="cv-cert-hours">180h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">AWS Academy Graduate — Cloud Foundations</span> <span class="cv-cert-meta">· Amazon Web Services · Abr 2026</span></span><span class="cv-cert-hours">20h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">Computação em Nuvem — Formação Específica</span> <span class="cv-cert-meta">· IFCE — Capacita Brasil / Residência TIC 20 · Jan 2026</span></span><span class="cv-cert-hours">240h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">HCIA-Cloud Service V3.5</span> <span class="cv-cert-meta">· Huawei ICT Academy · Out 2025</span></span><span class="cv-cert-hours">60h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">Computação em Nuvem — Habilidades Interpessoais</span> <span class="cv-cert-meta">· IFCE — Capacita Brasil / Residência TIC 20 · Out 2025</span></span><span class="cv-cert-hours">120h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">Curso de Língua Espanhola</span> <span class="cv-cert-meta">· Centro Cearense de Idiomas — SEDUC · Fev 2024 – Jun 2025</span></span><span class="cv-cert-hours">180h</span></li>
+            <li><span class="cv-cert-text"><span class="cv-cert-title">Monitoria de Química</span> <span class="cv-cert-meta">· E.E.E.P. Edson Queiroz · Abr – Dez 2024</span></span><span class="cv-cert-hours">60h</span></li>
           </ul>
           <p class="cv-total">Total: 860 horas de formação técnica</p>
         </section>
@@ -460,20 +458,24 @@
         <section class="cv-section">
           <h2>Habilidades</h2>
           <div class="cv-group">
-            <h3>Cloud</h3>
-            <p>AWS Cloud, Huawei Cloud · IaaS, PaaS, SaaS</p>
+            <h3>Front-end</h3>
+            <p>React, TypeScript, JavaScript, HTML, CSS, Tailwind</p>
           </div>
           <div class="cv-group">
-            <h3>Redes &amp; Infraestrutura</h3>
-            <p>TCP/IP, Configuração de Redes, Virtualização, Segurança</p>
+            <h3>Back-end</h3>
+            <p>Node.js, NestJS, Express, APIs REST, autenticação JWT · lógica de programação e estruturas de dados</p>
           </div>
           <div class="cv-group">
-            <h3>Análise de Dados</h3>
-            <p>SQL, Tableau, Python, Planilhas, Google Data Analytics</p>
+            <h3>Dados</h3>
+            <p>SQL, PostgreSQL, Prisma, Python, Planilhas, Tableau, Google Data Analytics</p>
           </div>
           <div class="cv-group">
-            <h3>Programação</h3>
-            <p>Python, JavaScript, Node.js, Lógica de Programação, Estruturas de Dados, App Inventor</p>
+            <h3>Cloud &amp; Infra</h3>
+            <p>AWS, Huawei Cloud, Vercel, Redes TCP/IP, Configuração de Redes, Virtualização, Segurança · IaaS, PaaS, SaaS</p>
+          </div>
+          <div class="cv-group">
+            <h3>Ferramentas</h3>
+            <p>Git, GitLab (MR, CI), Jest, Linux, App Inventor</p>
           </div>
           <div class="cv-group">
             <h3>Inteligência Artificial</h3>
