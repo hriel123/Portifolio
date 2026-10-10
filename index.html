@@ -9,9 +9,16 @@
 <meta property="og:title" content="Hariel Silva Fabrício — Portfólio" />
 <meta property="og:description" content="Estudante de Informática com foco em Cloud Computing e Desenvolvimento. Formação AWS Academy e Huawei HCIA-Cloud." />
 <meta property="og:url" content="https://hriel123.github.io/Portifolio/" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:image" content="https://hriel123.github.io/Portifolio/assets/og/og-image.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Hariel Silva Fabrício, Técnico em Informática: Cloud Computing, Desenvolvimento, AWS e Huawei Cloud" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Hariel Silva Fabrício — Portfólio" />
 <meta name="twitter:description" content="Estudante de Informática com foco em Cloud Computing e Desenvolvimento." />
+<meta name="twitter:image" content="https://hriel123.github.io/Portifolio/assets/og/og-image.jpg" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23080b10'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='800' font-size='58' fill='%2300c8ff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <script>
@@ -841,6 +848,15 @@
     max-width: 620px;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* Página do certificado: cabe na largura e, se for vertical, na altura da tela */
+  .modal-body .cert-img {
+    width: auto;
+    height: auto;
+    max-width: min(100%, 620px);
+    max-height: 70vh;
+    background: #fff;
   }
 
   .modal-body .pdf-note {
@@ -2812,6 +2828,16 @@ function buildGoogleCertDisplay(verifyUrl) {
   return wrapper;
 }
 
+// Tamanho (px) de cada página dos certificados em assets/certificados/<chave>-<n>.webp
+const CERT_IMAGES = {
+  aws: [[1397, 1080]],
+  huawei: [[932, 1398]],
+  'ifce-cloud': [[1404, 993], [1404, 993]],
+  'ifce-interpessoal': [[1404, 993], [1404, 993]],
+  espanhol: [[1400, 909]],
+  quimica: [[1400, 956]],
+};
+
 function openModal(key) {
   const cert = certs[key];
   if (!cert) return;
@@ -2840,11 +2866,19 @@ function openModal(key) {
     body.appendChild(a);
   }
   else if (cert.type === 'pdf' && cert.pdfUrl) {
-    const iframe = document.createElement('iframe');
-    iframe.src = cert.pdfUrl + '#toolbar=0&navpanes=0';
-    iframe.style.cssText = 'width:100%;height:min(500px, 60vh);border:none;border-radius:12px;background:#fff';
-    iframe.title = cert.title;
-    body.appendChild(iframe);
+    // Imagem das páginas no lugar do PDF embutido: celulares (Android) não
+    // exibem PDF dentro da página. O PDF original continua no botão abaixo.
+    const pages = CERT_IMAGES[key] || [];
+    pages.forEach(([w, h], i) => {
+      const img = document.createElement('img');
+      img.src = `assets/certificados/${key}-${i + 1}.webp`;
+      img.width = w;
+      img.height = h;
+      img.decoding = 'async';
+      img.className = 'cert-img';
+      img.alt = pages.length > 1 ? `${cert.title}, página ${i + 1} de ${pages.length}` : `Certificado: ${cert.title}`;
+      body.appendChild(img);
+    });
 
     let linkHref = cert.pdfUrl;
     let linkText = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Abrir PDF em nova aba';
