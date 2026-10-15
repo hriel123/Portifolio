@@ -1242,8 +1242,8 @@
 
   .projects-grid .project-card { flex: 1 1 300px; min-width: 0; }
 
-  @media (min-width: 688px) and (max-width: 1035px) {
-    .projects-grid .project-card { max-width: calc(50% - 0.75rem); }
+  @media (min-width: 688px) {
+    .projects-grid .project-card { flex-basis: calc(50% - 0.75rem); max-width: calc(50% - 0.75rem); }
   }
 
   .project-card {
@@ -2191,6 +2191,7 @@
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FinFlow</strong> — app full-stack de finanças pessoais, com autenticação e banco de dados (React, Node.js/Express, PostgreSQL)</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — sistema de gestão de filas para pequenos negócios (HTML, CSS, JavaScript)</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>JLVariedades</strong> — site institucional para loja local, com integração via WhatsApp</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Coleta de Água</strong> — rodízio e registro de coletas de água potável, com painel, login e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
                 </ul>
               </div>
             </article>
@@ -2315,6 +2316,23 @@
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
       </div>
       <a href="https://hriel123.github.io/jlvariedades-/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
+    </div>
+
+    <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="coleta-agua" aria-label="Abrir galeria do Coleta de Água, 6 imagens">
+        <img src="assets/projetos/coleta-agua/painel-sm.webp" alt="Painel do Coleta de Água com indicadores, gráficos e alertas" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
+      </button>
+      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+      <div class="project-title">Coleta de Água</div>
+      <div class="project-tagline">Rodízio e registro de coletas de água potável</div>
+      <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria, tema claro e escuro e exportação de planilha por período.</p>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
+        <span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
+      </div>
+      <a href="https://coleta-agua.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
     </div>
 
   </div>
@@ -2904,6 +2922,17 @@ const GALLERIES = {
       ['jlvariedades/roupas', 'Seção de moda feminina e masculina da JLVariedades', 'Coleção de moda feminina e masculina.'],
       ['jlvariedades/roupas-escuro', 'Seção de moda da JLVariedades no modo escuro', 'A mesma coleção no modo escuro do site.'],
       ['jlvariedades/celular-variedades', 'Seção de variedades da JLVariedades no celular', 'Versão para celular da seção de variedades.'],
+    ],
+  },
+  'coleta-agua': {
+    title: 'Coleta de Água',
+    images: [
+      ['coleta-agua/painel', 'Painel do Coleta de Água com indicadores, gráficos e alertas', 'Painel de resultados: coletas no período, médias de cloro livre e pH, pontos em dia, gráfico ao longo do tempo e alertas de valores fora do normal (dados de exemplo).'],
+      ['coleta-agua/coleta', 'Tela de coleta do dia do Coleta de Água', 'Coleta do dia: o site indica a fábrica e os pontos do rodízio; ao marcar um ponto, aparecem os campos de cloro livre, pH e turbidez.'],
+      ['coleta-agua/historico', 'Histórico de coletas do Coleta de Água', 'Histórico dos dias registrados, com horário, valores medidos, dias sem coleta (como feriados) e download da planilha.'],
+      ['coleta-agua/login', 'Tela de login do Coleta de Água', 'Login: cada conta guarda as próprias coletas no servidor e vê tudo em qualquer aparelho.'],
+      ['coleta-agua/painel-claro', 'Painel do Coleta de Água no tema claro', 'O mesmo painel no tema claro.'],
+      ['coleta-agua/celular-painel', 'Painel do Coleta de Água no celular', 'Versão para celular do painel, com navegação pela barra inferior.'],
     ],
   },
 };
