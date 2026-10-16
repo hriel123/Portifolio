@@ -2189,7 +2189,7 @@
                 <div class="exp-pillars-label">Destaques dos projetos</div>
                 <ul class="exp-pillars">
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FinFlow</strong> — app full-stack de finanças pessoais, com autenticação e banco de dados (React, Node.js/Express, PostgreSQL)</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — sistema de gestão de filas para pequenos negócios (HTML, CSS, JavaScript)</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — gestão de filas para pequenos negócios, com senha pelo celular, tela para TV, login e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>JLVariedades</strong> — site institucional para loja local, com integração via WhatsApp</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Coleta de Água</strong> — rodízio e registro de coletas de água potável, com painel, login e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
                 </ul>
@@ -2289,16 +2289,16 @@
     </div>
 
     <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 5 imagens">
-        <img src="assets/projetos/filafacil/inicio-sm.webp" alt="Página inicial do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
+      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 6 imagens">
+        <img src="assets/projetos/filafacil/painel-sm.webp" alt="Painel de atendimento do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
       </button>
       <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
       <div class="project-title">FilaFácil</div>
       <div class="project-tagline">Gestão de filas para pequenos negócios</div>
-      <p class="project-desc">Sistema de gerenciamento de filas com emissão de senha, acompanhamento em tempo real do tempo de espera e chamada do próximo cliente. Voltado a barbearias, salões, clínicas e comércios em geral.</p>
+      <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code e acompanha a vez no celular, com aviso quando é chamado, e o atendente chama o próximo com um clique. Tela de chamada para TV com som e voz, relatório do dia com tempos de espera e horários de pico, e login para clientes e estabelecimentos.</p>
       <div class="skill-tags">
-        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
       </div>
       <a href="https://hriel123.github.io/fila-facil1/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
     </div>
@@ -2907,11 +2907,12 @@ const GALLERIES = {
   filafacil: {
     title: 'FilaFácil',
     images: [
-      ['filafacil/inicio', 'Página inicial do FilaFácil', 'Página inicial, com a senha em atendimento e quantas pessoas aguardam.'],
-      ['filafacil/como-funciona', 'Seção "Como funciona" do FilaFácil', 'Como funciona: gerar a senha, acompanhar a fila e chamar o próximo.'],
-      ['filafacil/recursos', 'Seção de recursos do FilaFácil', 'Recursos: senhas automáticas, fila em tempo real, chamada do próximo, tempo estimado, histórico e dados salvos no navegador.'],
-      ['filafacil/demonstracao', 'Demonstração da fila do FilaFácil em uso', 'Demonstração ao vivo: senha atual, pessoas aguardando, tempo estimado e histórico de atendimentos.'],
-      ['filafacil/celular-inicio', 'Página inicial do FilaFácil no celular', 'Versão para celular da página inicial.'],
+      ['filafacil/painel', 'Painel de atendimento do FilaFácil', 'Painel de atendimento: senha chamada, botão de chamar o próximo e a fila com o nome de cada cliente (dados de exemplo).'],
+      ['filafacil/celular-senha', 'Senha do cliente no celular', 'No celular, o cliente vê quantas pessoas faltam e a espera estimada.'],
+      ['filafacil/celular-sua-vez', 'Aviso de que chegou a vez do cliente', 'Quando chega a vez, o celular toca, vibra e mostra "É a sua vez!".'],
+      ['filafacil/tv', 'Tela de chamada do FilaFácil para TV', 'Tela de chamada para TV: senha em letras grandes, som, voz e QR code para pegar senha.'],
+      ['filafacil/relatorio', 'Relatório do dia do FilaFácil', 'Relatório do dia: senhas, tempos de espera, atendimento médio, senhas por horário e planilha.'],
+      ['filafacil/inicio', 'Página inicial do FilaFácil', 'Página inicial, com acesso ao sistema e a demonstração do painel.'],
     ],
   },
   jlvariedades: {
