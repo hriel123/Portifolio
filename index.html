@@ -2189,7 +2189,7 @@
                 <div class="exp-pillars-label">Destaques dos projetos</div>
                 <ul class="exp-pillars">
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FinFlow</strong> — app full-stack de finanças pessoais, com login, modo demonstração sem cadastro e recuperação de senha por e-mail (React, Node.js/Express, PostgreSQL)</span></li>
-                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — gestão de filas para pequenos negócios, com senha pelo celular (com ou sem conta), vários guichês, tela para TV e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>FilaFácil</strong> — gestão de filas para pequenos negócios, com senha pelo celular (com ou sem conta), vários guichês, tela para TV, modo visitante e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>JLVariedades</strong> — site institucional para loja local, com integração via WhatsApp</span></li>
                   <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Coleta de Água</strong> — rodízio e registro de coletas de água potável, com painel, login ou modo visitante e API própria (JavaScript, Node.js/Express, PostgreSQL)</span></li>
                 </ul>
@@ -2289,14 +2289,14 @@
     </div>
 
     <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 7 imagens">
+      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 8 imagens">
         <img src="assets/projetos/filafacil/painel-sm.webp" alt="Painel de atendimento do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>7 imagens</span>
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
       </button>
       <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
       <div class="project-title">FilaFácil</div>
       <div class="project-tagline">Gestão de filas para pequenos negócios</div>
-      <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, recuperação de senha por e-mail e tema claro e escuro.</p>
+      <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
       </div>
@@ -2910,6 +2910,7 @@ const GALLERIES = {
     title: 'FilaFácil',
     images: [
       ['filafacil/painel', 'Painel de atendimento do FilaFácil', 'Painel de atendimento com dois guichês: cada aparelho escolhe o seu e chama da mesma fila (dados de exemplo).'],
+      ['filafacil/visitante', 'Painel do FilaFácil no modo visitante', 'Modo visitante: o painel de uma barbearia de exemplo, com a fila andando, para testar sem criar conta. Os dados ficam só no navegador.'],
       ['filafacil/celular-sem-conta', 'Pegar senha sem conta no celular', 'Pelo QR code, o cliente pega a senha só com o nome, sem criar conta.'],
       ['filafacil/celular-senha', 'Senha do cliente no celular', 'No celular, o cliente vê quantas pessoas faltam e a espera estimada.'],
       ['filafacil/celular-sua-vez', 'Aviso de que chegou a vez do cliente', 'Quando chega a vez, o celular toca, vibra e mostra para qual guichê ir.'],
