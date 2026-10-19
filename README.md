@@ -42,7 +42,7 @@ assets/curriculo/                  foto do currículo
 assets/og/                         imagem de prévia e a página que a gera
 ```
 
-Os logos de `assets/icons/` vêm do [Devicon](https://github.com/devicons/devicon) (licença MIT, Copyright (c) 2015 konpa), do [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0) e, no caso do Instituto Federal, do [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Instituto_Federal_Marca_2015.svg) (domínio público). As marcas pertencem aos seus donos.
+Os logos de `assets/icons/` vêm do [Devicon](https://github.com/devicons/devicon) (licença MIT, Copyright (c) 2015 konpa), do [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0) do Wikimedia Commons (domínio público: [Instituto Federal](https://commons.wikimedia.org/wiki/File:Instituto_Federal_Marca_2015.svg) e [Brasão do Ceará](https://commons.wikimedia.org/wiki/File:Bras%C3%A3o_do_Cear%C3%A1.svg)) e, no caso do Centro Cearense de Idiomas, do globo da marca publicada pela SEDUC Ceará nos editais do CCI. As marcas pertencem aos seus donos.
 
 ## Rodar localmente
 
