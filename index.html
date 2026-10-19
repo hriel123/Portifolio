@@ -703,9 +703,7 @@
 
   .cert-icon img { display: block; object-fit: contain; }
   .cert-icon.aws { background: #232f3e; }
-  .cert-icon.huawei, .cert-icon.ifce, .cert-icon.google { background: #fff; border: 1px solid var(--border); }
-  .cert-icon.espanhol { background: rgba(22,163,74,0.12); }
-  .cert-icon.quimica { background: rgba(14,165,233,0.12); }
+  .cert-icon.huawei, .cert-icon.ifce, .cert-icon.google, .cert-icon.espanhol, .cert-icon.quimica { background: #fff; border: 1px solid var(--border); }
 
   .cert-issuer {
     font-size: 0.72rem;
@@ -2459,7 +2457,7 @@
 
     <div class="cert-card espanhol" onclick="openModal('espanhol')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('espanhol')}">
       <div class="cert-top-row"><span class="cert-num">06</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon espanhol" style="font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem">ES</div>
+      <div class="cert-icon espanhol"><img src="assets/icons/cci.webp" alt="" width="36" height="36" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Centro Cearense de Idiomas — SEDUC</div>
       <div class="cert-title">Curso de Língua Espanhola — Conclusão com Aproveitamento</div>
       <div class="cert-meta">
@@ -2472,7 +2470,7 @@
     <!-- Química -->
     <div class="cert-card quimica" onclick="openModal('quimica')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('quimica')}">
       <div class="cert-top-row"><span class="cert-num">07</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon quimica"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L3.5 18a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L15 8.5V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/><line x1="7" y1="14" x2="17" y2="14"/></svg></div>
+      <div class="cert-icon quimica"><img src="assets/icons/ceara.svg" alt="" width="28" height="38" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">E.E.E.P. Edson Queiroz</div>
       <div class="cert-title">Monitoria de Química — Curso Técnico de Informática</div>
       <div class="cert-meta">
