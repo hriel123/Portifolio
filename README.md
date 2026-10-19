@@ -37,9 +37,12 @@ curriculo-hariel-silva-fabricio.pdf
 certificado_*.pdf                  certificados originais
 assets/projetos/                   telas das galerias dos projetos
 assets/certificados/               imagens dos certificados
+assets/icons/                      logos das tecnologias e de quem emitiu os certificados
 assets/curriculo/                  foto do currículo
 assets/og/                         imagem de prévia e a página que a gera
 ```
+
+Os logos de `assets/icons/` vêm do [Devicon](https://github.com/devicons/devicon) (licença MIT, Copyright (c) 2015 konpa), do [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0) e, no caso do Instituto Federal, do [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Instituto_Federal_Marca_2015.svg) (domínio público). As marcas pertencem aos seus donos.
 
 ## Rodar localmente
 
