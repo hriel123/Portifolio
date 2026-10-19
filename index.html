@@ -699,11 +699,14 @@
     justify-content: center;
     font-size: 1.5rem;
     margin-bottom: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
   }
 
   .cert-icon img { display: block; object-fit: contain; }
-  .cert-icon.aws { background: #232f3e; }
-  .cert-icon.huawei, .cert-icon.ifce, .cert-icon.google, .cert-icon.espanhol, .cert-icon.quimica { background: #fff; border: 1px solid var(--border); }
+  .cert-icon .logo-light { display: none; }
+  [data-theme="light"] .cert-icon .logo-dark { display: none; }
+  [data-theme="light"] .cert-icon .logo-light { display: block; }
 
   .cert-issuer {
     font-size: 0.72rem;
@@ -2385,7 +2388,7 @@
     <!-- AWS -->
     <div class="cert-card aws" onclick="openModal('aws')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('aws')}">
       <div class="cert-top-row"><span class="cert-num">01</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon aws"><img src="assets/icons/aws-branco.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></div>
+      <div class="cert-icon aws"><img class="logo-dark" src="assets/icons/aws-branco.svg" alt="" width="34" height="34" loading="lazy" decoding="async"><img class="logo-light" src="assets/icons/aws-escuro.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Amazon Web Services</div>
       <div class="cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</div>
       <div class="cert-meta">
