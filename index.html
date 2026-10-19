@@ -1546,9 +1546,14 @@
   .skill-card:hover { border-color: rgba(0,200,255,0.2); }
 
   .skill-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-  .skill-icon img { display: block; width: 44px; height: 44px; object-fit: contain; }
-  .skill-icon .logo-tile { border-radius: 10px; box-shadow: 0 0 0 1px var(--border); }
-  [data-theme="light"] .skill-icon img:not(.logo-tile) { filter: drop-shadow(0 2px 3px rgba(16,24,40,0.18)); }
+  .skill-icon img {
+    display: block;
+    width: 56px; height: 56px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 0 0 1px var(--border), 0 8px 20px rgba(0,0,0,0.3);
+  }
+  [data-theme="light"] .skill-icon img { box-shadow: 0 0 0 1px var(--border), 0 6px 16px rgba(16,24,40,0.12); }
   .skill-name {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
@@ -2063,32 +2068,32 @@
   <h2>Sobre mim</h2>
   <div class="skills-grid fade-in">
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-nuvem.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-cloud.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Cloud Computing</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Interesse por arquiteturas escaláveis e pelas diferenças entre provedores — estudar AWS e Huawei Cloud lado a lado ajuda a entender o "porquê" por trás de cada decisão de infraestrutura, não só o "como".</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-globo.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-redes.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Infraestrutura de Redes</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Curiosidade por entender como o tráfego se move entre serviços e como isso influencia decisões de arquitetura — base construída ao longo do curso técnico em Informática.</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-grafico-barras.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-analise-dados.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Análise de Dados</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Gosto do processo de transformar dado bruto em decisão — da limpeza e organização até a visualização que realmente comunica algo pra quem vai usar a informação.</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-robo.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-ia-programacao.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">IA & Programação</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Curiosidade por IA que começou em projetos de jogos digitais e hoje se estende a machine learning e IA generativa aplicada a problemas do dia a dia.</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-tubo-ensaio.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-quimica.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Monitor Acadêmico</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Monitor de Química na E.E.E.P. Edson Queiroz (60h em 2024), desenvolvendo liderança e comunicação.</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img class="logo-tile" src="assets/icons/delfos.webp" alt="Logo da Delfos" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/icons/delfos.webp" alt="Logo da Delfos" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Estágio & Gestão de TI</div>
       <p style="font-size:0.85rem;color:var(--muted);line-height:1.6">Na Delfos, acompanho de perto como decisões de TI e gestão de projetos acontecem no dia a dia de uma empresa real — a ponte entre estudar o conceito e aplicar na prática.</p>
     </div>
@@ -2531,14 +2536,14 @@
   </ul>
   <div class="skills-grid fade-in">
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-computador.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-front-end.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Front-end</div>
       <div class="skill-tags">
         <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Tailwind CSS</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-engrenagem.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-back-end.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Back-end</div>
       <div class="skill-tags">
         <span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Express</span><span class="tag">APIs REST</span><span class="tag">Autenticação JWT</span>
@@ -2546,14 +2551,14 @@
       <p class="skill-note">Base: lógica de programação e estruturas de dados</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-grafico-alta.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-dados.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Dados</div>
       <div class="skill-tags">
         <span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Python</span><span class="tag">Planilhas</span><span class="tag">Tableau</span><span class="tag">Google Data Analytics</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-nuvem.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-cloud-infra.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Cloud & Infra</div>
       <div class="skill-tags">
         <span class="tag">AWS</span><span class="tag">Huawei Cloud</span><span class="tag">Vercel</span><span class="tag">Redes TCP/IP</span><span class="tag">Configuração de Redes</span><span class="tag">Virtualização</span><span class="tag">Segurança</span>
@@ -2561,14 +2566,14 @@
       <p class="skill-note">Conceitos: IaaS · PaaS · SaaS</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-ferramentas.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-ferramentas.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Ferramentas</div>
       <div class="skill-tags">
         <span class="tag">Git</span><span class="tag">GitLab (MR, CI)</span><span class="tag">Jest</span><span class="tag">Linux</span><span class="tag">App Inventor</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-cerebro.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-ia.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Inteligência Artificial</div>
       <div class="skill-tags">
         <span class="tag">IA Generativa</span><span class="tag">Machine Learning</span>
@@ -2577,7 +2582,7 @@
       <p class="skill-note">Ferramenta no-code: Teachable Machine</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-aperto-de-mao.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-soft-skills.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Soft Skills</div>
       <div class="skill-tags">
         <span class="tag">Liderança</span><span class="tag">Comunicação</span>
@@ -2586,7 +2591,7 @@
       <p class="skill-note">Desenvolvidas na Monitoria de Química (E.E.E.P. Edson Queiroz)</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon"><img src="assets/icons/emoji-balao-fala.webp" alt="" width="44" height="44" loading="lazy" decoding="async"></div>
+      <div class="skill-icon"><img src="assets/fotos/foto-idiomas.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Idiomas</div>
       <ul class="lang-list">
         <li class="lang-item">
