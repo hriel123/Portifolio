@@ -693,7 +693,7 @@
 
   .cert-icon {
     width: 48px; height: 48px;
-    border-radius: 12px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -701,12 +701,11 @@
     margin-bottom: 1.25rem;
   }
 
-  .cert-icon.aws { background: rgba(255,153,0,0.12); }
-  .cert-icon.huawei { background: rgba(207,10,44,0.12); }
-  .cert-icon.ifce { background: rgba(123,97,255,0.12); }
+  .cert-icon img { display: block; object-fit: contain; }
+  .cert-icon.aws { background: #232f3e; }
+  .cert-icon.huawei, .cert-icon.ifce, .cert-icon.google { background: #fff; border: 1px solid var(--border); }
   .cert-icon.espanhol { background: rgba(22,163,74,0.12); }
   .cert-icon.quimica { background: rgba(14,165,233,0.12); }
-  .cert-icon.google { background: rgba(66,133,244,0.12); }
 
   .cert-issuer {
     font-size: 0.72rem;
@@ -1498,6 +1497,34 @@
   }
 
   /* SKILLS */
+  .tech-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-grid li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 0.35rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .tech-grid li:hover { border-color: rgba(0,200,255,0.2); transform: translateY(-2px); }
+  .tech-grid img, .tech-grid svg { width: 34px; height: 34px; object-fit: contain; }
+
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -1712,7 +1739,14 @@
     .hero-stats { justify-content: center; }
   }
 
+  @media (max-width: 1024px) {
+    .tech-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
   @media (max-width: 640px) {
+    .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.68rem; }
+    .tech-grid img, .tech-grid svg { width: 30px; height: 30px; }
     .lang-grid { grid-template-columns: 1fr; max-width: 100%; }
     .hero-stats { grid-template-columns: 1fr; gap: 2rem; }
     .stat-num { font-size: 2.5rem; }
@@ -2353,7 +2387,7 @@
     <!-- AWS -->
     <div class="cert-card aws" onclick="openModal('aws')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('aws')}">
       <div class="cert-top-row"><span class="cert-num">01</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon aws"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+      <div class="cert-icon aws"><img src="assets/icons/aws-branco.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Amazon Web Services</div>
       <div class="cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</div>
       <div class="cert-meta">
@@ -2366,7 +2400,7 @@
     <!-- Huawei -->
     <div class="cert-card huawei" onclick="openModal('huawei')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('huawei')}">
       <div class="cert-top-row"><span class="cert-num">02</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon huawei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+      <div class="cert-icon huawei"><img src="assets/icons/huawei.svg" alt="" width="28" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Huawei ICT Academy</div>
       <div class="cert-title">HCIA-Cloud Service V3.5 — Certificado de Conclusão (Portuguese)</div>
       <div class="cert-meta">
@@ -2380,7 +2414,7 @@
     <!-- Google Data Analytics -->
     <div class="cert-card google" onclick="openModal('google-data')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-data')}">
       <div class="cert-top-row"><span class="cert-num">03</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon google"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="cert-icon google"><img src="assets/icons/google.svg" alt="" width="26" height="26" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Google / Coursera</div>
       <div class="cert-title">Google Data Analytics Professional Certificate</div>
       <div class="cert-meta">
@@ -2394,7 +2428,7 @@
     <!-- IFCE Cloud Específica -->
     <div class="cert-card ifce" onclick="openModal('ifce-cloud')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-cloud')}">
       <div class="cert-top-row"><span class="cert-num">04</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon ifce"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+      <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
       <div class="cert-title">Computação em Nuvem — Formação Específica</div>
       <div class="cert-meta">
@@ -2407,7 +2441,7 @@
     <!-- IFCE Interpessoal -->
     <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-interpessoal')}">
       <div class="cert-top-row"><span class="cert-num">05</span><span class="cert-status">✓ Concluído</span></div>
-      <div class="cert-icon ifce"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
       <div class="cert-title">Computação em Nuvem — Habilidades Interpessoais</div>
       <div class="cert-meta">
@@ -2458,6 +2492,28 @@
 <section id="skills">
   <p class="section-label">05 / Competências</p>
   <h2>Habilidades Técnicas</h2>
+  <ul class="tech-grid fade-in" aria-label="Tecnologias que utilizo">
+    <li><img src="assets/icons/react.svg" alt="" width="34" height="34" loading="lazy" decoding="async">React</li>
+    <li><img src="assets/icons/typescript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">TypeScript</li>
+    <li><img src="assets/icons/javascript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">JavaScript</li>
+    <li><img src="assets/icons/html5.svg" alt="" width="34" height="34" loading="lazy" decoding="async">HTML</li>
+    <li><img src="assets/icons/css3.svg" alt="" width="34" height="34" loading="lazy" decoding="async">CSS</li>
+    <li><img src="assets/icons/tailwindcss.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tailwind CSS</li>
+    <li><img src="assets/icons/nodejs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Node.js</li>
+    <li><img src="assets/icons/nestjs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">NestJS</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 18.588a1.53 1.53 0 0 1-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 0 1-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 0 1 1.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 0 1 1.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 0 0 0 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.08 4.08 0 0 0 2.582-2.876c.207-.666.548-.78 1.174-.588a5.420 5.420 0 0 1-2.589 3.957 6.27 6.27 0 0 1-7.306-.933 6.58 6.58 0 0 1-1.64-3.858c0-.235-.08-.455-.134-.666A88 88 0 0 1 0 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>Express</li>
+    <li><img src="assets/icons/postgresql.svg" alt="" width="34" height="34" loading="lazy" decoding="async">PostgreSQL</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.807 18.285 13.553.757a1.32 1.32 0 0 0-1.129-.755 1.31 1.31 0 0 0-1.206.626l-8.952 14.5a1.36 1.36 0 0 0 .016 1.455l4.376 6.778a1.41 1.41 0 0 0 1.58.581l12.703-3.757c.389-.115.707-.39.873-.755s.164-.783-.007-1.145m-1.848.752L9.18 22.224a.452.452 0 0 1-.575-.52l3.85-18.438c.072-.345.549-.4.699-.08l7.129 15.138a.515.515 0 0 1-.325.713"/></svg>Prisma</li>
+    <li><img src="assets/icons/python.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Python</li>
+    <li><img src="assets/icons/tableau.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tableau</li>
+    <li><img src="assets/icons/aws.svg" alt="" width="34" height="34" loading="lazy" decoding="async">AWS</li>
+    <li><img src="assets/icons/huawei.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Huawei Cloud</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 22.525H0l12-21.05z"/></svg>Vercel</li>
+    <li><img src="assets/icons/git.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Git</li>
+    <li><img src="assets/icons/gitlab.svg" alt="" width="34" height="34" loading="lazy" decoding="async">GitLab</li>
+    <li><img src="assets/icons/jest.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Jest</li>
+    <li><img src="assets/icons/linux.webp" alt="" width="34" height="34" loading="lazy" decoding="async">Linux</li>
+  </ul>
   <div class="skills-grid fade-in">
     <div class="skill-card">
       <div class="skill-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
