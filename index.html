@@ -1301,9 +1301,14 @@
 
   .project-card .skill-tags { margin-bottom: 1.25rem; }
 
-  .project-link {
+  .project-links {
     margin-top: auto;
-    align-self: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .project-link {
     font-size: 0.85rem;
     padding: 0.65rem 1.4rem;
   }
@@ -1801,6 +1806,7 @@
   @media (max-width: 380px) {
     h2 { font-size: 1.55rem; }
     .contact-link { padding: 0.85rem 1rem; font-size: 0.85rem; }
+    .project-link { padding: 0.65rem 1rem; }
   }
 
   /* Alvos de toque de pelo menos 44 px em telas pequenas */
@@ -1954,9 +1960,9 @@
 <nav>
   <a href="#" class="nav-logo">HSF.dev</a>
   <ul class="nav-links">
+    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#experiencia">Experiência</a></li>
-    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#certs">Certificados</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contato">Contato</a></li>
@@ -1980,9 +1986,9 @@
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden>
     <ul>
+      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#experiencia">Experiência</a></li>
-      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#certs">Certificados</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -2077,9 +2083,96 @@
   </div>
 </div>
 
+<!-- PROJETOS -->
+<section id="projetos">
+  <p class="section-label">01 / Portfólio</p>
+  <h2>Projetos</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="finflow" aria-label="Abrir galeria do FinFlow, 8 imagens">
+        <img src="assets/projetos/finflow/dashboard-escuro-sm.webp" alt="Dashboard do FinFlow no tema escuro" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
+      </button>
+      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="project-title">FinFlow</div>
+      <div class="project-tagline">Gestão financeira pessoal</div>
+      <p class="project-desc">Aplicação web full-stack para controle de finanças pessoais, com login, API própria e banco de dados relacional. Tem modo demonstração para conhecer sem criar conta, recuperação de senha por e-mail e política de privacidade. Front-end em React (Vite + Tailwind CSS), back-end em Node.js/Express com Prisma ORM e PostgreSQL.</p>
+      <div class="skill-tags">
+        <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
+        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
+        <span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Docker</span>
+      </div>
+      <div class="project-links">
+        <a href="https://finflow-omega-five.vercel.app/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
+        <a href="https://github.com/hriel123/finflow" target="_blank" rel="noopener" class="btn btn-outline project-link" aria-label="Código do FinFlow no GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>Código</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 8 imagens">
+        <img src="assets/projetos/filafacil/painel-sm.webp" alt="Painel de atendimento do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
+      </button>
+      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+      <div class="project-title">FilaFácil</div>
+      <div class="project-tagline">Gestão de filas para pequenos negócios</div>
+      <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
+      </div>
+      <div class="project-links">
+        <a href="https://fila-facil-app.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
+        <a href="https://github.com/hriel123/fila-facil1" target="_blank" rel="noopener" class="btn btn-outline project-link" aria-label="Código do FilaFácil no GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>Código</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="jlvariedades" aria-label="Abrir galeria do JLVariedades, 5 imagens">
+        <img src="assets/projetos/jlvariedades/inicio-sm.webp" alt="Página inicial do site da JLVariedades" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
+      </button>
+      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+      <div class="project-title">JLVariedades</div>
+      <div class="project-tagline">Loja de moda e variedades — Cascavel, CE</div>
+      <p class="project-desc">Site institucional para loja de moda e variedades, com catálogo de produtos femininos, masculinos e presentes, além de contato direto via WhatsApp para vendas.</p>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://hriel123.github.io/jlvariedades-/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
+        <a href="https://github.com/hriel123/jlvariedades-" target="_blank" rel="noopener" class="btn btn-outline project-link" aria-label="Código do JLVariedades no GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>Código</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <button type="button" class="project-cover" data-gallery="coleta-agua" aria-label="Abrir galeria do Coleta de Água, 6 imagens">
+        <img src="assets/projetos/coleta-agua/painel-sm.webp" alt="Painel do Coleta de Água com indicadores, gráficos e alertas" width="720" height="450" loading="lazy" decoding="async">
+        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
+      </button>
+      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+      <div class="project-title">Coleta de Água</div>
+      <div class="project-tagline">Rodízio e registro de coletas de água potável</div>
+      <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria ou modo visitante sem cadastro, recuperação de senha por e-mail, tema claro e escuro e exportação de planilha por período.</p>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
+        <span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
+      </div>
+      <div class="project-links">
+        <a href="https://coleta-agua.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
+        <a href="https://github.com/hriel123/coleta-agua" target="_blank" rel="noopener" class="btn btn-outline project-link" aria-label="Código do Coleta de Água no GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>Código</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- SOBRE -->
 <section id="sobre">
-  <p class="section-label">01 / Perfil</p>
+  <p class="section-label">02 / Perfil</p>
   <h2>Sobre mim</h2>
   <div class="skills-grid fade-in">
     <div class="skill-card">
@@ -2119,7 +2212,7 @@
 
 <!-- EXPERIÊNCIA -->
 <section id="experiencia">
-  <p class="section-label">02 / Trajetória</p>
+  <p class="section-label">03 / Trajetória</p>
   <h2>Experiência & Formação</h2>
 
   <div class="tl-filters" role="group" aria-label="Filtrar a linha do tempo">
@@ -2329,81 +2422,6 @@
         </ol>
       </div>
     </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- PROJETOS -->
-<section id="projetos">
-  <p class="section-label">03 / Portfólio</p>
-  <h2>Projetos</h2>
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="finflow" aria-label="Abrir galeria do FinFlow, 8 imagens">
-        <img src="assets/projetos/finflow/dashboard-escuro-sm.webp" alt="Dashboard do FinFlow no tema escuro" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
-      </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="project-title">FinFlow</div>
-      <div class="project-tagline">Gestão financeira pessoal</div>
-      <p class="project-desc">Aplicação web full-stack para controle de finanças pessoais, com login, API própria e banco de dados relacional. Tem modo demonstração para conhecer sem criar conta, recuperação de senha por e-mail e política de privacidade. Front-end em React (Vite + Tailwind CSS), back-end em Node.js/Express com Prisma ORM e PostgreSQL.</p>
-      <div class="skill-tags">
-        <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
-        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
-        <span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Docker</span>
-      </div>
-      <a href="https://finflow-omega-five.vercel.app/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
-    </div>
-
-    <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="filafacil" aria-label="Abrir galeria do FilaFácil, 8 imagens">
-        <img src="assets/projetos/filafacil/painel-sm.webp" alt="Painel de atendimento do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
-      </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-      <div class="project-title">FilaFácil</div>
-      <div class="project-tagline">Gestão de filas para pequenos negócios</div>
-      <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
-      <div class="skill-tags">
-        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
-      </div>
-      <a href="https://fila-facil-app.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
-    </div>
-
-    <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="jlvariedades" aria-label="Abrir galeria do JLVariedades, 5 imagens">
-        <img src="assets/projetos/jlvariedades/inicio-sm.webp" alt="Página inicial do site da JLVariedades" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
-      </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-      <div class="project-title">JLVariedades</div>
-      <div class="project-tagline">Loja de moda e variedades — Cascavel, CE</div>
-      <p class="project-desc">Site institucional para loja de moda e variedades, com catálogo de produtos femininos, masculinos e presentes, além de contato direto via WhatsApp para vendas.</p>
-      <div class="skill-tags">
-        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-      </div>
-      <a href="https://hriel123.github.io/jlvariedades-/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
-    </div>
-
-    <div class="project-card">
-      <button type="button" class="project-cover" data-gallery="coleta-agua" aria-label="Abrir galeria do Coleta de Água, 6 imagens">
-        <img src="assets/projetos/coleta-agua/painel-sm.webp" alt="Painel do Coleta de Água com indicadores, gráficos e alertas" width="720" height="450" loading="lazy" decoding="async">
-        <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
-      </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-      <div class="project-title">Coleta de Água</div>
-      <div class="project-tagline">Rodízio e registro de coletas de água potável</div>
-      <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria ou modo visitante sem cadastro, recuperação de senha por e-mail, tema claro e escuro e exportação de planilha por período.</p>
-      <div class="skill-tags">
-        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
-        <span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
-      </div>
-      <a href="https://coleta-agua.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline project-link">Ver projeto ↗</a>
-    </div>
-
   </div>
 </section>
 
@@ -2669,9 +2687,9 @@
       <div class="footer-loc">Cascavel, Ceará · Estagiário na Delfos</div>
     </div>
     <ul class="footer-nav">
+      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#experiencia">Experiência</a></li>
-      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#certs">Certificados</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contato">Contato</a></li>
