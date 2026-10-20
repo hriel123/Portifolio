@@ -143,8 +143,7 @@
   .nav-icon-btn {
     width: 36px; height: 36px;
     border-radius: 8px;
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid rgba(255,255,255,0.45);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,12 +152,9 @@
     transition: all 0.2s;
   }
 
-  .nav-icon-btn:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    box-shadow: 0 0 14px var(--glow);
-  }
+  .nav-icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+  [data-theme="light"] .nav-icon-btn { border-color: rgba(17,22,29,0.35); }
+  [data-theme="light"] .nav-icon-btn:hover { border-color: var(--accent); }
 
   .theme-toggle { background: none; cursor: pointer; font: inherit; }
 
