@@ -5,7 +5,7 @@
 **Site:** https://hriel123.github.io/Portifolio/
 **Currículo:** https://hriel123.github.io/Portifolio/curriculo.html (com download em PDF)
 
-Portfólio pessoal de um estudante do Técnico em Informática (E.E.E.P. Edson Queiroz, Cascavel-CE), estagiário de Gestão de TI, com foco em Cloud Computing, desenvolvimento e AWS & Huawei Cloud.
+Portfólio pessoal de um estudante do Técnico em Informática (E.E.E.P. Edson Queiroz, Cascavel-CE), estagiário de Gestão, com foco em Cloud Computing, desenvolvimento e AWS & Huawei Cloud.
 
 ## O que tem no site
 
