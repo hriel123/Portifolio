@@ -10,7 +10,7 @@ Portfólio pessoal de um estudante do Técnico em Informática (E.E.E.P. Edson Q
 ## O que tem no site
 
 - **Sobre:** áreas de interesse e atuação.
-- **Projetos:** FinFlow, FilaFácil, JLVariedades e Coleta de Água, cada um com galeria de telas, link para o projeto no ar e para o código no GitHub.
+- **Projetos:** os pessoais (FinFlow, FilaFácil, JLVariedades e Coleta de Água), cada um com galeria de telas, link para o projeto no ar e para o código no GitHub, e os escolares feitos em grupo no Ensino Médio (Fertify e LabTime), com galeria e link para o código.
 - **Experiência & Formação:** linha do tempo interativa de 2024 a 2026, com filtros (experiência, formação, certificados), destaques que abrem e fecham e acesso direto aos certificados.
 - **Certificados:** 7 certificados, com a imagem do certificado, o PDF original e, quando existe, o link de verificação.
 - **Habilidades e Contato.**
