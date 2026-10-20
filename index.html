@@ -143,16 +143,22 @@
   .nav-icon-btn {
     width: 36px; height: 36px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--muted);
+    color: var(--text);
     text-decoration: none;
     transition: all 0.2s;
   }
 
-  .nav-icon-btn:hover { color: var(--accent); border-color: rgba(0,200,255,0.3); }
+  .nav-icon-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    box-shadow: 0 0 14px var(--glow);
+  }
 
   .theme-toggle { background: none; cursor: pointer; font: inherit; }
 
@@ -487,12 +493,15 @@
 
   .hero-meta {
     margin-top: 1.5rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     animation: fadeUp 0.8s 0.35s ease both;
   }
+
+  .hero-meta svg, .hero-meta-sep { color: var(--accent); }
 
   .btn {
     display: inline-flex;
@@ -2043,7 +2052,7 @@
         <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
         <a href="curriculo.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Currículo</a>
       </div>
-      <p class="hero-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel, CE, Brasil &nbsp;·&nbsp; AWS · Huawei Cloud · Python · SQL</p>
+      <p class="hero-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel,&nbsp;CE,&nbsp;Brasil &nbsp;<span class="hero-meta-sep">·</span>&nbsp; AWS <span class="hero-meta-sep">·</span> Huawei&nbsp;Cloud <span class="hero-meta-sep">·</span> Python <span class="hero-meta-sep">·</span> SQL</p>
       <div class="hero-stats">
         <div class="stat-item">
           <span class="stat-num">7</span>
