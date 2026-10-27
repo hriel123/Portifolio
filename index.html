@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23080b10'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='800' font-size='58' fill='%2300c8ff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <script>
   // Marca que há JavaScript: só então a tela de carregamento e as animações
   // de entrada escondem o conteúdo (sem JS a página aparece normalmente).
@@ -38,6 +38,7 @@
 </script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  button { font-family: inherit; }
 
   :root {
     --bg: #080b10;
@@ -45,11 +46,8 @@
     --card: #111722;
     --border: #1e2a3a;
     --accent: #00c8ff;
-    --accent2: #7b61ff;
-    --accent3: #ff6b35;
     --text: #e8edf5;
     --muted: #7e8ca0;
-    --glow: rgba(0,200,255,0.15);
   }
 
   [data-theme="light"] {
@@ -58,11 +56,8 @@
     --card: #ffffff;
     --border: #dde3ec;
     --accent: #0077a3;
-    --accent2: #5b3fd6;
-    --accent3: #d9541f;
     --text: #11161d;
     --muted: #525c69;
-    --glow: rgba(0,119,163,0.08);
   }
 
   body, .tl-card, .project-card, .cert-card, .skill-card, .contact-link, .dev-card {
@@ -108,8 +103,7 @@
   .nav-logo {
     position: absolute;
     left: 2rem;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.1rem;
     color: var(--accent);
     letter-spacing: 0.05em;
@@ -144,7 +138,7 @@
 
   .nav-icon-btn {
     width: 36px; height: 36px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.45);
     display: flex;
     align-items: center;
@@ -191,7 +185,6 @@
     border-bottom: 1px solid var(--border);
     color: var(--text);
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     transition: color 0.2s, padding-left 0.2s;
@@ -212,7 +205,7 @@
     border-radius: 999px;
     background: var(--accent);
     color: #000;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.2s;
@@ -262,7 +255,7 @@
     max-width: 100%;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     font-family: 'JetBrains Mono', monospace;
@@ -283,13 +276,13 @@
   .dev-card-dot.yellow { background: #ffbd2e; }
   .dev-card-dot.green { background: #27c93f; }
 
-  .dev-card-title { font-size: 0.68rem; color: var(--muted); }
+  .dev-card-title { font-size: 0.8125rem; color: var(--muted); }
 
   .dev-card-status {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    font-size: 0.65rem;
+    font-size: 0.8125rem;
     color: #27c93f;
     font-weight: 600;
   }
@@ -304,7 +297,7 @@
 
   .dev-card-code {
     padding: 1rem 1.1rem 1.1rem;
-    font-size: 0.68rem;
+    font-size: 0.8125rem;
     line-height: 1.7;
     overflow-x: auto;
   }
@@ -317,8 +310,8 @@
   }
 
   .dev-card-code .ok { color: #27c93f; }
-  .dev-card-code .key { color: var(--accent2); }
-  .dev-card-code .str { color: #f5a623; white-space: nowrap; }
+  .dev-card-code .key { color: var(--accent); }
+  .dev-card-code .str { color: var(--text); white-space: nowrap; }
   .dev-card-code > div + div { padding-left: 4ch; text-indent: -4ch; }
   .dev-card-code .punct { color: var(--muted); }
 
@@ -330,7 +323,7 @@
     border: 1px solid rgba(0,200,255,0.2);
     border-radius: 999px;
     padding: 0.4rem 1rem;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -365,12 +358,7 @@
   }
 
   h1 .line { display: block; width: fit-content; }
-  h1 .highlight {
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  h1 .highlight { color: var(--accent); }
 
   .hero-sub {
     margin-top: 1.5rem;
@@ -393,7 +381,7 @@
   }
 
   .hero-chip {
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     background: rgba(255,255,255,0.04);
@@ -411,7 +399,7 @@
 
   .hero-meta {
     margin-top: 1.5rem;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text);
     letter-spacing: 0.06em;
@@ -426,7 +414,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.85rem 1.8rem;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -444,18 +432,12 @@
   .btn-primary:hover {
     background: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(0,200,255,0.4);
   }
 
   .btn-outline {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
-  }
-
-  .hero-actions .btn-outline:hover {
-    background: rgba(0,200,255,0.08);
-    box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(0,200,255,0.3);
   }
 
   .btn-outline:hover {
@@ -482,31 +464,12 @@
   .stat-item + .stat-item { border-left: 1px solid var(--border); }
 
   .stat-num {
-    font-family: 'Syne', sans-serif;
     font-size: clamp(2rem, 4.6vw, 3.5rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
-    font-variant-numeric: lining-nums; /* Syne usa algarismos de estilo antigo: 7 e 3 desceriam da linha */
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 18px rgba(0,200,255,0.25));
   }
 
-  .stat-label { font-size: 0.78rem; line-height: 1.2; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; }
-
-  /* BG DECORATIONS */
-  .hero-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: radial-gradient(ellipse at 70% 0%, rgba(0,200,255,0.07) 0%, transparent 45%),
-                radial-gradient(ellipse at 95% 35%, rgba(123,97,255,0.07) 0%, transparent 40%),
-                radial-gradient(ellipse at 10% 75%, rgba(0,200,255,0.05) 0%, transparent 45%),
-                radial-gradient(ellipse at 50% 100%, rgba(123,97,255,0.05) 0%, transparent 45%);
-    pointer-events: none;
-  }
+  .stat-label { font-size: 0.8125rem; line-height: 1.2; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; }
 
   /* SECTIONS */
   section {
@@ -516,7 +479,7 @@
   }
 
   .section-label {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--accent);
@@ -555,6 +518,8 @@
     .about-lead { font-size: 1.15rem; }
   }
 
+  .section-hint { margin: -2.25rem 0 2.5rem; color: var(--muted); font-size: 1rem; }
+
   /* CERTIFICATES */
   .certs-grid {
     display: flex;
@@ -571,7 +536,6 @@
 
   .certs-subhead,
   .projects-subhead {
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--muted);
@@ -582,7 +546,7 @@
     max-width: 360px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 1.75rem;
     cursor: pointer;
     transition: all 0.3s;
@@ -590,30 +554,10 @@
     overflow: hidden;
   }
 
-  .cert-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 3px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
   .cert-card:hover {
     border-color: rgba(0,200,255,0.3);
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,255,0.1);
   }
-
-  .cert-card:hover::before { opacity: 1; }
-
-  .cert-card.aws::before { background: linear-gradient(90deg, #ff9900, #ffb340); }
-  .cert-card.huawei::before { background: linear-gradient(90deg, #cf0a2c, #ff3355); }
-  .cert-card.ifce::before { background: linear-gradient(90deg, #7b61ff, #a78bfa); }
-  .cert-card.ifce2::before { background: linear-gradient(90deg, #7b61ff, #a78bfa); }
-  .cert-card.espanhol::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
-  .cert-card.quimica::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
-  .cert-card.google::before { background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); }
 
   .cert-top-row {
     display: flex;
@@ -622,18 +566,8 @@
     margin-bottom: 1rem;
   }
 
-  .cert-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: var(--muted);
-    background: rgba(255,255,255,0.05);
-    padding: 0.15rem 0.55rem;
-    border-radius: 6px;
-  }
-
   .cert-status {
-    font-size: 0.7rem;
+    font-size: 0.8125rem;
     color: #22c55e;
     font-weight: 600;
     display: flex;
@@ -659,7 +593,7 @@
   [data-theme="light"] .cert-icon .logo-light { display: block; }
 
   .cert-issuer {
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--muted);
@@ -668,7 +602,6 @@
   }
 
   .cert-title {
-    font-family: 'Syne', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.3;
@@ -679,7 +612,7 @@
   .cert-meta {
     display: flex;
     gap: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     color: var(--muted);
     flex-wrap: wrap;
   }
@@ -693,7 +626,7 @@
   .cert-open-hint {
     position: absolute;
     bottom: 1.25rem; right: 1.25rem;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     color: var(--accent);
     opacity: 0;
     transition: opacity 0.3s;
@@ -757,7 +690,6 @@
   }
 
   .modal-header h3 {
-    font-family: 'Syne', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     line-height: 1.3;
@@ -765,7 +697,7 @@
 
   .modal-close {
     width: 36px; height: 36px;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--border);
     border: none;
     color: var(--text);
@@ -825,7 +757,7 @@
     padding: 0.35rem;
     margin-bottom: 2.5rem;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 20px;
     background: var(--card);
   }
 
@@ -835,7 +767,7 @@
     gap: 0.55rem;
     padding: 0.55rem 0.9rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     background: transparent;
     color: var(--muted);
     font: inherit;
@@ -866,7 +798,7 @@
     border-radius: 999px;
     background: color-mix(in srgb, var(--muted) 18%, transparent);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     text-align: center;
   }
 
@@ -875,8 +807,8 @@
   /* --tl-color: pontos, bordas e brilhos; --tl-ink: texto e ícones (contraste AA) */
   .tl-filter[data-filter="all"] { --tl-color: var(--text); --tl-ink: var(--text); }
   .tl-filter[data-filter="work"], .tl-item[data-type="work"] { --tl-color: var(--accent); --tl-ink: var(--accent); }
-  .tl-filter[data-filter="edu"], .tl-item[data-type="edu"] { --tl-color: var(--accent2); --tl-ink: #a593ff; }
-  .tl-filter[data-filter="cert"], .tl-item[data-type="cert"] { --tl-color: var(--accent3); --tl-ink: var(--accent3); }
+  .tl-filter[data-filter="edu"], .tl-item[data-type="edu"],
+  .tl-filter[data-filter="cert"], .tl-item[data-type="cert"] { --tl-color: var(--muted); --tl-ink: var(--text); }
 
   .timeline {
     --tl-year-w: 7.5rem;
@@ -898,7 +830,7 @@
 
   .tl-line-fill {
     height: 100%;
-    background: linear-gradient(var(--accent), var(--accent2));
+    background: var(--accent);
     transform-origin: top;
     transform: scaleY(0);
   }
@@ -915,9 +847,8 @@
     position: sticky;
     top: 5.5rem;
     align-self: start;
-    font-family: 'Syne', sans-serif;
     font-size: 1.6rem;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--muted);
     transition: color 0.3s;
   }
@@ -956,14 +887,12 @@
     background: color-mix(in srgb, var(--tl-color) 16%, var(--bg));
     border-color: var(--tl-color);
     color: var(--tl-ink);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tl-color) 12%, transparent),
-                0 0 18px color-mix(in srgb, var(--tl-color) 30%, transparent);
   }
 
   .tl-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 20px;
     padding: 1.25rem 1.5rem;
     transition: border-color 0.3s;
   }
@@ -982,14 +911,13 @@
   .tl-card-featured .exp-edu-title { font-size: 1.3rem; }
 
   .tl-cert-title {
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 0.98rem;
     line-height: 1.35;
     margin-bottom: 0.3rem;
   }
 
-  .tl-pill-cert { background: rgba(255,107,53,0.12); color: var(--accent3); }
+  .tl-pill-cert { background: color-mix(in srgb, var(--muted) 16%, transparent); color: var(--text); }
 
   .tl-toggle {
     display: inline-flex;
@@ -1001,7 +929,7 @@
     background: none;
     color: var(--accent);
     font: inherit;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     cursor: pointer;
   }
@@ -1022,7 +950,7 @@
     background: color-mix(in srgb, var(--tl-color) 8%, transparent);
     color: var(--tl-ink);
     font: inherit;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
@@ -1035,8 +963,6 @@
   .tl-cert-btn:hover {
     background: color-mix(in srgb, var(--tl-color) 16%, transparent);
     border-color: var(--tl-color);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tl-color) 14%, transparent),
-                0 6px 20px color-mix(in srgb, var(--tl-color) 22%, transparent);
     transform: translateY(-1px);
   }
 
@@ -1078,33 +1004,32 @@
   }
 
   .exp-date-mono {
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     letter-spacing: 0.08em;
-    color: var(--accent);
+    color: var(--muted);
     text-transform: uppercase;
     font-weight: 700;
   }
 
   .exp-status-pill {
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
     white-space: nowrap;
   }
 
-  .exp-status-pill-edu { background: rgba(123,97,255,0.12); color: #a593ff; } /* --accent2 puro ficava em 3.8:1 */
+  .exp-status-pill-edu { background: color-mix(in srgb, var(--muted) 16%, transparent); color: var(--text); }
   .exp-status-pill-work { background: rgba(0,200,255,0.12); color: var(--accent); }
 
   .exp-edu-title {
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.2rem;
   }
 
   .exp-edu-institution {
-    color: var(--accent);
+    color: var(--text);
     font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 0.4rem;
@@ -1114,7 +1039,7 @@
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     color: var(--muted);
     margin-bottom: 1rem;
   }
@@ -1126,7 +1051,7 @@
   }
 
   .exp-pillars-label {
-    font-size: 0.7rem;
+    font-size: 0.8125rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1153,7 +1078,7 @@
   .exp-pillars li svg {
     flex-shrink: 0;
     margin-top: 0.15rem;
-    color: var(--accent2);
+    color: var(--accent);
   }
 
   .exp-pillars li span { flex: 1; }
@@ -1180,7 +1105,7 @@
   .project-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 1.75rem;
     transition: all 0.3s;
     display: flex;
@@ -1190,7 +1115,6 @@
   .project-card:hover {
     border-color: rgba(0,200,255,0.3);
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,255,0.1);
   }
 
   .project-icon {
@@ -1205,15 +1129,14 @@
   }
 
   .project-title {
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 1.05rem;
     margin-bottom: 0.3rem;
   }
 
   .project-tagline {
-    font-size: 0.8rem;
-    color: var(--accent);
+    font-size: 0.8125rem;
+    color: var(--muted);
     margin-bottom: 0.9rem;
   }
 
@@ -1246,7 +1169,7 @@
     padding: 0;
     border: none;
     border-bottom: 1px solid var(--border);
-    border-radius: 15px 15px 0 0;
+    border-radius: 19px 19px 0 0;
     overflow: hidden;
     aspect-ratio: 16 / 10;
     background: var(--surface);
@@ -1276,7 +1199,7 @@
     background: rgba(8,11,16,0.75);
     backdrop-filter: blur(6px);
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     font-weight: 600;
   }
 
@@ -1319,7 +1242,6 @@
   }
 
   .gallery-header h3 {
-    font-family: 'Syne', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
   }
@@ -1327,7 +1249,7 @@
   .gallery-counter {
     margin-right: auto;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     color: #7e8ca0;
   }
 
@@ -1381,7 +1303,7 @@
   .gallery-close {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .gallery-caption {
@@ -1408,7 +1330,7 @@
     height: 56px;
     padding: 0;
     border: 2px solid transparent;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     background: #0d1117;
     cursor: pointer;
@@ -1440,7 +1362,7 @@
   @media (max-height: 520px) {
     .gallery-overlay { padding: 0.5rem 1rem; }
     .gallery { gap: 0.5rem; }
-    .gallery-caption { font-size: 0.8rem; }
+    .gallery-caption { font-size: 0.8125rem; }
     .gallery-thumb { width: 56px; height: 36px; }
   }
 
@@ -1463,7 +1385,7 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     line-height: 1.2;
     text-align: center;
@@ -1485,7 +1407,7 @@
     max-width: 335px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 20px;
     padding: 1.5rem;
     transition: border-color 0.3s;
   }
@@ -1497,21 +1419,20 @@
     display: block;
     width: 56px; height: 56px;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 20px;
     box-shadow: 0 0 0 1px var(--border), 0 8px 20px rgba(0,0,0,0.3);
   }
   [data-theme="light"] .skill-icon img { box-shadow: 0 0 0 1px var(--border), 0 6px 16px rgba(16,24,40,0.12); }
   .skill-name {
-    font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 0.95rem;
     margin-bottom: 0.75rem;
   }
 
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .skill-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.6rem; font-style: italic; }
+  .skill-note { font-size: 0.8125rem; color: var(--muted); margin-top: 0.6rem; font-style: italic; }
   .tag {
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     padding: 0.25rem 0.6rem;
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--border);
@@ -1530,9 +1451,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.72rem;
+    font-weight: 700;
+    font-size: 0.8125rem;
     letter-spacing: 0.04em;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0,0,0,0.75);
@@ -1545,11 +1465,11 @@
 
   .lang-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
   .lang-name { font-size: 0.85rem; font-weight: 700; }
-  .lang-level { font-size: 0.72rem; color: var(--muted); }
+  .lang-level { font-size: 0.8125rem; color: var(--muted); }
 
   .lang-bars { display: flex; gap: 4px; }
   .lang-bars i { width: 14px; height: 6px; border-radius: 999px; background: var(--border); }
-  .lang-bars i.on { background: var(--accent); box-shadow: 0 0 6px var(--glow); }
+  .lang-bars i.on { background: var(--accent); }
 
   /* CONTACT */
   .contact-section {
@@ -1560,15 +1480,6 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-  }
-
-  .contact-section::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(ellipse at 50% 50%, rgba(0,200,255,0.05) 0%, transparent 60%);
-    pointer-events: none;
   }
 
   .contact-section h2 { margin-bottom: 0.75rem; }
@@ -1586,7 +1497,7 @@
     align-items: center;
     gap: 0.6rem;
     padding: 0.85rem 1.5rem;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border);
     color: var(--text);
     text-decoration: none;
@@ -1602,7 +1513,6 @@
     border-color: var(--accent);
     color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,200,255,0.15);
   }
 
   /* FOOTER */
@@ -1610,7 +1520,7 @@
     padding: 3rem 2rem 2rem;
     border-top: 1px solid var(--border);
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
   }
 
   .footer-inner {
@@ -1627,13 +1537,12 @@
   }
 
   .footer-brand {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--accent);
     font-size: 1rem;
   }
 
-  .footer-loc { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+  .footer-loc { font-size: 0.8125rem; color: var(--muted); margin-top: 0.25rem; }
 
   .footer-nav {
     display: flex;
@@ -1647,7 +1556,7 @@
     padding: 0.35rem 0;
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1657,7 +1566,7 @@
 
   .footer-socials { display: flex; gap: 0.6rem; }
 
-  .footer-copy { max-width: calc(1100px - 4rem); margin: 0 auto; text-align: center; font-size: 0.78rem; }
+  .footer-copy { max-width: calc(1100px - 4rem); margin: 0 auto; text-align: center; font-size: 0.8125rem; }
 
   @media (max-width: 640px) {
     .footer-inner { flex-direction: column; text-align: center; justify-content: center; }
@@ -1720,7 +1629,7 @@
 
   @media (max-width: 640px) {
     .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-    .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.68rem; }
+    .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.8125rem; }
     .tech-grid img, .tech-grid svg { width: 30px; height: 30px; }
     .hero-stats { grid-template-columns: 1fr; gap: 2rem; }
     .stat-num { font-size: 2.5rem; }
@@ -1731,7 +1640,7 @@
 
   @media (max-width: 820px) {
     .tl-filters { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
-    .tl-filter { justify-content: center; gap: 0.4rem; padding: 0.55rem; font-size: 0.8rem; }
+    .tl-filter { justify-content: center; gap: 0.4rem; padding: 0.55rem; font-size: 0.8125rem; }
     .timeline { --tl-gap: 2.75rem; }
     .tl-line { left: calc(var(--tl-gap) / 2 - 1px); }
     .tl-year { grid-template-columns: 1fr; }
@@ -1780,8 +1689,7 @@
   }
 
   .preloader-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.3rem;
     color: var(--accent);
     letter-spacing: 0.05em;
@@ -1798,13 +1706,13 @@
   .preloader-bar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: var(--accent);
     transition: width 0.15s ease;
   }
 
   .preloader-pct {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     color: var(--muted);
   }
 
@@ -1836,7 +1744,7 @@
     color: #000;
     font-weight: 700;
     padding: 0.75rem 1.25rem;
-    border-radius: 8px;
+    border-radius: 12px;
     text-decoration: none;
     transition: top 0.2s ease;
   }
@@ -1853,7 +1761,7 @@
   [data-theme="light"] .btn-primary,
   [data-theme="light"] .skip-link { color: #fff; }
   [data-theme="light"] .nav-cta:hover,
-  [data-theme="light"] .btn-primary:hover { background: var(--accent2); color: #fff; }
+  [data-theme="light"] .btn-primary:hover { background: #005f82; color: #fff; }
 
   /* O terminal continua escuro nos dois temas */
   [data-theme="light"] .dev-card {
@@ -1863,25 +1771,16 @@
     --text: #e8edf5;
     --muted: #7e8ca0;
     --accent: #00c8ff;
-    --accent2: #7b61ff;
     color: var(--text);
     box-shadow: 0 20px 50px rgba(16,24,40,0.18);
   }
 
   [data-theme="light"] .hero-chip { background: var(--surface); }
   [data-theme="light"] .hero-badge { background: var(--surface); border-color: rgba(0,119,163,0.25); }
-  [data-theme="light"] .stat-num { filter: drop-shadow(0 0 14px rgba(0,119,163,0.15)); }
-  [data-theme="light"] .cert-card:hover,
-  [data-theme="light"] .project-card:hover { box-shadow: 0 20px 40px rgba(16,24,40,0.1), 0 0 0 1px rgba(0,119,163,0.15); }
-  [data-theme="light"] .cert-num,
   [data-theme="light"] .tag { background: rgba(17,22,29,0.05); }
   [data-theme="light"] .cert-status { color: #15803d; }
   [data-theme="light"] .modal-close:hover { background: rgba(17,22,29,0.06); }
-  [data-theme="light"] .tl-pill-cert { color: #b5410f; }
-  [data-theme="light"] .tl-filter[data-filter="edu"], [data-theme="light"] .tl-item[data-type="edu"] { --tl-ink: var(--accent2); }
-  [data-theme="light"] .tl-filter[data-filter="cert"], [data-theme="light"] .tl-item[data-type="cert"] { --tl-color: #b5410f; --tl-ink: #b5410f; }
   [data-theme="light"] .tl-filter[aria-pressed="true"] .tl-count { color: #fff; }
-  [data-theme="light"] .exp-status-pill-edu { color: var(--accent2); }
 </style>
 </head>
 <body>
@@ -1893,8 +1792,6 @@
 </div>
 
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
-
-<div class="hero-bg"></div>
 
 <!-- NAV -->
 <nav>
@@ -1985,7 +1882,7 @@
         Técnico em <strong>Informática</strong> em formação, atualmente estagiário de <strong>Gestão</strong> na Delfos. Foco em <span class="accent-word">Cloud Computing</span>, <span class="accent-word">Desenvolvimento</span> e <span class="accent-word">AWS & Huawei Cloud</span>.
       </p>
       <div class="hero-chips">
-        <span class="hero-chip"><img src="assets/icons/delfos.webp" alt="" width="16" height="16" style="vertical-align:-4px;margin-right:6px;border-radius:4px">Estágio na Delfos</span>
+        <span class="hero-chip"><img src="assets/icons/delfos.webp" alt="" width="16" height="16" style="vertical-align:-4px;margin-right:6px;border-radius:50%">Estágio na Delfos</span>
         <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
       </div>
       <div class="hero-actions">
@@ -2014,7 +1911,7 @@
 
 <!-- SOBRE -->
 <section id="sobre">
-  <p class="section-label">01 / Perfil</p>
+  <p class="section-label">Perfil</p>
   <h2>Sobre mim</h2>
   <div class="about fade-in">
     <p class="about-lead">Sou estudante do 3º ano do Técnico em Informática na E.E.E.P. Edson Queiroz, em Cascavel (CE), e estagiário de Gestão na Delfos. No estágio desenvolvo telas em React e TypeScript e endpoints de API em NestJS para uma plataforma web de monitoramento, entrego por merge request com code review, testes automatizados e CI, e apoio a gestão de projetos.</p>
@@ -2029,7 +1926,7 @@
 
 <!-- PROJETOS -->
 <section id="projetos">
-  <p class="section-label">02 / Portfólio</p>
+  <p class="section-label">Portfólio</p>
   <h2>Projetos</h2>
   <p class="projects-subhead">Projetos pessoais</p>
   <div class="projects-grid">
@@ -2158,7 +2055,7 @@
 
 <!-- EXPERIÊNCIA -->
 <section id="experiencia">
-  <p class="section-label">03 / Trajetória</p>
+  <p class="section-label">Trajetória</p>
   <h2>Experiência & Formação</h2>
 
   <div class="tl-filters" role="group" aria-label="Filtrar a linha do tempo">
@@ -2384,8 +2281,9 @@
 
 <!-- CERTIFICADOS -->
 <section id="certs">
-  <p class="section-label">04 / Conquistas</p>
-  <h2>Certificados <span style="color:var(--muted);font-size:0.6em;font-weight:400">—&nbsp;clique para visualizar</span></h2>
+  <p class="section-label">Conquistas</p>
+  <h2>Certificados</h2>
+  <p class="section-hint">Clique em um certificado para ver o documento.</p>
 
   <div class="certs-grid">
 
@@ -2394,7 +2292,7 @@
 
     <!-- AWS -->
     <div class="cert-card aws" onclick="openModal('aws')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('aws')}">
-      <div class="cert-top-row"><span class="cert-num">01</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon aws"><img class="logo-dark" src="assets/icons/aws-branco.svg" alt="" width="34" height="34" loading="lazy" decoding="async"><img class="logo-light" src="assets/icons/aws-escuro.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Amazon Web Services</div>
       <div class="cert-title">AWS Academy Graduate — Cloud Foundations Training Badge</div>
@@ -2407,7 +2305,7 @@
 
     <!-- Huawei -->
     <div class="cert-card huawei" onclick="openModal('huawei')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('huawei')}">
-      <div class="cert-top-row"><span class="cert-num">02</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon huawei"><img src="assets/icons/huawei.svg" alt="" width="28" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Huawei ICT Academy</div>
       <div class="cert-title">HCIA-Cloud Service V3.5 — Certificado de Conclusão (Portuguese)</div>
@@ -2421,7 +2319,7 @@
 
     <!-- Google Data Analytics -->
     <div class="cert-card google" onclick="openModal('google-data')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-data')}">
-      <div class="cert-top-row"><span class="cert-num">03</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon google"><img src="assets/icons/google.svg" alt="" width="26" height="26" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Google / Coursera</div>
       <div class="cert-title">Google Data Analytics Professional Certificate</div>
@@ -2435,7 +2333,7 @@
 
     <!-- IFCE Cloud Específica -->
     <div class="cert-card ifce" onclick="openModal('ifce-cloud')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-cloud')}">
-      <div class="cert-top-row"><span class="cert-num">04</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
       <div class="cert-title">Computação em Nuvem — Formação Específica</div>
@@ -2448,7 +2346,7 @@
 
     <!-- IFCE Interpessoal -->
     <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-interpessoal')}">
-      <div class="cert-top-row"><span class="cert-num">05</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE — Capacita Brasil / Residência TIC 20</div>
       <div class="cert-title">Computação em Nuvem — Habilidades Interpessoais</div>
@@ -2466,7 +2364,7 @@
     <div class="certs-group">
 
     <div class="cert-card espanhol" onclick="openModal('espanhol')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('espanhol')}">
-      <div class="cert-top-row"><span class="cert-num">06</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon espanhol"><img src="assets/icons/cci.webp" alt="" width="36" height="36" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Centro Cearense de Idiomas — SEDUC</div>
       <div class="cert-title">Curso de Língua Espanhola — Conclusão com Aproveitamento</div>
@@ -2479,7 +2377,7 @@
 
     <!-- Química -->
     <div class="cert-card quimica" onclick="openModal('quimica')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('quimica')}">
-      <div class="cert-top-row"><span class="cert-num">07</span><span class="cert-status">✓ Concluído</span></div>
+      <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon quimica"><img src="assets/icons/ceara.svg" alt="" width="28" height="38" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">E.E.E.P. Edson Queiroz</div>
       <div class="cert-title">Monitoria de Química — Curso Técnico de Informática</div>
@@ -2498,7 +2396,7 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <p class="section-label">05 / Competências</p>
+  <p class="section-label">Competências</p>
   <h2>Habilidades Técnicas</h2>
   <ul class="tech-grid fade-in" aria-label="Tecnologias que utilizo">
     <li><img src="assets/icons/react.svg" alt="" width="34" height="34" loading="lazy" decoding="async">React</li>
@@ -2607,7 +2505,7 @@
 <!-- CONTATO -->
 <section id="contato">
   <div class="contact-section fade-in">
-    <p class="section-label">06 / Contato</p>
+    <p class="section-label">Contato</p>
     <h2>Vamos conversar?</h2>
     <p>Aberto a estágios e oportunidades em desenvolvimento, cloud computing e TI em geral. Cascavel – CE.</p>
     <div class="contact-links">
@@ -2811,7 +2709,7 @@ function openModal(key) {
     const img = document.createElement('img');
     img.src = cert.imageUrl;
     img.alt = cert.title;
-    img.style.cssText = 'width:100%;max-width:550px;border-radius:16px;margin:1rem 0';
+    img.style.cssText = 'width:100%;max-width:550px;border-radius:12px;margin:1rem 0';
     body.appendChild(img);
     const a = document.createElement('a');
     a.href = cert.imageUrl;
