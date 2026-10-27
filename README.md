@@ -53,7 +53,7 @@ As fotos de `assets/fotos/` (ícones dos cards de Habilidades) são livres de di
 - Cloud & Infra: [Flickr (Jefferson Lab)](https://www.flickr.com/photos/53950384@N02/52644830245), domínio público
 - Ferramentas: [StockSnap (Marc Chouinard)](https://stocksnap.io/photo/coding-macbook-LV2IUQNTZ5), CC0
 - Inteligência Artificial: [rawpixel](https://www.rawpixel.com/image/5906158/photo-image-public-domain-computer-free), CC0
-- Soft Skills: [StockSnap (Kristin Hardwick)](https://stocksnap.io/photo/work-business-J5LXKNDREC), CC0
+- Habilidades comportamentais: [StockSnap (Kristin Hardwick)](https://stocksnap.io/photo/work-business-J5LXKNDREC), CC0
 - Idiomas: [StockSnap (Suzy Hazelwood)](https://stocksnap.io/photo/books-library-GTWPBBTRRN), CC0
 
 ## Rodar localmente
