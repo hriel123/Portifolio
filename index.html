@@ -1397,12 +1397,30 @@
   }
 
   /* SKILLS */
+  .tech-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tech-group { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+  .tech-group .skill-name { margin-bottom: 0; }
+  .tech-extra { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  @media (min-width: 1101px) {
+    .tech-group .tech-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 1100px) {
+    .tech-groups { grid-template-columns: 1fr; }
+  }
+
   .tech-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+    gap: 0.6rem;
   }
 
   .tech-grid li {
@@ -1411,7 +1429,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    padding: 1rem 0.35rem;
+    padding: 1rem 0.25rem;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -1654,11 +1672,9 @@
   }
 
   @media (max-width: 1024px) {
-    .tech-grid { grid-template-columns: repeat(5, 1fr); }
   }
 
   @media (max-width: 640px) {
-    .tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
     .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.8125rem; overflow-wrap: anywhere; }
     .tech-grid img, .tech-grid svg { width: 30px; height: 30px; }
     .hero-stats { grid-template-columns: 1fr; gap: 2rem; }
@@ -2460,66 +2476,58 @@
 <section id="skills">
   <p class="section-label">Competências</p>
   <h2>Habilidades Técnicas</h2>
-  <ul class="tech-grid fade-in" aria-label="Tecnologias que utilizo">
-    <li><img src="assets/icons/react.svg" alt="" width="34" height="34" loading="lazy" decoding="async">React</li>
-    <li><img src="assets/icons/typescript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">TypeScript</li>
-    <li><img src="assets/icons/javascript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">JavaScript</li>
-    <li><img src="assets/icons/html5.svg" alt="" width="34" height="34" loading="lazy" decoding="async">HTML</li>
-    <li><img src="assets/icons/css3.svg" alt="" width="34" height="34" loading="lazy" decoding="async">CSS</li>
-    <li><img src="assets/icons/tailwindcss.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tailwind CSS</li>
-    <li><img src="assets/icons/nodejs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Node.js</li>
-    <li><img src="assets/icons/nestjs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">NestJS</li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 18.588a1.53 1.53 0 0 1-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 0 1-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 0 1 1.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 0 1 1.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 0 0 0 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.08 4.08 0 0 0 2.582-2.876c.207-.666.548-.78 1.174-.588a5.420 5.420 0 0 1-2.589 3.957 6.27 6.27 0 0 1-7.306-.933 6.58 6.58 0 0 1-1.64-3.858c0-.235-.08-.455-.134-.666A88 88 0 0 1 0 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>Express</li>
-    <li><img src="assets/icons/postgresql.svg" alt="" width="34" height="34" loading="lazy" decoding="async">PostgreSQL</li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.807 18.285 13.553.757a1.32 1.32 0 0 0-1.129-.755 1.31 1.31 0 0 0-1.206.626l-8.952 14.5a1.36 1.36 0 0 0 .016 1.455l4.376 6.778a1.41 1.41 0 0 0 1.58.581l12.703-3.757c.389-.115.707-.39.873-.755s.164-.783-.007-1.145m-1.848.752L9.18 22.224a.452.452 0 0 1-.575-.52l3.85-18.438c.072-.345.549-.4.699-.08l7.129 15.138a.515.515 0 0 1-.325.713"/></svg>Prisma</li>
-    <li><img src="assets/icons/python.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Python</li>
-    <li><img src="assets/icons/tableau.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tableau</li>
-    <li><img src="assets/icons/aws.svg" alt="" width="34" height="34" loading="lazy" decoding="async">AWS</li>
-    <li><img src="assets/icons/huawei.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Huawei Cloud</li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 22.525H0l12-21.05z"/></svg>Vercel</li>
-    <li><img src="assets/icons/git.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Git</li>
-    <li><img src="assets/icons/gitlab.svg" alt="" width="34" height="34" loading="lazy" decoding="async">GitLab</li>
-    <li><img src="assets/icons/jest.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Jest</li>
-    <li><img src="assets/icons/linux.webp" alt="" width="34" height="34" loading="lazy" decoding="async">Linux</li>
-  </ul>
+  <div class="tech-groups fade-in">
+    <div class="tech-group">
+      <h3 class="skill-name">Front-end</h3>
+      <ul class="tech-grid" aria-label="Front-end">
+        <li><img src="assets/icons/react.svg" alt="" width="34" height="34" loading="lazy" decoding="async">React</li>
+        <li><img src="assets/icons/typescript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">TypeScript</li>
+        <li><img src="assets/icons/javascript.svg" alt="" width="34" height="34" loading="lazy" decoding="async">JavaScript</li>
+        <li><img src="assets/icons/html5.svg" alt="" width="34" height="34" loading="lazy" decoding="async">HTML</li>
+        <li><img src="assets/icons/css3.svg" alt="" width="34" height="34" loading="lazy" decoding="async">CSS</li>
+        <li><img src="assets/icons/tailwindcss.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tailwind CSS</li>
+      </ul>
+    </div>
+    <div class="tech-group">
+      <h3 class="skill-name">Back-end</h3>
+      <ul class="tech-grid" aria-label="Back-end">
+        <li><img src="assets/icons/nodejs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Node.js</li>
+        <li><img src="assets/icons/nestjs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">NestJS</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 18.588a1.53 1.53 0 0 1-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 0 1-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 0 1 1.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 0 1 1.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 0 0 0 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.08 4.08 0 0 0 2.582-2.876c.207-.666.548-.78 1.174-.588a5.420 5.420 0 0 1-2.589 3.957 6.27 6.27 0 0 1-7.306-.933 6.58 6.58 0 0 1-1.64-3.858c0-.235-.08-.455-.134-.666A88 88 0 0 1 0 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>Express</li>
+      </ul>
+      <p class="tech-extra">Também: APIs REST e autenticação JWT. Base em lógica de programação e estruturas de dados.</p>
+    </div>
+    <div class="tech-group">
+      <h3 class="skill-name">Dados</h3>
+      <ul class="tech-grid" aria-label="Dados">
+        <li><img src="assets/icons/postgresql.svg" alt="" width="34" height="34" loading="lazy" decoding="async">PostgreSQL</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.807 18.285 13.553.757a1.32 1.32 0 0 0-1.129-.755 1.31 1.31 0 0 0-1.206.626l-8.952 14.5a1.36 1.36 0 0 0 .016 1.455l4.376 6.778a1.41 1.41 0 0 0 1.58.581l12.703-3.757c.389-.115.707-.39.873-.755s.164-.783-.007-1.145m-1.848.752L9.18 22.224a.452.452 0 0 1-.575-.52l3.85-18.438c.072-.345.549-.4.699-.08l7.129 15.138a.515.515 0 0 1-.325.713"/></svg>Prisma</li>
+        <li><img src="assets/icons/python.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Python</li>
+        <li><img src="assets/icons/tableau.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tableau</li>
+      </ul>
+      <p class="tech-extra">Também: SQL, planilhas e Google Data Analytics.</p>
+    </div>
+    <div class="tech-group">
+      <h3 class="skill-name">Cloud &amp; Infra</h3>
+      <ul class="tech-grid" aria-label="Cloud e Infra">
+        <li><img src="assets/icons/aws.svg" alt="" width="34" height="34" loading="lazy" decoding="async">AWS</li>
+        <li><img src="assets/icons/huawei.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Huawei Cloud</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 22.525H0l12-21.05z"/></svg>Vercel</li>
+      </ul>
+      <p class="tech-extra">Também: redes TCP/IP, configuração de redes, virtualização e segurança. Conceitos: IaaS · PaaS · SaaS.</p>
+    </div>
+    <div class="tech-group">
+      <h3 class="skill-name">Ferramentas</h3>
+      <ul class="tech-grid" aria-label="Ferramentas">
+        <li><img src="assets/icons/git.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Git</li>
+        <li><img src="assets/icons/gitlab.svg" alt="" width="34" height="34" loading="lazy" decoding="async">GitLab</li>
+        <li><img src="assets/icons/jest.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Jest</li>
+        <li><img src="assets/icons/linux.webp" alt="" width="34" height="34" loading="lazy" decoding="async">Linux</li>
+      </ul>
+      <p class="tech-extra">Também: merge requests e CI no GitLab, App Inventor.</p>
+    </div>
+  </div>
   <div class="skills-grid fade-in">
-    <div class="skill-card">
-      <div class="skill-icon"><img src="assets/fotos/foto-front-end.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
-      <div class="skill-name">Front-end</div>
-      <div class="skill-tags">
-        <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Tailwind CSS</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon"><img src="assets/fotos/foto-back-end.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
-      <div class="skill-name">Back-end</div>
-      <div class="skill-tags">
-        <span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Express</span><span class="tag">APIs REST</span><span class="tag">Autenticação JWT</span>
-      </div>
-      <p class="skill-note">Base: lógica de programação e estruturas de dados</p>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon"><img src="assets/fotos/foto-dados.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
-      <div class="skill-name">Dados</div>
-      <div class="skill-tags">
-        <span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Python</span><span class="tag">Planilhas</span><span class="tag">Tableau</span><span class="tag">Google Data Analytics</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon"><img src="assets/fotos/foto-cloud-infra.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
-      <div class="skill-name">Cloud & Infra</div>
-      <div class="skill-tags">
-        <span class="tag">AWS</span><span class="tag">Huawei Cloud</span><span class="tag">Vercel</span><span class="tag">Redes TCP/IP</span><span class="tag">Configuração de Redes</span><span class="tag">Virtualização</span><span class="tag">Segurança</span>
-      </div>
-      <p class="skill-note">Conceitos: IaaS · PaaS · SaaS</p>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon"><img src="assets/fotos/foto-ferramentas.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
-      <div class="skill-name">Ferramentas</div>
-      <div class="skill-tags">
-        <span class="tag">Git</span><span class="tag">GitLab (MR, CI)</span><span class="tag">Jest</span><span class="tag">Linux</span><span class="tag">App Inventor</span>
-      </div>
-    </div>
     <div class="skill-card">
       <div class="skill-icon"><img src="assets/fotos/foto-ia.webp" alt="" width="56" height="56" loading="lazy" decoding="async"></div>
       <div class="skill-name">Inteligência Artificial</div>
