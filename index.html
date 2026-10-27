@@ -528,9 +528,8 @@
   }
 
   .certs-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
   }
 
@@ -542,8 +541,6 @@
   }
 
   .cert-card {
-    flex: 1 1 300px;
-    max-width: 360px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -1396,15 +1393,12 @@
   .tech-grid img, .tech-grid svg { width: 34px; height: 34px; object-fit: contain; }
 
   .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 1.25rem;
   }
 
   .skill-card {
-    flex: 1 1 260px;
-    max-width: 335px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -1628,8 +1622,8 @@
   }
 
   @media (max-width: 640px) {
-    .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-    .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.8125rem; }
+    .tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+    .tech-grid li { padding: 0.8rem 0.25rem; font-size: 0.8125rem; overflow-wrap: anywhere; }
     .tech-grid img, .tech-grid svg { width: 30px; height: 30px; }
     .hero-stats { grid-template-columns: 1fr; gap: 2rem; }
     .stat-num { font-size: 2.5rem; }
