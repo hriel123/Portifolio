@@ -258,7 +258,7 @@
 
   /* DEV CARD */
   .dev-card {
-    width: 300px;
+    width: 340px;
     max-width: 100%;
     background: var(--card);
     border: 1px solid var(--border);
@@ -302,60 +302,8 @@
     animation: pulse 2s infinite;
   }
 
-  .dev-card-body { padding: 1rem; }
-
-  .dev-card-identity {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .dev-card-avatar {
-    position: relative;
-    width: 46px; height: 46px;
-    border-radius: 10px;
-    background: rgba(0,200,255,0.08);
-    border: 1px solid rgba(0,200,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    color: var(--accent);
-    font-size: 0.95rem;
-    flex-shrink: 0;
-  }
-
-  .dev-card-avatar::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; right: -4px;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: #27c93f;
-    border: 2px solid var(--card);
-  }
-
-  .dev-card-name {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-  }
-
-  .dev-card-role { color: var(--accent); font-size: 0.7rem; }
-  .dev-card-meta {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--muted);
-    font-size: 0.68rem;
-    margin-top: 0.15rem;
-  }
-
   .dev-card-code {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
+    padding: 1rem 1.1rem 1.1rem;
     font-size: 0.68rem;
     line-height: 1.7;
     overflow-x: auto;
@@ -373,26 +321,6 @@
   .dev-card-code .str { color: #f5a623; white-space: nowrap; }
   .dev-card-code > div + div { padding-left: 4ch; text-indent: -4ch; }
   .dev-card-code .punct { color: var(--muted); }
-
-  .dev-card-tags {
-    display: flex;
-    gap: 0.5rem;
-    padding: 0 1rem 1rem;
-  }
-
-  .dev-card-tag {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.55rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 0.65rem;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-  }
 
   .hero-badge {
     display: inline-flex;
@@ -1739,6 +1667,12 @@
 
   @media (max-width: 860px) {
     .hero-inner { text-align: center; }
+    .hero-text { display: flex; flex-direction: column; align-items: center; }
+    .hero-name-row { display: contents; }
+    h1 { flex: none; min-width: 0; }
+    .hero-photo { order: 1; margin-top: 2rem; }
+    .hero-meta, .hero-stats { order: 2; }
+    .hero-stats { align-self: stretch; }
     .hero-name-row { justify-content: center; }
     h1 .line { margin-left: auto; margin-right: auto; }
     .hero-sub { text-align: center; margin-left: auto; margin-right: auto; }
@@ -1997,14 +1931,6 @@
               <div class="dev-card-status">ONLINE</div>
             </div>
             <div class="dev-card-body">
-              <div class="dev-card-identity">
-                <div class="dev-card-avatar">HF</div>
-                <div>
-                  <div class="dev-card-name">Hariel Fabrício</div>
-                  <div class="dev-card-role">Técnico em Informática</div>
-                  <div class="dev-card-meta">Delfos · E.E.E.P. Edson Queiroz</div>
-                </div>
-              </div>
               <div class="dev-card-code">
                 <div class="dev-card-code-header">
                   <span>// perfil.json</span>
@@ -2019,10 +1945,6 @@
                 <div>}</div>
               </div>
             </div>
-            <div class="dev-card-tags">
-              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud & Redes</div>
-              <div class="dev-card-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Dados & Python</div>
-            </div>
           </div>
         </div>
       </div>
@@ -2034,7 +1956,7 @@
         <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>3º Ano — Técnico em Informática</span>
       </div>
       <div class="hero-actions">
-        <a href="#certs" class="btn btn-primary">↓ Ver Certificados</a>
+        <a href="#projetos" class="btn btn-primary">Ver projetos</a>
         <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
         <a href="curriculo.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Currículo</a>
       </div>
