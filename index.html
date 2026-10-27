@@ -1153,16 +1153,10 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,200,255,0.1);
   }
 
-  .project-icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-    background: rgba(0,200,255,0.08);
-  }
+  .project-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.9rem; }
+  .project-logo { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; object-fit: contain; }
+  .project-logo-dark { background: #0d1117; padding: 3px; }
+  .project-head .project-tagline { margin-bottom: 0; }
 
   .project-title {
     font-weight: 700;
@@ -1980,9 +1974,13 @@
         <img src="assets/projetos/finflow/dashboard-escuro-sm.webp" alt="Dashboard do FinFlow no tema escuro" width="720" height="450" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="project-title">FinFlow</div>
-      <div class="project-tagline">Gestão financeira pessoal</div>
+      <div class="project-head">
+        <img class="project-logo" src="assets/projetos/finflow/logo.svg" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">FinFlow</div>
+          <div class="project-tagline">Gestão financeira pessoal</div>
+        </div>
+      </div>
       <p class="project-desc">Aplicação web full-stack para controle de finanças pessoais, com login, API própria e banco de dados relacional. Tem modo demonstração para conhecer sem criar conta, recuperação de senha por e-mail e política de privacidade. Front-end em React (Vite + Tailwind CSS), back-end em Node.js/Express com Prisma ORM e PostgreSQL.</p>
       <div class="skill-tags">
         <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
@@ -2000,9 +1998,13 @@
         <img src="assets/projetos/filafacil/painel-sm.webp" alt="Painel de atendimento do FilaFácil" width="720" height="450" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2.59 12.59A2 2 0 0 1 2 11.17V4a2 2 0 0 1 2-2h7.17a2 2 0 0 1 1.42.59l7.99 8a2 2 0 0 1 .01 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-      <div class="project-title">FilaFácil</div>
-      <div class="project-tagline">Gestão de filas para pequenos negócios</div>
+      <div class="project-head">
+        <img class="project-logo project-logo-dark" src="assets/projetos/filafacil/logo.webp" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">FilaFácil</div>
+          <div class="project-tagline">Gestão de filas para pequenos negócios</div>
+        </div>
+      </div>
       <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
@@ -2018,9 +2020,13 @@
         <img src="assets/projetos/jlvariedades/inicio-sm.webp" alt="Página inicial do site da JLVariedades" width="720" height="450" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-      <div class="project-title">JLVariedades</div>
-      <div class="project-tagline">Loja de moda e variedades em Cascavel, CE</div>
+      <div class="project-head">
+        <img class="project-logo" src="assets/projetos/jlvariedades/logo.svg" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">JLVariedades</div>
+          <div class="project-tagline">Loja de moda e variedades em Cascavel, CE</div>
+        </div>
+      </div>
       <p class="project-desc">Site institucional para loja de moda e variedades, com catálogo de produtos femininos, masculinos e presentes, além de contato direto via WhatsApp para vendas.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
@@ -2036,9 +2042,13 @@
         <img src="assets/projetos/coleta-agua/painel-sm.webp" alt="Painel do Coleta de Água com indicadores, gráficos e alertas" width="720" height="450" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-      <div class="project-title">Coleta de Água</div>
-      <div class="project-tagline">Rodízio e registro de coletas de água potável</div>
+      <div class="project-head">
+        <img class="project-logo" src="assets/projetos/coleta-agua/logo.svg" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">Coleta de Água</div>
+          <div class="project-tagline">Rodízio e registro de coletas de água potável</div>
+        </div>
+      </div>
       <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria ou modo visitante sem cadastro, recuperação de senha por e-mail, tema claro e escuro e exportação de planilha por período.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
@@ -2061,9 +2071,13 @@
         <img src="assets/projetos/fertify/capa.webp" alt="Logo do Fertify" width="925" height="578" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>7 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10c0-3.5 2.5-6 7-6 0 4.5-2.5 6-7 6z"/><path d="M12 13c0-2.8-2-5-6-5 0 3.5 2 5 6 5z"/></svg></div>
-      <div class="project-title">Fertify</div>
-      <div class="project-tagline">Projeto escolar em grupo · pH do solo com Arduino</div>
+      <div class="project-head">
+        <img class="project-logo" src="assets/projetos/fertify/logo-sm.webp" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">Fertify</div>
+          <div class="project-tagline">Projeto escolar em grupo · pH do solo com Arduino</div>
+        </div>
+      </div>
       <p class="project-desc">Projeto do Ensino Médio para tornar a análise do solo simples e acessível: um Arduino com sensor de pH mede o solo e os resultados aparecem em um site com cadastro, login e comparação com o pH ideal de cada cultura. Minha função no grupo: apresentar o projeto ao público.</p>
       <div class="skill-tags">
         <span class="tag">Arduino</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
@@ -2079,9 +2093,13 @@
         <img src="assets/projetos/labtime/capa.webp" alt="Telas do LabTime: página inicial, agendamento de espaço e lista de agendamentos" width="1440" height="900" loading="lazy" decoding="async">
         <span class="project-cover-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>7 imagens</span>
       </button>
-      <div class="project-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg></div>
-      <div class="project-title">LabTime</div>
-      <div class="project-tagline">Projeto escolar em grupo · agendamento de espaços</div>
+      <div class="project-head">
+        <img class="project-logo" src="assets/projetos/labtime/logo.webp" alt="" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="project-title">LabTime</div>
+          <div class="project-tagline">Projeto escolar em grupo · agendamento de espaços</div>
+        </div>
+      </div>
       <p class="project-desc">Plataforma para professores consultarem e reservarem laboratórios e outros espaços da escola: o sistema mostra os horários livres, verifica conflitos e registra o agendamento, no lugar de pedidos por WhatsApp e papel. Minha função no grupo: apresentar o projeto ao público.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
