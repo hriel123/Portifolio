@@ -38,20 +38,15 @@ certificado_*.pdf                  certificados originais
 assets/projetos/                   telas das galerias dos projetos
 assets/certificados/               imagens dos certificados
 assets/icons/                      logos das tecnologias e de quem emitiu os certificados
-assets/fotos/                      fotos dos cards de Sobre e Habilidades
+assets/fotos/                      fotos dos cards de Habilidades
 assets/curriculo/                  foto do currículo
 assets/og/                         imagem de prévia e a página que a gera
 ```
 
 Os logos de `assets/icons/` vêm do [Devicon](https://github.com/devicons/devicon) (licença MIT, Copyright (c) 2015 konpa), do [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0), do [flag-icons](https://github.com/lipis/flag-icons) (bandeiras, licença MIT, Copyright (c) 2013 Panayiotis Lipiridis), do Wikimedia Commons (domínio público: [Instituto Federal](https://commons.wikimedia.org/wiki/File:Instituto_Federal_Marca_2015.svg) e [Brasão do Ceará](https://commons.wikimedia.org/wiki/File:Bras%C3%A3o_do_Cear%C3%A1.svg)), do globo da marca publicada pela SEDUC Ceará nos editais do CCI e do site da Delfos (delfos.energy). As marcas pertencem aos seus donos.
 
-As fotos de `assets/fotos/` (ícones dos cards de Sobre e Habilidades) são livres de direitos (CC0 ou domínio público), encontradas pelo [Openverse](https://openverse.org):
+As fotos de `assets/fotos/` (ícones dos cards de Habilidades) são livres de direitos (CC0 ou domínio público), encontradas pelo [Openverse](https://openverse.org):
 
-- Cloud Computing: [rawpixel](https://www.rawpixel.com/image/6042704/photo-image-public-domain-free), CC0
-- Infraestrutura de Redes: [rawpixel](https://www.rawpixel.com/image/5919227/image-background-public-domain-technology), CC0
-- Análise de Dados: [StockSnap (Marc Chouinard)](https://stocksnap.io/photo/business-working-PHE63L27S6), CC0
-- IA & Programação: [rawpixel](https://www.rawpixel.com/image/5966842/computer-circuit-board-macro), CC0
-- Monitor Acadêmico: [rawpixel](https://www.rawpixel.com/image/5914454/image-public-domain-medicine-free), CC0
 - Front-end: [StockSnap (Domenico Loia)](https://stocksnap.io/photo/computer-keyboard-IHIHTFK8YH), CC0
 - Back-end: [StockSnap (Luca Bravo)](https://stocksnap.io/photo/computer-keyboard-A28WZDTYEY), CC0
 - Dados: [StockSnap (Wilfred Iven)](https://stocksnap.io/photo/accounting-finance-JONMP7TPGK), CC0
