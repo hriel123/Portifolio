@@ -1398,22 +1398,38 @@
 
   /* SKILLS */
   .tech-groups {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem 2.5rem;
-    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
   }
 
-  .tech-group { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+  .tech-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1 1 320px;
+    max-width: 335px;
+    min-width: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .tech-group:hover { border-color: rgba(0,200,255,0.2); }
   .tech-group .skill-name { margin-bottom: 0; }
-  .tech-extra { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .tech-group .tech-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tech-group .tech-grid li { width: calc((100% - 1.2rem) / 3); background: var(--surface); }
+  .tech-group .skill-note { margin-top: -0.4rem; }
 
-  @media (min-width: 1101px) {
-    .tech-group .tech-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  @media (max-width: 640px) {
+    .tech-group { padding: 1.25rem; }
   }
 
-  @media (max-width: 1100px) {
-    .tech-groups { grid-template-columns: 1fr; }
+  @media (max-width: 380px) {
+    .tech-group .tech-grid li { width: calc((100% - 0.6rem) / 2); }
   }
 
   .tech-grid {
@@ -2495,7 +2511,8 @@
         <li><img src="assets/icons/nestjs.svg" alt="" width="34" height="34" loading="lazy" decoding="async">NestJS</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 18.588a1.53 1.53 0 0 1-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 0 1-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 0 1 1.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 0 1 1.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 0 0 0 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.08 4.08 0 0 0 2.582-2.876c.207-.666.548-.78 1.174-.588a5.420 5.420 0 0 1-2.589 3.957 6.27 6.27 0 0 1-7.306-.933 6.58 6.58 0 0 1-1.64-3.858c0-.235-.08-.455-.134-.666A88 88 0 0 1 0 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>Express</li>
       </ul>
-      <p class="tech-extra">Também: APIs REST e autenticação JWT. Base em lógica de programação e estruturas de dados.</p>
+      <div class="skill-tags"><span class="tag">APIs REST</span><span class="tag">Autenticação JWT</span></div>
+      <p class="skill-note">Base: lógica de programação e estruturas de dados</p>
     </div>
     <div class="tech-group">
       <h3 class="skill-name">Dados</h3>
@@ -2505,7 +2522,7 @@
         <li><img src="assets/icons/python.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Python</li>
         <li><img src="assets/icons/tableau.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Tableau</li>
       </ul>
-      <p class="tech-extra">Também: SQL, planilhas e Google Data Analytics.</p>
+      <div class="skill-tags"><span class="tag">SQL</span><span class="tag">Planilhas</span><span class="tag">Google Data Analytics</span></div>
     </div>
     <div class="tech-group">
       <h3 class="skill-name">Cloud &amp; Infra</h3>
@@ -2514,7 +2531,8 @@
         <li><img src="assets/icons/huawei.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Huawei Cloud</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 22.525H0l12-21.05z"/></svg>Vercel</li>
       </ul>
-      <p class="tech-extra">Também: redes TCP/IP, configuração de redes, virtualização e segurança. Conceitos: IaaS · PaaS · SaaS.</p>
+      <div class="skill-tags"><span class="tag">Redes TCP/IP</span><span class="tag">Configuração de Redes</span><span class="tag">Virtualização</span><span class="tag">Segurança</span></div>
+      <p class="skill-note">Conceitos: IaaS · PaaS · SaaS</p>
     </div>
     <div class="tech-group">
       <h3 class="skill-name">Ferramentas</h3>
@@ -2524,7 +2542,7 @@
         <li><img src="assets/icons/jest.svg" alt="" width="34" height="34" loading="lazy" decoding="async">Jest</li>
         <li><img src="assets/icons/linux.webp" alt="" width="34" height="34" loading="lazy" decoding="async">Linux</li>
       </ul>
-      <p class="tech-extra">Também: merge requests e CI no GitLab, App Inventor.</p>
+      <div class="skill-tags"><span class="tag">GitLab (MR, CI)</span><span class="tag">App Inventor</span></div>
     </div>
   </div>
   <div class="skills-grid fade-in">
