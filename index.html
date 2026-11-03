@@ -704,7 +704,22 @@
   }
 
   .cert-card:hover .cert-open-hint,
-  .cert-card:focus-visible .cert-open-hint { opacity: 1; }
+  .cert-open:focus-visible .cert-open-hint { opacity: 1; }
+
+  /* O botão cobre o card inteiro: clicar em qualquer parte abre o certificado */
+  .cert-open {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    border-radius: inherit;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .cert-open:focus-visible { outline: none; }
+  .cert-card:has(.cert-open:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* MODAL */
   .modal-overlay {
@@ -2442,7 +2457,7 @@
     <div class="certs-group">
 
     <!-- AWS -->
-    <div class="cert-card aws" onclick="openModal('aws')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('aws')}">
+    <div class="cert-card aws">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon aws"><img class="logo-dark" src="assets/icons/aws-branco.svg" alt="" width="34" height="34" loading="lazy" decoding="async"><img class="logo-light" src="assets/icons/aws-escuro.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Amazon Web Services</div>
@@ -2451,11 +2466,11 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Abr 2026</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>20 horas</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: AWS Academy Graduate: Cloud Foundations Training Badge" onclick="openModal('aws')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     <!-- Huawei -->
-    <div class="cert-card huawei" onclick="openModal('huawei')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('huawei')}">
+    <div class="cert-card huawei">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon huawei"><img src="assets/icons/huawei.svg" alt="" width="28" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Huawei ICT Academy</div>
@@ -2465,11 +2480,11 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60 horas</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="7" cy="17" r="4"/><path d="M10.5 13.5 20 4"/><path d="M16 8l2 2"/><path d="M19 5l2 2"/></svg>EBG20251029000002</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: HCIA-Cloud Service V3.5: Certificado de Conclusão (Portuguese)" onclick="openModal('huawei')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     <!-- Google Data Analytics -->
-    <div class="cert-card google" onclick="openModal('google-data')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('google-data')}">
+    <div class="cert-card google">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon google"><img src="assets/icons/google.svg" alt="" width="26" height="26" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Google / Coursera</div>
@@ -2479,11 +2494,11 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>180 horas</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>9 cursos</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: Google Data Analytics Professional Certificate" onclick="openModal('google-data')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     <!-- IFCE Cloud Específica -->
-    <div class="cert-card ifce" onclick="openModal('ifce-cloud')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-cloud')}">
+    <div class="cert-card ifce">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE · Capacita Brasil / Residência TIC 20</div>
@@ -2492,11 +2507,11 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Jan 2026</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>240 horas</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: Computação em Nuvem: Formação Específica" onclick="openModal('ifce-cloud')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     <!-- IFCE Interpessoal -->
-    <div class="cert-card ifce2" onclick="openModal('ifce-interpessoal')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ifce-interpessoal')}">
+    <div class="cert-card ifce2">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon ifce"><img src="assets/icons/if.svg" alt="" width="21" height="28" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">IFCE · Capacita Brasil / Residência TIC 20</div>
@@ -2505,7 +2520,7 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Out 2025</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>120 horas</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: Computação em Nuvem: Habilidades Interpessoais" onclick="openModal('ifce-interpessoal')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     </div>
@@ -2514,7 +2529,7 @@
     <p class="certs-subhead">Formação complementar</p>
     <div class="certs-group">
 
-    <div class="cert-card espanhol" onclick="openModal('espanhol')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('espanhol')}">
+    <div class="cert-card espanhol">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon espanhol"><img src="assets/icons/cci.webp" alt="" width="36" height="36" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">Centro Cearense de Idiomas (SEDUC)</div>
@@ -2523,11 +2538,11 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Fev 2024 – Jun 2025</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>180 horas</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: Curso de Língua Espanhola: Conclusão com Aproveitamento" onclick="openModal('espanhol')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     <!-- Química -->
-    <div class="cert-card quimica" onclick="openModal('quimica')" tabindex="0" role="button" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('quimica')}">
+    <div class="cert-card quimica">
       <div class="cert-top-row"><span class="cert-status">✓ Concluído</span></div>
       <div class="cert-icon quimica"><img src="assets/icons/ceara.svg" alt="" width="28" height="38" loading="lazy" decoding="async"></div>
       <div class="cert-issuer">E.E.E.P. Edson Queiroz</div>
@@ -2536,7 +2551,7 @@
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Abr – Dez 2024</span>
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60 horas</span>
       </div>
-      <div class="cert-open-hint">Visualizar ↗</div>
+      <button type="button" class="cert-open" aria-haspopup="dialog" aria-label="Visualizar certificado: Monitoria de Química: Curso Técnico de Informática" onclick="openModal('quimica')"><span class="cert-open-hint">Visualizar ↗</span></button>
     </div>
 
     </div>
