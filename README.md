@@ -41,9 +41,12 @@ assets/icons/                      logos das tecnologias e de quem emitiu os cer
 assets/fotos/                      fotos dos cards de Habilidades
 assets/curriculo/                  foto do currículo
 assets/og/                         imagem de prévia e a página que a gera
+assets/fonts/                      fontes da página principal
 ```
 
 Os logos de `assets/icons/` vêm do [Devicon](https://github.com/devicons/devicon) (licença MIT, Copyright (c) 2015 konpa), do [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0), do [flag-icons](https://github.com/lipis/flag-icons) (bandeiras, licença MIT, Copyright (c) 2013 Panayiotis Lipiridis), do Wikimedia Commons (domínio público: [Instituto Federal](https://commons.wikimedia.org/wiki/File:Instituto_Federal_Marca_2015.svg) e [Brasão do Ceará](https://commons.wikimedia.org/wiki/File:Bras%C3%A3o_do_Cear%C3%A1.svg)), do globo da marca publicada pela SEDUC Ceará nos editais do CCI e do site da Delfos (delfos.energy). As marcas pertencem aos seus donos.
+
+As fontes de `assets/fonts/` (DM Sans, Syne e JetBrains Mono, só os caracteres latinos) vêm do [Google Fonts](https://fonts.google.com) e usam a licença [SIL Open Font License 1.1](https://openfontlicense.org).
 
 As fotos de `assets/fotos/` (ícones dos cards de Habilidades) são livres de direitos (CC0 ou domínio público), encontradas pelo [Openverse](https://openverse.org):
 
