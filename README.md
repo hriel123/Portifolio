@@ -34,6 +34,7 @@ HTML, CSS e JavaScript puros, sem frameworks nem etapa de build. Hospedado no Gi
 index.html                         página principal
 curriculo.html                     currículo (fonte do PDF)
 curriculo-hariel-silva-fabricio.pdf
+sitemap.xml                        lista das páginas para buscadores
 certificado_*.pdf                  certificados originais
 assets/projetos/                   telas das galerias dos projetos
 assets/certificados/               imagens dos certificados
