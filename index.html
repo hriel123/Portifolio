@@ -2891,15 +2891,18 @@ document.addEventListener('keydown', e => {
     ticking = false;
     const mark = window.innerHeight * 0.6;
     const box = line.getBoundingClientRect();
+    const reached = items.map((item) => {
+      if (item.hidden) return null;
+      const dot = item.querySelector('.tl-dot').getBoundingClientRect();
+      return dot.top + dot.height / 2 <= mark;
+    });
     const progress = box.height ? Math.min(1, Math.max(0, (mark - box.top) / box.height)) : 0;
     fill.style.transform = `scaleY(${progress})`;
     let current = null;
-    items.forEach((item) => {
-      if (item.hidden) return;
-      const dot = item.querySelector('.tl-dot').getBoundingClientRect();
-      const reached = dot.top + dot.height / 2 <= mark;
-      item.classList.toggle('reached', reached);
-      if (reached) current = item.closest('.tl-year');
+    items.forEach((item, i) => {
+      if (reached[i] === null) return;
+      item.classList.toggle('reached', reached[i]);
+      if (reached[i]) current = item.closest('.tl-year');
     });
     years.forEach((y) => y.classList.toggle('is-current', y === current));
   }
@@ -2943,7 +2946,7 @@ document.addEventListener('keydown', e => {
     });
   });
 
-  update();
+  requestUpdate();
 })();
 
 /* ===================== GALERIA DOS PROJETOS ===================== */
