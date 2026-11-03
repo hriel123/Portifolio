@@ -2034,15 +2034,15 @@
       <p class="hero-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel,&nbsp;CE,&nbsp;Brasil &nbsp;<span class="hero-meta-sep">·</span>&nbsp; AWS <span class="hero-meta-sep">·</span> Huawei&nbsp;Cloud <span class="hero-meta-sep">·</span> Python <span class="hero-meta-sep">·</span> SQL</p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">7</span>
+          <span class="stat-num" data-count="certs">7</span>
           <span class="stat-label">Certificados</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">860h</span>
+          <span class="stat-num" data-count="hours">860h</span>
           <span class="stat-label">Horas certificadas</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">6</span>
+          <span class="stat-num" data-count="projects">6</span>
           <span class="stat-label">Projetos</span>
         </div>
       </div>
@@ -3209,6 +3209,35 @@ const GALLERIES = {
         first.focus();
       }
     }
+  });
+})();
+
+/* ===================== CONTAGENS ===================== */
+// Os números do topo, dos filtros da linha do tempo e das capas saem do
+// próprio conteúdo, para não ficarem desatualizados quando algo muda.
+(function syncCounts() {
+  const set = (el, value) => { if (el) el.textContent = value; };
+  const certs = [...document.querySelectorAll('.cert-card')];
+  const hours = certs.reduce((sum, card) => {
+    const m = card.querySelector('.cert-meta').textContent.match(/(\d+)\s*horas/);
+    return sum + (m ? Number(m[1]) : 0);
+  }, 0);
+  set(document.querySelector('[data-count="certs"]'), certs.length);
+  set(document.querySelector('[data-count="hours"]'), `${hours}h`);
+  set(document.querySelector('[data-count="projects"]'), document.querySelectorAll('.project-card').length);
+
+  const items = [...document.querySelectorAll('#timeline .tl-item')];
+  document.querySelectorAll('.tl-filter').forEach((btn) => {
+    const f = btn.dataset.filter;
+    set(btn.querySelector('.tl-count'), items.filter((i) => f === 'all' || i.dataset.type === f || i.dataset.also === f).length);
+  });
+
+  document.querySelectorAll('.project-cover[data-gallery]').forEach((cover) => {
+    const n = GALLERIES[cover.dataset.gallery].images.length;
+    const label = `${n} ${n === 1 ? 'imagem' : 'imagens'}`;
+    const badge = cover.querySelector('.project-cover-badge');
+    set(badge.lastChild, label);
+    cover.setAttribute('aria-label', cover.getAttribute('aria-label').replace(/\d+ image(m|ns)$/, label));
   });
 })();
 
