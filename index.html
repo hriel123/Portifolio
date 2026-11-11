@@ -1226,6 +1226,14 @@
     margin-bottom: 1.1rem;
   }
 
+  .project-sec {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: -0.4rem 0 1.1rem;
+  }
+  .project-sec strong { color: var(--text); font-weight: 600; }
+
   .project-card .skill-tags { margin-bottom: 1.25rem; }
 
   .project-links {
@@ -2087,6 +2095,7 @@
         </div>
       </div>
       <p class="project-desc">Aplicação web full-stack para controle de finanças pessoais, com login, API própria e banco de dados relacional. Tem modo demonstração para conhecer sem criar conta, recuperação de senha por e-mail e política de privacidade. Front-end em React (Vite + Tailwind CSS), back-end em Node.js/Express com Prisma ORM e PostgreSQL.</p>
+      <p class="project-sec"><strong>Segurança e boas práticas:</strong> senhas com bcrypt, limite de tentativas no login, defesa contra enumeração de contas, link de recuperação guardado só como hash e de uso único, sessões encerradas ao trocar a senha, CORS restrito ao domínio do app e validação de tipos, tamanhos e valores na API. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
         <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
@@ -2111,6 +2120,7 @@
         </div>
       </div>
       <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
+      <p class="project-sec"><strong>Segurança e boas práticas:</strong> cabeçalhos de segurança (Helmet) e Content-Security-Policy, CORS restrito, limite de requisições por IP, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha, chave do convidado guardada só como hash e planilha do relatório protegida contra injeção de fórmulas. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
       </div>
@@ -2133,6 +2143,7 @@
         </div>
       </div>
       <p class="project-desc">Site institucional para loja de moda e variedades, com catálogo de produtos femininos, masculinos e presentes, além de contato direto via WhatsApp para vendas.</p>
+      <p class="project-sec"><strong>Boas práticas:</strong> nota 100 em acessibilidade e em boas práticas no Lighthouse (celular), fotos em WebP no tamanho de cada tela, fontes servidas pelo próprio site, galeria e menu usáveis pelo teclado e dados estruturados da loja para o Google.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
       </div>
@@ -2155,6 +2166,7 @@
         </div>
       </div>
       <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria ou modo visitante sem cadastro, recuperação de senha por e-mail, tema claro e escuro e exportação de planilha por período.</p>
+      <p class="project-sec"><strong>Segurança e boas práticas:</strong> Content-Security-Policy com hash dos scripts, CORS restrito, limite de tentativas no login e de tamanho nas requisições, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha e dados reais das coletas fora do repositório. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
         <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
