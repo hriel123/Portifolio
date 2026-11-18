@@ -75,11 +75,11 @@ Alguns arquivos são gerados a partir de outros e precisam ser refeitos quando a
   http://localhost:8000/curriculo.html
   ```
 
-- **Imagem de prévia** (depois de mudar `assets/og/card.html`), em 1200x630, convertida depois para JPG:
+- **Imagem de prévia** (depois de mudar `assets/og/_card.html`; o `_` no nome faz o GitHub Pages não publicar o arquivo), em 1200x630, convertida depois para JPG:
 
   ```bash
   chrome-headless-shell --hide-scrollbars --window-size=1200,630 \
-  --screenshot=og.png http://localhost:8000/assets/og/card.html
+  --screenshot=og.png http://localhost:8000/assets/og/_card.html
   ```
 
 - **Imagens dos certificados** (ao trocar ou adicionar um PDF): renderizar as páginas com `pdftoppm`, converter para WebP em `assets/certificados/<chave>-<página>.webp` e registrar o tamanho em `CERT_IMAGES` no `index.html`.
