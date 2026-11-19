@@ -1748,8 +1748,8 @@
     background: var(--border);
   }
 
-  /* Até 1180px os links do centro encostariam nos ícones da direita */
-  @media (max-width: 1180px) {
+  /* Até 1300px os links do centro encostariam nos ícones da direita */
+  @media (max-width: 1300px) {
     nav { min-height: 3.65rem; } /* sem os links, mantém a altura do desktop para caber os botões */
     .nav-links { display: none; }
     .nav-extras > :not(.theme-toggle):not(.nav-menu-btn) { display: none; }
@@ -1957,6 +1957,7 @@
     <li><a href="#certs">Certificados</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contato">Contato</a></li>
+    <li><a href="curriculo.html">Currículo</a></li>
   </ul>
   <div class="nav-extras">
     <a href="https://github.com/hriel123" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="GitHub">
@@ -2720,6 +2721,7 @@
       <li><a href="#certs">Certificados</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contato">Contato</a></li>
+      <li><a href="curriculo.html">Currículo</a></li>
     </ul>
     <div class="footer-socials">
       <a href="https://github.com/hriel123" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="GitHub">
@@ -2956,7 +2958,7 @@ document.addEventListener('keydown', e => {
     e.stopPropagation();
     setOpen(false);
   }, true);
-  window.matchMedia('(min-width: 1181px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  window.matchMedia('(min-width: 1301px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 })();
 
 /* ===================== LINHA DO TEMPO ===================== */
