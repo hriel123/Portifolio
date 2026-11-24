@@ -1256,6 +1256,31 @@
   }
   .project-sec strong { color: var(--text); font-weight: 600; }
 
+  /* No celular o trecho de segurança fica recolhido atrás deste botão */
+  .project-sec-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 44px;
+    margin: -0.75rem 0 0.5rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .project-sec-toggle svg { transition: transform 0.25s; }
+  .project-sec-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  @media (max-width: 687px) {
+    .project-sec-toggle { display: inline-flex; }
+    .project-sec-toggle[aria-expanded="false"] + .project-sec { display: none; }
+    .project-sec { margin-top: 0; }
+  }
+
   .project-card .skill-tags { margin-bottom: 1.25rem; }
 
   .project-links {
@@ -1792,6 +1817,22 @@
     .hero-stats { justify-content: center; }
   }
 
+  /* Celular: botões do topo empilhados com a mesma largura */
+  @media (max-width: 599px) {
+    .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 20rem; }
+    .hero-actions .btn { justify-content: center; }
+  }
+
+  /* Celular: cidade numa linha e tecnologias na outra, sem "·" sobrando no fim */
+  @media (max-width: 519px) {
+    .hero-meta-gap { display: none; }
+    .hero-meta-tech { display: block; margin-top: 0.35rem; white-space: nowrap; }
+  }
+
+  @media (max-width: 359px) {
+    .hero-meta-tech { letter-spacing: 0.03em; }
+  }
+
   @media (max-width: 1024px) {
   }
 
@@ -2065,7 +2106,7 @@
         <a href="#contato" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Entre em contato</a>
         <a href="curriculo.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Currículo</a>
       </div>
-      <p class="hero-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel,&nbsp;CE,&nbsp;Brasil &nbsp;<span class="hero-meta-sep">·</span>&nbsp; AWS <span class="hero-meta-sep">·</span> Huawei&nbsp;Cloud <span class="hero-meta-sep">·</span> Python <span class="hero-meta-sep">·</span> SQL</p>
+      <p class="hero-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cascavel,&nbsp;CE,&nbsp;Brasil<span class="hero-meta-gap"> &nbsp;<span class="hero-meta-sep">·</span>&nbsp; </span><span class="hero-meta-tech">AWS <span class="hero-meta-sep">·</span> Huawei&nbsp;Cloud <span class="hero-meta-sep">·</span> Python <span class="hero-meta-sep">·</span> SQL</span></p>
       <div class="hero-stats">
         <div class="stat-item">
           <span class="stat-num" data-count="certs">7</span>
@@ -2120,7 +2161,8 @@
         </div>
       </div>
       <p class="project-desc">Aplicação web full-stack para controle de finanças pessoais, com login, API própria e banco de dados relacional. Tem modo demonstração para conhecer sem criar conta, recuperação de senha por e-mail e política de privacidade. Front-end em React (Vite + Tailwind CSS), back-end em Node.js/Express com Prisma ORM e PostgreSQL.</p>
-      <p class="project-sec"><strong>Segurança e boas práticas:</strong> senhas com bcrypt, limite de tentativas no login, defesa contra enumeração de contas, link de recuperação guardado só como hash e de uso único, sessões encerradas ao trocar a senha, CORS restrito ao domínio do app e validação de tipos, tamanhos e valores na API. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
+      <button type="button" class="project-sec-toggle" aria-expanded="false" aria-controls="sec-finflow" data-label="segurança e boas práticas"><span class="project-sec-toggle-text">Ver segurança e boas práticas</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <p class="project-sec" id="sec-finflow"><strong>Segurança e boas práticas:</strong> senhas com bcrypt, limite de tentativas no login, defesa contra enumeração de contas, link de recuperação guardado só como hash e de uso único, sessões encerradas ao trocar a senha, CORS restrito ao domínio do app e validação de tipos, tamanhos e valores na API. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
         <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
@@ -2145,7 +2187,8 @@
         </div>
       </div>
       <p class="project-desc">Sistema de filas para pequenos negócios: o cliente pega a senha pelo QR code, com conta ou só com o nome, e acompanha a vez no celular, com aviso quando é chamado. O atendimento chama o próximo com um clique, em um ou vários guichês. Tela de chamada para TV com som e voz, relatório do dia, modo visitante para testar o painel sem cadastro, recuperação de senha por e-mail e tema claro e escuro.</p>
-      <p class="project-sec"><strong>Segurança e boas práticas:</strong> cabeçalhos de segurança (Helmet) e Content-Security-Policy, CORS restrito, limite de requisições por IP, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha, chave do convidado guardada só como hash e planilha do relatório protegida contra injeção de fórmulas. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
+      <button type="button" class="project-sec-toggle" aria-expanded="false" aria-controls="sec-filafacil" data-label="segurança e boas práticas"><span class="project-sec-toggle-text">Ver segurança e boas práticas</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <p class="project-sec" id="sec-filafacil"><strong>Segurança e boas práticas:</strong> cabeçalhos de segurança (Helmet) e Content-Security-Policy, CORS restrito, limite de requisições por IP, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha, chave do convidado guardada só como hash e planilha do relatório protegida contra injeção de fórmulas. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Render</span>
       </div>
@@ -2168,7 +2211,8 @@
         </div>
       </div>
       <p class="project-desc">Site institucional para loja de moda e variedades, com catálogo de produtos femininos, masculinos e presentes, além de contato direto via WhatsApp para vendas.</p>
-      <p class="project-sec"><strong>Boas práticas:</strong> nota 100 em acessibilidade e em boas práticas no Lighthouse (celular), fotos em WebP no tamanho de cada tela, fontes servidas pelo próprio site, galeria e menu usáveis pelo teclado e dados estruturados da loja para o Google.</p>
+      <button type="button" class="project-sec-toggle" aria-expanded="false" aria-controls="sec-jlvariedades" data-label="boas práticas"><span class="project-sec-toggle-text">Ver boas práticas</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <p class="project-sec" id="sec-jlvariedades"><strong>Boas práticas:</strong> nota 100 em acessibilidade e em boas práticas no Lighthouse (celular), fotos em WebP no tamanho de cada tela, fontes servidas pelo próprio site, galeria e menu usáveis pelo teclado e dados estruturados da loja para o Google.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
       </div>
@@ -2191,7 +2235,8 @@
         </div>
       </div>
       <p class="project-desc">Site para planejar e registrar a coleta diária de amostras de água potável em duas fábricas: monta o rodízio sozinho, prevê as próximas coletas e registra cloro livre, pH e turbidez, com alerta de valores fora do normal. Painel com indicadores e gráficos, login com conta própria ou modo visitante sem cadastro, recuperação de senha por e-mail, tema claro e escuro e exportação de planilha por período.</p>
-      <p class="project-sec"><strong>Segurança e boas práticas:</strong> Content-Security-Policy com hash dos scripts, CORS restrito, limite de tentativas no login e de tamanho nas requisições, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha e dados reais das coletas fora do repositório. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
+      <button type="button" class="project-sec-toggle" aria-expanded="false" aria-controls="sec-coleta" data-label="segurança e boas práticas"><span class="project-sec-toggle-text">Ver segurança e boas práticas</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <p class="project-sec" id="sec-coleta"><strong>Segurança e boas práticas:</strong> Content-Security-Policy com hash dos scripts, CORS restrito, limite de tentativas no login e de tamanho nas requisições, senhas com bcrypt, defesa contra enumeração de contas, sessões encerradas ao trocar a senha e dados reais das coletas fora do repositório. Acessibilidade revisada com axe: contraste AA, teclado e leitor de tela.</p>
       <div class="skill-tags">
         <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
         <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span>
@@ -3297,6 +3342,16 @@ function hidePreloader() {
   el.classList.add('is-hidden');
   setTimeout(() => el.remove(), 550);
 }
+
+(function initProjectSecToggles() {
+  document.querySelectorAll('.project-sec-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      btn.querySelector('.project-sec-toggle-text').textContent = (open ? 'Ocultar ' : 'Ver ') + btn.dataset.label;
+    });
+  });
+})();
 
 (function initThemeToggle() {
   const btn = document.getElementById('themeToggle');

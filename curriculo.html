@@ -329,7 +329,13 @@
     .toolbar-back { flex-basis: 100%; }
     .page { padding: 1rem 0.75rem 3rem; }
     .sheet { padding: 1.5rem 1.25rem; font-size: 10.5pt; }
-    .cv-contacts { gap: 0.25rem 1rem; }
+    .cv-contacts { gap: 0.25rem 1rem; font-size: 9.5pt; }
+    /* Na tela do celular o corpo cresce; títulos e metadados acompanham */
+    .cv-section + .cv-section { margin-top: 1.4rem; }
+    .cv-section h2 { font-size: 11pt; margin-bottom: 0.6rem; }
+    .cv-entry + .cv-entry { margin-top: 0.9rem; }
+    .cv-entry-title { font-size: 11.5pt; }
+    .cv-entry-org, .cv-entry-date, .cv-entry-link, .cv-cert-meta, .cv-cert-hours, .cv-total { font-size: 9.5pt; }
   }
 
   /* Área de toque maior nos links da folha. "screen" porque a página A4
