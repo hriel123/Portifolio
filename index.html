@@ -1537,9 +1537,13 @@
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 1.5rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .tech-group:hover { border-color: rgba(0,200,255,0.2); }
+  .tech-group:hover,
+  .skill-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent), 0 12px 30px color-mix(in srgb, var(--accent) 12%, transparent);
+  }
   .tech-group .skill-name { margin-bottom: 0; }
   .tech-group .tech-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .tech-group .tech-grid li { width: calc((100% - 1.2rem) / 3); background: var(--surface); }
@@ -1574,10 +1578,10 @@
     font-weight: 600;
     line-height: 1.2;
     text-align: center;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s, background-color 0.3s, transform 0.3s;
   }
 
-  .tech-grid li:hover { border-color: rgba(0,200,255,0.2); transform: translateY(-2px); }
+  .tech-grid li:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); transform: translateY(-2px); }
   .tech-grid img, .tech-grid svg { width: 34px; height: 34px; object-fit: contain; }
 
   .skills-grid {
@@ -1594,10 +1598,8 @@
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 1.5rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-
-  .skill-card:hover { border-color: rgba(0,200,255,0.2); }
 
   .skill-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
   .skill-icon img {
