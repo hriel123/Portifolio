@@ -1786,11 +1786,17 @@
     background: var(--border);
   }
 
-  /* Até 1300px os links do centro encostariam nos ícones da direita */
-  @media (max-width: 1300px) {
+  /* Até 1350px os links do centro encostariam nos ícones da direita: ficam só
+     os links e o tema (GitHub, LinkedIn e Contato continuam no topo e nos links) */
+  @media (max-width: 1350px) {
+    .nav-links { gap: 1.5rem; }
+    .nav-extras > :not(.theme-toggle):not(.nav-menu-btn) { display: none; }
+  }
+
+  /* Abaixo de 1024px nem os links cabem: menu */
+  @media (max-width: 1023px) {
     nav { min-height: 3.65rem; } /* sem os links, mantém a altura do desktop para caber os botões */
     .nav-links { display: none; }
-    .nav-extras > :not(.theme-toggle):not(.nav-menu-btn) { display: none; }
     .nav-menu-btn { display: flex; }
   }
 
@@ -2968,7 +2974,7 @@ document.addEventListener('keydown', e => {
     e.stopPropagation();
     setOpen(false);
   }, true);
-  window.matchMedia('(min-width: 1301px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 })();
 
 /* ===================== LINHA DO TEMPO ===================== */
