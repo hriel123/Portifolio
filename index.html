@@ -2273,7 +2273,7 @@
   <h2>Experiência & Formação</h2>
 
   <div class="tl-filters" role="group" aria-label="Filtrar a linha do tempo">
-    <button type="button" class="tl-filter" data-filter="all" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Tudo</span><span class="tl-count">11</span></button>
+    <button type="button" class="tl-filter" data-filter="all" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Geral</span><span class="tl-count">5</span></button>
     <button type="button" class="tl-filter" data-filter="work" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Experiência</span><span class="tl-count">3</span></button>
     <button type="button" class="tl-filter" data-filter="edu" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Formação</span><span class="tl-count">2</span></button>
     <button type="button" class="tl-filter" data-filter="cert" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Certificados</span><span class="tl-count">7</span></button>
@@ -2998,7 +2998,7 @@ document.addEventListener('keydown', e => {
 })();
 
 /* ===================== LINHA DO TEMPO ===================== */
-// "Tudo" mostra experiência e formação; os certificados aparecem só no filtro Certificados
+// "Geral" mostra experiência e formação; os certificados aparecem só no filtro Certificados
 function inTimelineFilter(item, filter) {
   if (filter === 'all') return item.dataset.type !== 'cert';
   return item.dataset.type === filter || item.dataset.also === filter;
