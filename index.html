@@ -3288,6 +3288,15 @@ const GALLERIES = {
   document.addEventListener('keydown', (e) => {
     if (!overlay.classList.contains('active')) return;
     if (e.key === 'Escape') { close(); return; }
+    // Ampliada, as setas movem a imagem; sem zoom, trocam de imagem
+    const pan = { ArrowLeft: [-0.1, 0], ArrowRight: [0.1, 0], ArrowUp: [0, -0.1], ArrowDown: [0, 0.1] }[e.key];
+    if (pan && stage.classList.contains('zoomed')) {
+      e.preventDefault();
+      fx = clamp(fx + pan[0]);
+      fy = clamp(fy + pan[1]);
+      place();
+      return;
+    }
     if (e.key === 'ArrowLeft') { show(index - 1); return; }
     if (e.key === 'ArrowRight') { show(index + 1); return; }
     if (e.key === 'Tab') {
