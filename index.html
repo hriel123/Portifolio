@@ -2998,6 +2998,12 @@ document.addEventListener('keydown', e => {
 })();
 
 /* ===================== LINHA DO TEMPO ===================== */
+// "Tudo" mostra experiência e formação; os certificados aparecem só no filtro Certificados
+function inTimelineFilter(item, filter) {
+  if (filter === 'all') return item.dataset.type !== 'cert';
+  return item.dataset.type === filter || item.dataset.also === filter;
+}
+
 (function initTimeline() {
   const timeline = document.getElementById('timeline');
   if (!timeline) return;
@@ -3049,13 +3055,17 @@ document.addEventListener('keydown', e => {
     });
   });
 
+  const hideEmptyYears = () => years.forEach((y) => { y.hidden = !y.querySelector('.tl-item:not([hidden])'); });
+  items.forEach((item) => { item.hidden = !inTimelineFilter(item, 'all'); });
+  hideEmptyYears();
+
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
       filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       let shown = 0;
       items.forEach((item) => {
-        const show = filter === 'all' || item.dataset.type === filter || item.dataset.also === filter;
+        const show = inTimelineFilter(item, filter);
         item.hidden = !show;
         item.classList.remove('tl-enter');
         if (show) {
@@ -3064,7 +3074,7 @@ document.addEventListener('keydown', e => {
           item.classList.add('tl-enter');
         }
       });
-      years.forEach((y) => { y.hidden = !y.querySelector('.tl-item:not([hidden])'); });
+      hideEmptyYears();
       status.textContent = `${shown} ${shown === 1 ? 'item' : 'itens'} na linha do tempo`;
       requestUpdate();
     });
@@ -3351,7 +3361,7 @@ const GALLERIES = {
   const items = [...document.querySelectorAll('#timeline .tl-item')];
   document.querySelectorAll('.tl-filter').forEach((btn) => {
     const f = btn.dataset.filter;
-    set(btn.querySelector('.tl-count'), items.filter((i) => f === 'all' || i.dataset.type === f || i.dataset.also === f).length);
+    set(btn.querySelector('.tl-count'), items.filter((i) => inTimelineFilter(i, f)).length);
   });
 
   document.querySelectorAll('.project-cover[data-gallery]').forEach((cover) => {
